@@ -1,3 +1,5 @@
+import { VIRTUS_FAQ_GROUPS, type FaqEntry } from "@/lib/virtus-faq-data";
+
 export type LeadVertical =
   | "Wealth/Insurance"
   | "Legal"
@@ -31,6 +33,9 @@ export type LeadPayload = {
 
 export type QualificationStep =
   | "greeting"
+  | "faq_categories"
+  | "faq_questions"
+  | "faq_followup"
   | "vertical"
   | "bottleneck"
   | "size"
@@ -38,6 +43,21 @@ export type QualificationStep =
   | "capture"
   | "handover"
   | "browsing";
+
+export const WIDGET_FAQ_CATEGORY_BUTTONS = [
+  { buttonLabel: "Security & Compliance", groupCategory: "Security & Compliance" },
+  { buttonLabel: "Pricing & Process", groupCategory: "Process & Pricing" },
+  { buttonLabel: "Technology", groupCategory: "Technology & AI" },
+] as const;
+
+export function getFaqItemsForGroup(groupCategory: string): FaqEntry[] {
+  return VIRTUS_FAQ_GROUPS.find((group) => group.category === groupCategory)?.items ?? [];
+}
+
+export function formatFaqQuestionList(items: FaqEntry[]): string {
+  const lines = items.map((item) => `• ${item.question}`);
+  return `Here are the questions I can answer:\n\n${lines.join("\n")}`;
+}
 
 export function calculateLeadStatus(
   timeline: LeadTimeline,
@@ -57,7 +77,10 @@ export const TYPING_DELAY_MS = 900;
 
 export const SCRIPT = {
   greeting:
-    "Hi, I'm the Virtus digital receptionist. I can help map where your intake process is leaking. Mind if I ask a few quick questions?",
+    "Hi, I'm Ripley, the Virtus digital receptionist. I can help map where your intake process is leaking. Mind if I ask a few quick questions?",
+  faqAsk: "Of course. What would you like to know about?",
+  faqFollowUp:
+    "Does that answer your question? Or would you like to start the intake process?",
   vertical: "First, which best describes your firm?",
   bottleneck: "What is your biggest front-door bottleneck right now?",
   size: "How many partners or advisors are in your firm?",

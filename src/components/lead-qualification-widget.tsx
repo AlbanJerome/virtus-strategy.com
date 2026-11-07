@@ -6,7 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
+  WIDGET_FAQ_CATEGORY_BUTTONS,
   calculateLeadStatus,
+  formatFaqQuestionList,
+  getFaqItemsForGroup,
   SCRIPT,
   TYPING_DELAY_MS,
   type LeadBottleneck,
@@ -64,6 +67,7 @@ export function LeadQualificationWidget() {
   const [draft, setDraft] = useState<DraftLead>(initialDraft);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [activeFaqGroup, setActiveFaqGroup] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const messageId = useRef(0);
 
@@ -102,6 +106,7 @@ export function LeadQualificationWidget() {
     setMessages([]);
     setDraft(initialDraft);
     setSubmitError(null);
+    setActiveFaqGroup(null);
     pushBot(SCRIPT.greeting);
   }, [pushBot]);
 
@@ -124,6 +129,51 @@ export function LeadQualificationWidget() {
   };
 
   const onGreetingBrowse = () => {
+    pushUser("Just browsing");
+    setStep("browsing");
+    pushBot(SCRIPT.browsing);
+  };
+
+  const onGreetingAskQuestion = () => {
+    pushUser("Ask a question");
+    setActiveFaqGroup(null);
+    setStep("faq_categories");
+    pushBot(SCRIPT.faqAsk);
+  };
+
+  const onFaqCategory = (buttonLabel: string, groupCategory: string) => {
+    pushUser(buttonLabel);
+    setActiveFaqGroup(groupCategory);
+    setStep("faq_questions");
+    const items = getFaqItemsForGroup(groupCategory);
+    pushBot(formatFaqQuestionList(items));
+  };
+
+  const onFaqQuestion = (question: string) => {
+    if (!activeFaqGroup) return;
+    const entry = getFaqItemsForGroup(activeFaqGroup).find((item) => item.question === question);
+    if (!entry) return;
+
+    pushUser(question);
+    pushBot(entry.answer, () => {
+      setStep("faq_followup");
+      pushBot(SCRIPT.faqFollowUp);
+    });
+  };
+
+  const onFaqStartIntake = () => {
+    pushUser("Yes, let's start the intake");
+    goToStep("vertical", SCRIPT.vertical);
+  };
+
+  const onFaqAskAnother = () => {
+    pushUser("Ask another question");
+    setActiveFaqGroup(null);
+    setStep("faq_categories");
+    pushBot(SCRIPT.faqAsk);
+  };
+
+  const onFaqJustBrowsing = () => {
     pushUser("Just browsing");
     setStep("browsing");
     pushBot(SCRIPT.browsing);
@@ -226,7 +276,68 @@ export function LeadQualificationWidget() {
               size="sm"
               variant="outline"
               className="w-full justify-start"
+              onClick={onGreetingAskQuestion}
+            >
+              Ask a question
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              className="w-full justify-start"
               onClick={onGreetingBrowse}
+            >
+              Just browsing
+            </Button>
+          </div>
+        );
+      case "faq_categories":
+        return (
+          <div className="flex flex-col gap-2">
+            {WIDGET_FAQ_CATEGORY_BUTTONS.map((category) => (
+              <Button
+                key={category.groupCategory}
+                type="button"
+                size="sm"
+                variant="outline"
+                className="h-auto min-h-9 w-full justify-start whitespace-normal py-2 text-left text-sm"
+                onClick={() => onFaqCategory(category.buttonLabel, category.groupCategory)}
+              >
+                {category.buttonLabel}
+              </Button>
+            ))}
+          </div>
+        );
+      case "faq_questions": {
+        const questions = activeFaqGroup ? getFaqItemsForGroup(activeFaqGroup) : [];
+        return (
+          <ChoiceGroup
+            options={questions.map((item) => item.question)}
+            onSelect={onFaqQuestion}
+          />
+        );
+      }
+      case "faq_followup":
+        return (
+          <div className="flex flex-col gap-2">
+            <Button type="button" size="sm" className="w-full justify-start" onClick={onFaqStartIntake}>
+              Yes, let&apos;s start the intake
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              className="w-full justify-start"
+              onClick={onFaqAskAnother}
+            >
+              Ask another question
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              className="w-full justify-start"
+              onClick={onFaqJustBrowsing}
             >
               Just browsing
             </Button>
@@ -370,12 +481,12 @@ export function LeadQualificationWidget() {
             "max-h-[min(560px,calc(100vh-6rem))]"
           )}
           role="dialog"
-          aria-label="Virtus intake assistant"
+          aria-label="Ripley intake assistant"
         >
           <header className="flex items-center justify-between border-b border-border bg-secondary/80 px-4 py-3">
             <div>
-              <p className="text-sm font-semibold text-foreground">Virtus reception</p>
-              <p className="text-xs text-muted-foreground">Intake qualification</p>
+              <p className="text-sm font-semibold text-foreground">Ripley</p>
+              <p className="text-xs text-muted-foreground">Virtus Digital Receptionist</p>
             </div>
             <Button
               type="button"
@@ -397,7 +508,7 @@ export function LeadQualificationWidget() {
               >
                 <div
                   className={cn(
-                    "max-w-[92%] rounded-lg px-3 py-2 text-sm leading-relaxed",
+                    "max-w-[92%] whitespace-pre-line rounded-lg px-3 py-2 text-sm leading-relaxed",
                     msg.role === "user"
                       ? "bg-primary text-primary-foreground"
                       : "bg-secondary text-secondary-foreground"
@@ -426,7 +537,7 @@ export function LeadQualificationWidget() {
           onClick={startFlow}
         >
           <MessageCircle className="h-5 w-5" />
-          Intake chat
+          Talk to Ripley
         </Button>
       )}
     </div>
