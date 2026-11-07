@@ -362,7 +362,7 @@ export function LeadQualificationWidget() {
   };
 
   return (
-    <div className="fixed bottom-4 left-4 z-50 flex flex-col items-start gap-3">
+    <div className="fixed bottom-4 left-4 z-[100] flex flex-col items-start gap-3 max-md:bottom-5">
       {open && (
         <div
           className={cn(

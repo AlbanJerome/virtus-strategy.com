@@ -12,6 +12,7 @@ const LOGO_SRC = "/assets/Virtus_Logo_1767236260261-UkapBSLX.png";
 const navItems = [
   { to: "/", label: "home", text: "Home" },
   { to: "/services", label: "services", text: "Services" },
+  { to: "/labs", label: "labs", text: "R&D" },
 ] as const;
 
 export function Header() {

@@ -6,7 +6,7 @@ import { LeadQualificationWidget } from "@/components/lead-qualification-widget"
 
 export function MainLayout() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-background pb-20 md:pb-4">
       <Header />
       <main className="flex-1">
         <Outlet />
