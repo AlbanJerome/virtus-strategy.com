@@ -6,7 +6,9 @@ export function BookingEmbed() {
   if (!bookingUrl) {
     return (
       <div className="rounded-lg border border-dashed border-border bg-card/50 p-8 text-center metallic-border">
-        <Placeholder label="booking-embed-missing-url" as="p" className="text-muted-foreground" />
+        <Placeholder label="booking-embed-missing-url" as="p" className="text-muted-foreground">
+          Booking calendar is loading. If it does not appear, please use the form below.
+        </Placeholder>
       </div>
     );
   }
