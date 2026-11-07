@@ -74,9 +74,9 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-primary">
+                  <Link to="/terms" className="transition-colors hover:text-primary">
                     Terms of Service
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

@@ -8,6 +8,7 @@ import { Labs } from "@/pages/Labs";
 import { NotFound } from "@/pages/NotFound";
 import { Privacy } from "@/pages/privacy";
 import { Services } from "@/pages/Services";
+import { Terms } from "@/pages/terms";
 
 export function App() {
   return (
@@ -20,6 +21,7 @@ export function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="privacy" element={<Privacy />} />
           <Route path="cookies" element={<Cookies />} />
+          <Route path="terms" element={<Terms />} />
           <Route path="404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" replace />} />
         </Route>
