@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
   readonly VITE_GA_MEASUREMENT_ID: string;
+  readonly VITE_GTM_CONTAINER_ID: string;
   readonly VITE_BOOKING_URL: string;
   readonly VITE_SUPABASE_URL: string;
   readonly VITE_SUPABASE_ANON_KEY: string;
