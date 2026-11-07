@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 100%;
+    --border: 0 0% 16%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 100%;
+    --primary: 43 56% 52%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 63%;
+    --accent: 43 20% 15%;
+    --accent-foreground: 0 0% 95%;
+    --destructive: 0 84% 35%;
+    --destructive-foreground: 0 15% 95%;
+    --input: 0 0% 20%;
+    --ring: 43 56% 52%;
+    --radius: 0.5rem;
+    --font-sans: "Inter", sans-serif;
+    --font-serif: "Playfair Display", Georgia, serif;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+  }
+}
+
+.photo-treatment {
+  filter: grayscale(100%) contrast(110%);
+}
+
+.metallic-border {
+  position: relative;
+}
+
+.metallic-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    #d4af374d,
+    #d4af371a,
+    #d4af370d,
+    #d4af371a,
+    #d4af374d
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.grid-lines {
+  background-image:
+    linear-gradient(to right, #1a1a1a 1px, transparent 1px),
+    linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
+  background-size: 4rem 4rem;
+}
