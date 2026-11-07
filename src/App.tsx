@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { MainLayout } from "@/components/layout/MainLayout";
+import { Cookies } from "@/pages/cookies";
 import { Contact } from "@/pages/Contact";
 import { Home } from "@/pages/Home";
 import { Labs } from "@/pages/Labs";
@@ -18,6 +19,7 @@ export function App() {
           <Route path="labs" element={<Labs />} />
           <Route path="contact" element={<Contact />} />
           <Route path="privacy" element={<Privacy />} />
+          <Route path="cookies" element={<Cookies />} />
           <Route path="404" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/404" replace />} />
         </Route>
