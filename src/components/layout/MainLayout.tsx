@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 
+import { CookieBanner } from "@/components/cookie-banner";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { LeadQualificationWidget } from "@/components/lead-qualification-widget";
@@ -12,6 +13,7 @@ export function MainLayout() {
         <Outlet />
       </main>
       <Footer />
+      <CookieBanner />
       <LeadQualificationWidget />
     </div>
   );

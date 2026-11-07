@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 
+import { clearCookieConsent } from "@/lib/cookie-consent";
+
 const LOGO_SRC = "/assets/Virtus_Logo_1767236260261-UkapBSLX.png";
+
+function openCookieSettings() {
+  clearCookieConsent();
+  window.location.reload();
+}
 
 const footerLinks = [
   { to: "/services", label: "Services" },
@@ -41,6 +48,13 @@ export function Footer() {
                 {item.label}
               </Link>
             ))}
+            <button
+              type="button"
+              onClick={openCookieSettings}
+              className="transition-colors hover:text-primary"
+            >
+              Cookie Settings
+            </button>
           </nav>
 
           <a
