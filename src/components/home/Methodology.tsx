@@ -41,7 +41,7 @@ export function Methodology() {
           <div className="w-full">
             <img
               src="/home-diagram.png"
-              alt="Diagnostic, Build, Handover process flow"
+              alt="Intake Infrastructure Sprint process flow"
               className="h-auto w-full object-contain"
             />
           </div>

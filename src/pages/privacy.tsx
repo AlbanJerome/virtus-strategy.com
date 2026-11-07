@@ -1,9 +1,15 @@
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { Seo } from "@/components/seo";
 
 export function Privacy() {
   return (
     <Section>
+      <Seo
+        title="Privacy | Virtus-Strategy"
+        description="Legal policies for Virtus-Strategy (1001486026 Ontario Inc.)."
+        url="/privacy"
+      />
       <Container>
         <article className="mx-auto max-w-3xl space-y-6 text-foreground">
           <header className="space-y-2">

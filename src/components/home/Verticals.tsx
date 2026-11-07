@@ -5,6 +5,7 @@ const verticals = [
   {
     id: "wealth",
     title: "Wealth Management & Insurance",
+    imageAlt: "Wealth management client intake bottleneck",
     image:
       "https://images.pexels.com/photos/6770610/pexels-photo-6770610.jpeg?auto=compress&cs=tinysrgb&w=800",
     bottleneck:
@@ -15,6 +16,7 @@ const verticals = [
   {
     id: "legal",
     title: "Legal Services",
+    imageAlt: "Legal services compliance risk",
     image:
       "https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=800",
     bottleneck:
@@ -25,6 +27,7 @@ const verticals = [
   {
     id: "accounting",
     title: "Accounting, Tax & SR&ED",
+    imageAlt: "Accounting and tax firm client intake bottleneck",
     image:
       "https://images.pexels.com/photos/7681091/pexels-photo-7681091.jpeg?auto=compress&cs=tinysrgb&w=800",
     bottleneck:
@@ -35,6 +38,7 @@ const verticals = [
   {
     id: "healthcare",
     title: "Healthcare & Digital Clinics",
+    imageAlt: "Healthcare digital clinic patient intake compliance",
     image:
       "https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg?auto=compress&cs=tinysrgb&w=800",
     bottleneck:
@@ -68,7 +72,7 @@ export function Verticals() {
             <Card key={vertical.id} className="metallic-border overflow-hidden">
               <img
                 src={vertical.image}
-                alt=""
+                alt={vertical.imageAlt}
                 className="photo-treatment mb-4 h-48 w-full object-cover"
               />
               <CardHeader>

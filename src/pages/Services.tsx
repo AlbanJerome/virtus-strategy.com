@@ -1,3 +1,6 @@
+import { DiagnosticCTA } from "@/components/home/DiagnosticCTA";
+import { Faq, VIRTUS_FAQ_GROUPS } from "@/components/faq";
+import { Seo } from "@/components/seo";
 import { SprintPhases } from "@/components/services/SprintPhases";
 import { ScopeTable } from "@/components/services/ScopeTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -29,6 +32,11 @@ const offerings = [
 export function Services() {
   return (
     <div className="py-20 md:py-28">
+      <Seo
+        title="The Intake Infrastructure Sprint | Virtus-Strategy"
+        description="A fixed-scope, three-week engagement. We diagnose the leak, build the secure system, stress test the logic, and hand over the keys for your firm."
+        url="/services"
+      />
       <div className="mx-auto max-w-7xl px-6">
         <Placeholder
           label="services-page-title"
@@ -64,14 +72,20 @@ export function Services() {
         <div className="my-8 w-full">
           <img
             src="/services-diagram.png"
-            alt="Four phase sprint process flow"
+            alt="Intake Infrastructure Sprint process flow"
             className="h-auto w-full object-contain"
           />
         </div>
 
         <SprintPhases />
         <ScopeTable />
+
+        <section className="mt-16 border-t border-border pt-16">
+          <h2 className="text-3xl font-serif mb-8">Engagement Questions</h2>
+          <Faq groups={VIRTUS_FAQ_GROUPS} />
+        </section>
       </div>
+      <DiagnosticCTA />
     </div>
   );
 }
