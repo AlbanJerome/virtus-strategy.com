@@ -49,7 +49,7 @@ export function SprintPhases() {
       <Placeholder
         label="services-sprint-phases-title"
         as="h2"
-        className="text-2xl font-bold md:text-3xl"
+        className="text-xl font-bold md:text-2xl lg:text-3xl"
       >
         The four-phase sprint.
       </Placeholder>
@@ -60,7 +60,7 @@ export function SprintPhases() {
       >
         No open-ended retainers. A strict timeline from diagnostic to handover.
       </Placeholder>
-      <div className="mt-10 grid gap-6 md:grid-cols-2">
+      <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
         {phases.map((phase) => (
           <div
             key={phase.key}

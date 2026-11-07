@@ -2,14 +2,14 @@ import { Placeholder } from "@/components/ui/placeholder";
 
 export function Methodology() {
   return (
-    <section className="border-t border-border py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="border-t border-border py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <Placeholder
               label="home-methodology-section-title"
               as="h2"
-              className="text-3xl font-bold md:text-4xl"
+              className="text-2xl font-bold md:text-3xl lg:text-4xl"
             >
               Strategy before code.
             </Placeholder>
@@ -42,7 +42,7 @@ export function Methodology() {
             <img
               src="/home-diagram.png"
               alt="Intake Infrastructure Sprint process flow"
-              className="h-auto w-full object-contain"
+              className="h-auto w-full max-w-full object-contain"
             />
           </div>
         </div>

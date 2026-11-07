@@ -5,12 +5,12 @@ import { Placeholder } from "@/components/ui/placeholder";
 
 export function DiagnosticCTA() {
   return (
-    <section className="border-t border-border py-20 md:py-28">
-      <div className="mx-auto max-w-3xl px-6 text-center">
+    <section className="border-t border-border py-16 md:py-24">
+      <div className="mx-auto max-w-3xl px-4 text-center md:px-6">
         <Placeholder
           label="home-diagnostic-cta-title"
           as="h2"
-          className="text-3xl font-bold md:text-4xl"
+          className="text-2xl font-bold md:text-3xl lg:text-4xl"
         >
           Stop losing billable hours to manual intake.
         </Placeholder>

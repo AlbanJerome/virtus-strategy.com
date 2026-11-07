@@ -22,13 +22,13 @@ export function Home() {
       <TrustSignals />
       <Verticals />
       <Methodology />
-      <section className="border-t border-border py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-3xl font-serif mb-8">Frequently Asked Questions</h2>
+      <DiagnosticCTA />
+      <section className="border-t border-border py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-4 md:px-6">
+          <h2 className="mb-8 font-serif text-2xl md:text-3xl">Frequently Asked Questions</h2>
           <Faq groups={VIRTUS_FAQ_GROUPS} />
         </div>
       </section>
-      <DiagnosticCTA />
     </>
   );
 }

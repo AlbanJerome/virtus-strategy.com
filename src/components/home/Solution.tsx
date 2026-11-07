@@ -17,14 +17,14 @@ const steps = [
 
 export function Solution() {
   return (
-    <section className="border-t border-border bg-card/20 py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="border-t border-border bg-card/20 py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="grid items-start gap-12 lg:grid-cols-2">
           <div>
             <Placeholder
               label="home-solution-section-title"
               as="h2"
-              className="text-3xl font-bold md:text-4xl"
+              className="text-2xl font-bold md:text-3xl lg:text-4xl"
             >
               Secure the intake layer before a human touches it.
             </Placeholder>

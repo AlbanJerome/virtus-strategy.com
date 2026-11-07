@@ -113,28 +113,23 @@ type FaqProps = {
 };
 
 export function Faq({ groups }: FaqProps) {
-  let itemIndex = 0;
+  const items = groups.flatMap((group) => group.items);
 
   return (
-    <div className="max-w-3xl space-y-10">
-      {groups.map((group) => (
-        <div key={group.category}>
-          <h3 className="mb-4 text-lg font-bold text-foreground">{group.category}</h3>
-          <Accordion type="single" collapsible className="w-full">
-            {group.items.map((item) => {
-              const value = `faq-${itemIndex++}`;
-              return (
-                <AccordionItem key={value} value={value}>
-                  <AccordionTrigger className="text-base font-medium text-foreground">
-                    {item.question}
-                  </AccordionTrigger>
-                  <AccordionContent>{item.answer}</AccordionContent>
-                </AccordionItem>
-              );
-            })}
-          </Accordion>
-        </div>
-      ))}
+    <div className="max-w-3xl">
+      <Accordion type="single" collapsible className="w-full">
+        {items.map((item, index) => {
+          const value = `faq-${index}`;
+          return (
+            <AccordionItem key={value} value={value}>
+              <AccordionTrigger className="text-base font-medium text-foreground">
+                {item.question}
+              </AccordionTrigger>
+              <AccordionContent>{item.answer}</AccordionContent>
+            </AccordionItem>
+          );
+        })}
+      </Accordion>
     </div>
   );
 }

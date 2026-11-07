@@ -5,9 +5,9 @@ import { Placeholder } from "@/components/ui/placeholder";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden py-24 md:py-32">
+    <section className="relative overflow-hidden py-16 md:py-24">
       <div className="absolute inset-0 grid-lines opacity-40" aria-hidden />
-      <div className="relative mx-auto max-w-7xl px-6">
+      <div className="relative mx-auto max-w-7xl px-4 md:px-6">
         <div className="max-w-3xl">
           <Placeholder
             label="home-hero-eyebrow"

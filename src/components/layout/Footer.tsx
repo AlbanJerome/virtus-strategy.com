@@ -9,25 +9,25 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border py-12">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="flex flex-col gap-10 md:flex-row md:justify-between">
-          <div className="flex max-w-sm flex-col items-center gap-2 md:items-start">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+          <div className="flex flex-col items-center gap-2 md:items-start">
             <img
               src={LOGO_SRC}
               alt="Virtus-Strategy"
-              className="h-12 w-auto object-contain"
+              className="h-12 max-w-full object-contain"
             />
             <Placeholder
               label="footer-tagline"
               as="span"
-              className="text-sm text-muted-foreground"
+              className="text-center text-sm text-muted-foreground md:text-left"
             >
               Secure client intake infrastructure for regulated professional services.
             </Placeholder>
           </div>
 
-          <div className="flex flex-col gap-8 sm:flex-row sm:gap-16">
-            <div>
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+            <div className="text-center sm:text-left">
               <Placeholder
                 label="footer-nav-firm-title"
                 as="p"
@@ -54,7 +54,7 @@ export function Footer() {
               </ul>
             </div>
 
-            <div>
+            <div className="text-center sm:text-left">
               <Placeholder
                 label="footer-nav-legal-title"
                 as="p"
@@ -89,7 +89,7 @@ export function Footer() {
             >
               contact@virtus-strategy.com
             </a>
-            <span className="text-xs text-muted-foreground">
+            <span className="text-center text-xs text-muted-foreground md:text-right">
               © {year} 1001486026 Ontario Inc. o/a Virtus-Strategy. All rights reserved.
             </span>
           </div>

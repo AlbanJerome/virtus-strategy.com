@@ -257,7 +257,7 @@ export function LeadQualificationWidget() {
       case "capture":
         return (
           <form onSubmit={onCaptureSubmit} className="space-y-3">
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               <div className="space-y-1">
                 <Label htmlFor="lq-first" className="text-xs">
                   First name
@@ -334,7 +334,7 @@ export function LeadQualificationWidget() {
             <BookingEmbed
               name={fullName || undefined}
               email={draft.email.trim() || undefined}
-              iframeClassName="!h-72"
+              iframeClassName="!min-h-[16rem] !h-72 !w-full"
             />
           </div>
         );
@@ -355,7 +355,7 @@ export function LeadQualificationWidget() {
       {open && (
         <div
           className={cn(
-            "flex w-[350px] max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-lg border border-border bg-card shadow-2xl metallic-border",
+            "flex w-[calc(100vw-2rem)] max-w-[350px] flex-col overflow-hidden rounded-lg border border-border bg-card shadow-2xl metallic-border",
             "max-h-[min(560px,calc(100vh-6rem))]"
           )}
           role="dialog"

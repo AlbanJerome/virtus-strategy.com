@@ -10,7 +10,7 @@ export function LabsIntro() {
       >
         R&D and Archive
       </Placeholder>
-      <Placeholder label="labs-page-title" as="h1" className="mt-4 text-4xl font-bold md:text-5xl">
+      <Placeholder label="labs-page-title" as="h1" className="mt-4 text-3xl font-bold md:text-4xl lg:text-5xl">
         Virtus Labs.
       </Placeholder>
       <Placeholder

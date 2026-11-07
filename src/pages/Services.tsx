@@ -31,17 +31,17 @@ const offerings = [
 
 export function Services() {
   return (
-    <div className="py-20 md:py-28">
+    <div className="py-16 md:py-24">
       <Seo
         title="The Intake Infrastructure Sprint | Virtus-Strategy"
         description="A fixed-scope, three-week engagement. We diagnose the leak, build the secure system, stress test the logic, and hand over the keys for your firm."
         url="/services"
       />
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <Placeholder
           label="services-page-title"
           as="h1"
-          className="text-4xl font-bold md:text-5xl"
+          className="text-3xl font-bold md:text-4xl lg:text-5xl"
         >
           The Intake Infrastructure Sprint.
         </Placeholder>
@@ -54,7 +54,7 @@ export function Services() {
           test the logic, and hand over the keys.
         </Placeholder>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2">
+        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
           {offerings.map((offering) => (
             <Card key={offering.title} className="metallic-border">
               <CardHeader>
@@ -73,19 +73,20 @@ export function Services() {
           <img
             src="/services-diagram.png"
             alt="Intake Infrastructure Sprint process flow"
-            className="h-auto w-full object-contain"
+            className="h-auto w-full max-w-full object-contain"
           />
         </div>
 
         <SprintPhases />
         <ScopeTable />
-
-        <section className="mt-16 border-t border-border pt-16">
-          <h2 className="text-3xl font-serif mb-8">Engagement Questions</h2>
+      </div>
+      <DiagnosticCTA />
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <section className="border-t border-border py-16 md:py-24">
+          <h2 className="mb-8 font-serif text-2xl md:text-3xl">Engagement Questions</h2>
           <Faq groups={VIRTUS_FAQ_GROUPS} />
         </section>
       </div>
-      <DiagnosticCTA />
     </div>
   );
 }

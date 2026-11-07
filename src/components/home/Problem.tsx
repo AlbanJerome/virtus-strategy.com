@@ -23,8 +23,8 @@ const problems = [
 
 export function Problem() {
   return (
-    <section className="border-t border-border py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="border-t border-border py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <Placeholder
           label="home-problem-eyebrow"
           as="p"
@@ -35,11 +35,11 @@ export function Problem() {
         <Placeholder
           label="home-problem-section-title"
           as="h2"
-          className="mt-4 text-center text-3xl font-bold md:text-4xl"
+          className="mt-4 text-center text-2xl font-bold md:text-3xl lg:text-4xl"
         >
           An unmanaged intake process fails in three ways.
         </Placeholder>
-        <ul className="mt-12 grid gap-6 md:grid-cols-3">
+        <ul className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
           {problems.map((problem) => (
             <li
               key={problem.titleLabel}

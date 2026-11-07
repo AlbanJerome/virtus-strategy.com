@@ -13,7 +13,7 @@ export function Terms() {
       <Container>
         <article className="mx-auto max-w-3xl space-y-6 text-foreground">
           <header className="space-y-2">
-            <h1 className="text-4xl font-bold md:text-5xl">Terms of Service</h1>
+            <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">Terms of Service</h1>
             <p className="text-sm text-muted-foreground">Last Updated: January 1, 2026</p>
           </header>
 

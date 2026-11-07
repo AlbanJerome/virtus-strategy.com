@@ -23,7 +23,7 @@ export function ScopeTable() {
       <Placeholder
         label="services-scope-table-title"
         as="h2"
-        className="text-2xl font-bold md:text-3xl"
+        className="text-xl font-bold md:text-2xl lg:text-3xl"
       >
         Sprint scope.
       </Placeholder>

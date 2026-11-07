@@ -27,8 +27,8 @@ const signals = [
 export function TrustSignals() {
   return (
     <section className="border-t border-border py-16 md:py-20">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-8 md:grid-cols-3 md:gap-10">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-10">
           {signals.map((signal) => (
             <div key={signal.titleLabel} className="text-center md:text-left">
               <Placeholder

@@ -50,12 +50,12 @@ const verticals = [
 
 export function Verticals() {
   return (
-    <section className="border-t border-border py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="border-t border-border py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
         <Placeholder
           label="home-verticals-section-title"
           as="h2"
-          className="text-center text-3xl font-bold md:text-4xl"
+          className="text-center text-2xl font-bold md:text-3xl lg:text-4xl"
         >
           Built for regulated firms.
         </Placeholder>
@@ -67,13 +67,13 @@ export function Verticals() {
           We focus exclusively on industries where a single client is high value and the compliance
           burden is heavy. If your front door requires manual triage, we can automate it securely.
         </Placeholder>
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
           {verticals.map((vertical) => (
             <Card key={vertical.id} className="metallic-border overflow-hidden">
               <img
                 src={vertical.image}
                 alt={vertical.imageAlt}
-                className="photo-treatment mb-4 h-48 w-full object-cover"
+                className="photo-treatment mb-4 h-48 w-full max-w-full object-cover"
               />
               <CardHeader>
                 <CardTitle className="text-lg font-sans">{vertical.title}</CardTitle>
