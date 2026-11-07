@@ -30,7 +30,7 @@ export function Hero() {
             className="mt-6 text-lg text-muted-foreground"
           >
             Manual intake exposes regulated firms to compliance risk and drains billable capacity.
-            Virtus-Strategy installs secure, deterministic intake infrastructure so your team can
+            Virtus-Strategy designs and deploys secure, deterministic intake infrastructure so your team can
             stop chasing documents and start practising.
           </Placeholder>
           <div className="mt-8 flex flex-wrap gap-4">

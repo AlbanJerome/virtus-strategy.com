@@ -54,9 +54,9 @@ export function Terms() {
           <section className="space-y-3">
             <h2 className="text-2xl font-bold">4. Fees and Payment</h2>
             <p className="text-muted-foreground">
-              The fee for a standard Intake Infrastructure Sprint is currently $8,000 CAD. Engagement terms,
-              payment schedules, and any applicable taxes will be detailed in the governing SOW. We reserve
-              the right to modify our pricing at any time, but pricing is locked once a SOW is signed.
+              Fees for consulting engagements are defined in a written Statement of Work (SOW) or Master
+              Services Agreement after a diagnostic conversation. Scope, payment schedules, and any applicable
+              taxes will be set out in that agreement. Terms are fixed once the governing SOW is signed.
             </p>
           </section>
 

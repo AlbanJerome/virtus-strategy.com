@@ -46,7 +46,7 @@ export type QualificationStep =
 
 export const WIDGET_FAQ_CATEGORY_BUTTONS = [
   { buttonLabel: "Security & Compliance", groupCategory: "Security & Compliance" },
-  { buttonLabel: "Pricing & Process", groupCategory: "Process & Pricing" },
+  { buttonLabel: "Process & Engagement", groupCategory: "Process & Engagement" },
   { buttonLabel: "Technology", groupCategory: "Technology & AI" },
 ] as const;
 
@@ -85,7 +85,7 @@ export const SCRIPT = {
   bottleneck: "What is your biggest front-door bottleneck right now?",
   size: "How many partners or advisors are in your firm?",
   timeline:
-    "Are you looking to install a system in the next 30 days, this quarter, or just exploring?",
+    "Are you looking to move forward in the next 30 days, this quarter, or just exploring?",
   capture:
     "Got it. What's the best email and phone number to reach you?",
   captureCompany: "And what is the name of your firm?",

@@ -13,7 +13,7 @@ export function Home() {
     <>
       <Seo
         title="Virtus-Strategy | Secure Client Intake Infrastructure"
-        description="Virtus-Strategy builds secure, deterministic client intake systems for regulated professional services. We install the front door so your firm can stop chasing documents and start practising."
+        description="Virtus-Strategy builds secure, deterministic client intake systems for regulated professional services. We design the intake layer at your front door so your firm can stop chasing documents and start practising."
         url="/"
       />
       <Hero />

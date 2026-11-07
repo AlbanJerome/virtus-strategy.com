@@ -60,12 +60,12 @@ export const VIRTUS_FAQ_GROUPS: FaqGroup[] = [
     ],
   },
   {
-    category: "Process & Pricing",
+    category: "Process & Engagement",
     items: [
       {
-        question: "Why is the sprint $8,000?",
+        question: "How much does an engagement cost?",
         answer:
-          "You are not paying for a website or a chatbot. You are paying for a diagnostic-led system that recovers billable hours and reduces liability. A single missed compliance issue or a few lost billable hours per week will quickly exceed the cost of the sprint.",
+          "Because every firm's compliance requirements and intake volume are different, we do not use a one-size-fits-all price. We map your specific operational bottleneck during the initial diagnostic and provide a fixed-scope proposal based on the exact infrastructure required.",
       },
       {
         question: "Do we need to rebuild our website first?",

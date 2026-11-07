@@ -8,10 +8,10 @@ const verticals = [
     imageAlt: "Wealth management client intake bottleneck",
     image:
       "https://images.pexels.com/photos/6770610/pexels-photo-6770610.jpeg?auto=compress&cs=tinysrgb&w=800",
-    bottleneck:
+    risk:
       "Advisors spend up to 70% of their day on manual administrative work, client onboarding, and compliance documentation.",
-    install:
-      "A secure front door that pre-qualifies prospects based on asset thresholds or policy needs, captures basic data, and books them directly onto the advisor's calendar.",
+    solution:
+      "A secure intake layer that pre-qualifies prospects, captures basic compliance data, and routes high-value clients directly to the advisor's calendar.",
   },
   {
     id: "legal",
@@ -19,10 +19,10 @@ const verticals = [
     imageAlt: "Legal services compliance risk",
     image:
       "https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=800",
-    bottleneck:
+    risk:
       "Intake takes 1.5 to 3 hours per client, and 67% of malpractice claims stem from intake-stage failures.",
-    install:
-      "A rule-based intake system that asks the exact compliance and KYC questions upfront. It routes qualified matters to partners while generating an automated audit trail.",
+    solution:
+      "A rule-based intake workflow that asks the exact compliance and KYC questions upfront. It routes qualified matters to partners while generating an automated audit trail.",
   },
   {
     id: "accounting",
@@ -30,10 +30,10 @@ const verticals = [
     imageAlt: "Accounting and tax firm client intake bottleneck",
     image:
       "https://images.pexels.com/photos/7681091/pexels-photo-7681091.jpeg?auto=compress&cs=tinysrgb&w=800",
-    bottleneck:
+    risk:
       "Upstream bottlenecks in client intake and the endless document chase. Firms lose capacity manually chasing down information before work can begin.",
-    install:
-      "A web presence that establishes institutional authority, paired with an intake bot that screens for eligibility and automates the initial document request phase.",
+    solution:
+      "An authoritative web presence paired with an intake system that screens for eligibility and automates the initial document request phase.",
   },
   {
     id: "healthcare",
@@ -41,9 +41,9 @@ const verticals = [
     imageAlt: "Healthcare digital clinic patient intake compliance",
     image:
       "https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg?auto=compress&cs=tinysrgb&w=800",
-    bottleneck:
+    risk:
       "Strict patient privacy laws make it risky to adopt generic AI tools for patient triage and intake.",
-    install:
+    solution:
       "A deterministic, rule-based patient intake system that captures demographics and routes to the right practitioner without exposing sensitive health data to an LLM.",
   },
 ] as const;
@@ -65,7 +65,8 @@ export function Verticals() {
           className="mx-auto mt-4 max-w-2xl text-center text-lg text-muted-foreground"
         >
           We focus exclusively on industries where a single client is high value and the compliance
-          burden is heavy. If your front door requires manual triage, we can automate it securely.
+          burden is heavy. When manual triage is the norm, we design a secure, auditable path from
+          first contact to qualified matter.
         </Placeholder>
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
           {verticals.map((vertical) => (
@@ -81,26 +82,26 @@ export function Verticals() {
               <CardContent className="space-y-4">
                 <div>
                   <p className="text-xs font-medium uppercase tracking-wider text-primary">
-                    Bottleneck
+                    The risk
                   </p>
                   <Placeholder
-                    label={`home-vertical-${vertical.id}-bottleneck`}
+                    label={`home-vertical-${vertical.id}-risk`}
                     as="p"
                     className="mt-2 text-muted-foreground"
                   >
-                    {vertical.bottleneck}
+                    {vertical.risk}
                   </Placeholder>
                 </div>
                 <div>
                   <p className="text-xs font-medium uppercase tracking-wider text-primary">
-                    What we install
+                    The solution
                   </p>
                   <Placeholder
-                    label={`home-vertical-${vertical.id}-install`}
+                    label={`home-vertical-${vertical.id}-solution`}
                     as="p"
                     className="mt-2 text-muted-foreground"
                   >
-                    {vertical.install}
+                    {vertical.solution}
                   </Placeholder>
                 </div>
               </CardContent>
