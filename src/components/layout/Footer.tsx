@@ -69,6 +69,11 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/cookies" className="transition-colors hover:text-primary">
+                    Cookie Policy
+                  </Link>
+                </li>
+                <li>
                   <a href="#" className="transition-colors hover:text-primary">
                     Terms of Service
                   </a>
