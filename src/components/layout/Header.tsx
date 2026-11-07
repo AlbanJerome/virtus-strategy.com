@@ -27,12 +27,12 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-[#0A0A0A]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:h-20 md:px-6">
+      <div className="mx-auto flex min-h-[4.25rem] max-w-7xl items-center justify-between gap-3 px-4 py-2 md:min-h-[5.5rem] md:gap-4 md:px-6 md:py-3">
         <Link to="/" className="flex shrink-0 items-center" onClick={closeMobile}>
           <img
             src={LOGO_SRC}
             alt="Virtus-Strategy"
-            className="h-9 max-w-full object-contain md:h-12"
+            className="h-10 w-auto max-w-[min(52vw,11rem)] object-contain md:h-14 md:max-w-none"
           />
         </Link>
 

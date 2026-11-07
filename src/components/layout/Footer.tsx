@@ -21,48 +21,47 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative z-40 border-t border-border py-8 md:py-10">
-      <div className="mx-auto max-w-7xl px-4 md:px-6">
-        <div className="flex flex-col items-center gap-6 md:flex-row md:items-center md:justify-between md:gap-8">
-          <div className="flex flex-col items-center gap-1.5 text-center md:items-start md:text-left">
+    <footer className="relative z-40 border-t border-border py-4 md:py-5">
+      <div className="mx-auto max-w-5xl px-4 md:px-6">
+        <div className="flex items-start gap-3 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-6">
+          <Link
+            to="/"
+            className="shrink-0 pt-0.5 md:justify-self-start"
+            aria-label="Virtus-Strategy home"
+          >
             <img
               src={LOGO_SRC}
-              alt="Virtus-Strategy"
-              className="h-8 max-w-full object-contain md:h-9"
+              alt=""
+              className="h-10 w-auto object-contain md:h-12"
             />
-            <p className="text-xs text-muted-foreground">
+          </Link>
+
+          <div className="flex min-w-0 flex-1 flex-col items-center gap-2 md:col-start-2 md:flex-none">
+            <nav
+              className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-muted-foreground md:text-sm"
+              aria-label="Footer"
+            >
+              {footerLinks.map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className="transition-colors hover:text-primary"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <button
+                type="button"
+                onClick={openCookieSettings}
+                className="transition-colors hover:text-primary"
+              >
+                Cookie Settings
+              </button>
+            </nav>
+            <p className="max-w-lg text-center text-[10px] leading-snug text-muted-foreground md:text-xs">
               © {year} 1001486026 Ontario Inc. o/a Virtus-Strategy. All rights reserved.
             </p>
           </div>
-
-          <nav
-            className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-muted-foreground"
-            aria-label="Footer"
-          >
-            {footerLinks.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className="transition-colors hover:text-primary"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <button
-              type="button"
-              onClick={openCookieSettings}
-              className="transition-colors hover:text-primary"
-            >
-              Cookie Settings
-            </button>
-          </nav>
-
-          <a
-            href="mailto:contact@virtus-strategy.com"
-            className="text-sm text-muted-foreground transition-colors hover:text-primary"
-          >
-            contact@virtus-strategy.com
-          </a>
         </div>
       </div>
     </footer>
