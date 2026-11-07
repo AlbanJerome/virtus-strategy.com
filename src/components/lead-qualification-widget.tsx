@@ -1,6 +1,7 @@
 import { MessageCircle, X } from "lucide-react";
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 
+import { BookingEmbed } from "@/components/booking-embed";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -50,27 +51,6 @@ function TypingIndicator() {
       <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:0ms]" />
       <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:150ms]" />
       <span className="h-1.5 w-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:300ms]" />
-    </div>
-  );
-}
-
-function BookingFrame() {
-  const bookingUrl = import.meta.env.VITE_BOOKING_URL;
-  if (!bookingUrl) {
-    return (
-      <p className="text-xs text-muted-foreground">
-        Calendar link is not configured. Email us at contact@virtus-strategy.com to book a call.
-      </p>
-    );
-  }
-  return (
-    <div className="overflow-hidden rounded-md border border-border">
-      <iframe
-        title="Schedule with Alban"
-        src={bookingUrl}
-        className="h-72 w-full border-0 bg-background"
-        loading="lazy"
-      />
     </div>
   );
 }
@@ -347,8 +327,18 @@ export function LeadQualificationWidget() {
             </Button>
           </form>
         );
-      case "handover":
-        return <BookingFrame />;
+      case "handover": {
+        const fullName = `${draft.firstName.trim()} ${draft.lastName.trim()}`.trim();
+        return (
+          <div className="[&>div]:rounded-md">
+            <BookingEmbed
+              name={fullName || undefined}
+              email={draft.email.trim() || undefined}
+              iframeClassName="!h-72"
+            />
+          </div>
+        );
+      }
       case "browsing":
         return (
           <Button type="button" size="sm" variant="outline" className="w-full" onClick={() => setOpen(false)}>
