@@ -13,26 +13,34 @@ export function Hero() {
             label="home-hero-eyebrow"
             as="p"
             className="text-xs uppercase tracking-wider text-primary"
-          />
+          >
+            Regulated Client Intake Infrastructure
+          </Placeholder>
           <Placeholder
             label="home-hero-headline"
             as="h1"
             className="mt-4 text-4xl font-bold md:text-6xl"
-          />
+          >
+            Your intake layer is your largest unmanaged liability.
+          </Placeholder>
           <Placeholder
             label="home-hero-subhead"
             as="p"
             className="mt-6 text-lg text-muted-foreground"
-          />
+          >
+            Manual intake exposes regulated firms to compliance risk and drains billable capacity.
+            Virtus-Strategy installs secure, deterministic intake infrastructure so your team can
+            stop chasing documents and start practising.
+          </Placeholder>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button asChild size="lg">
               <Link to="/contact">
-                <Placeholder label="home-hero-cta-primary" />
+                <Placeholder label="home-hero-cta-primary">Book a Diagnostic</Placeholder>
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link to="/services">
-                <Placeholder label="home-hero-cta-secondary" />
+                <Placeholder label="home-hero-cta-secondary">View the Sprint</Placeholder>
               </Link>
             </Button>
           </div>
