@@ -90,7 +90,7 @@ export function Footer() {
               contact@virtus-strategy.com
             </a>
             <span className="text-xs text-muted-foreground">
-              © {year} Virtus-Strategy. All rights reserved.
+              © {year} 1001486026 Ontario Inc. o/a Virtus-Strategy. All rights reserved.
             </span>
           </div>
         </div>
