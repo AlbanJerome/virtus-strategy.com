@@ -64,9 +64,9 @@ export function Footer() {
               </Placeholder>
               <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                 <li>
-                  <a href="#" className="transition-colors hover:text-primary">
+                  <Link to="/privacy" className="transition-colors hover:text-primary">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#" className="transition-colors hover:text-primary">
