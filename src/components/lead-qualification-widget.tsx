@@ -16,6 +16,7 @@ import {
   type LeadVertical,
   type QualificationStep,
 } from "@/lib/lead-qualification";
+import { INTAKE_WIDGET_OPEN_EVENT } from "@/lib/open-intake-widget";
 import { submitLead } from "@/lib/submit-lead";
 import { cn } from "@/lib/utils";
 
@@ -95,14 +96,22 @@ export function LeadQualificationWidget() {
     setMessages((prev) => [...prev, { id: nextId(), role: "user", text }]);
   };
 
-  const startFlow = () => {
+  const startFlow = useCallback(() => {
     setOpen(true);
     setStep("greeting");
     setMessages([]);
     setDraft(initialDraft);
     setSubmitError(null);
     pushBot(SCRIPT.greeting);
-  };
+  }, [pushBot]);
+
+  useEffect(() => {
+    const onOpenIntakeWidget = () => {
+      startFlow();
+    };
+    window.addEventListener(INTAKE_WIDGET_OPEN_EVENT, onOpenIntakeWidget);
+    return () => window.removeEventListener(INTAKE_WIDGET_OPEN_EVENT, onOpenIntakeWidget);
+  }, [startFlow]);
 
   const goToStep = (next: QualificationStep, botText: string) => {
     setStep(next);
@@ -189,7 +198,9 @@ export function LeadQualificationWidget() {
     } catch (err) {
       const code = err instanceof Error ? err.message : "submit-failed";
       if (code === "missing-supabase-config") {
-        setSubmitError("Lead capture is temporarily unavailable. Please use the contact page.");
+        setSubmitError(
+          "Lead capture is temporarily unavailable. Please email contact@virtus-strategy.com."
+        );
       } else {
         setSubmitError("Something went wrong saving your details. Please try again.");
       }

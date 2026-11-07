@@ -69,5 +69,5 @@ export const SCRIPT = {
   handover:
     "Thanks! Based on that, I'm routing this straight to Alban. You can grab a time on his calendar right here:",
   browsing:
-    "No problem. When you're ready to talk intake, we're here. Feel free to open this chat again or use the contact page.",
+    "No problem. When you're ready to talk intake, we're here. Feel free to open this chat again anytime.",
 } as const;

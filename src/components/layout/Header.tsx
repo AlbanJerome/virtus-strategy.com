@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { Placeholder } from "@/components/ui/placeholder";
+import { openIntakeWidget } from "@/lib/open-intake-widget";
 import { cn } from "@/lib/utils";
 
 const LOGO_SRC = "/assets/Virtus_Logo_1767236260261-UkapBSLX.png";
@@ -11,13 +12,17 @@ const LOGO_SRC = "/assets/Virtus_Logo_1767236260261-UkapBSLX.png";
 const navItems = [
   { to: "/", label: "home", text: "Home" },
   { to: "/services", label: "services", text: "Services" },
-  { to: "/contact", label: "contact", text: "Contact" },
 ] as const;
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const closeMobile = () => setMobileOpen(false);
+
+  const onBookDiagnostic = () => {
+    closeMobile();
+    openIntakeWidget();
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-[#0A0A0A]/90 backdrop-blur-md">
@@ -49,10 +54,8 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button asChild size="sm" className="hidden md:inline-flex">
-            <Link to="/contact">
-              <Placeholder label="header-cta">Book a Diagnostic</Placeholder>
-            </Link>
+          <Button type="button" size="sm" className="hidden md:inline-flex" onClick={onBookDiagnostic}>
+            <Placeholder label="header-cta">Book a Diagnostic</Placeholder>
           </Button>
 
           <Button
@@ -95,10 +98,8 @@ export function Header() {
               </li>
             ))}
           </ul>
-          <Button asChild className="mt-4 w-full" size="lg">
-            <Link to="/contact" onClick={closeMobile}>
-              <Placeholder label="header-cta">Book a Diagnostic</Placeholder>
-            </Link>
+          <Button type="button" className="mt-4 w-full" size="lg" onClick={onBookDiagnostic}>
+            <Placeholder label="header-cta">Book a Diagnostic</Placeholder>
           </Button>
         </nav>
       )}

@@ -2,7 +2,6 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { MainLayout } from "@/components/layout/MainLayout";
 import { Cookies } from "@/pages/cookies";
-import { Contact } from "@/pages/Contact";
 import { Home } from "@/pages/Home";
 import { Labs } from "@/pages/Labs";
 import { NotFound } from "@/pages/NotFound";
@@ -18,7 +17,7 @@ export function App() {
           <Route index element={<Home />} />
           <Route path="services" element={<Services />} />
           <Route path="labs" element={<Labs />} />
-          <Route path="contact" element={<Contact />} />
+          <Route path="contact" element={<Navigate to="/" replace />} />
           <Route path="privacy" element={<Privacy />} />
           <Route path="cookies" element={<Cookies />} />
           <Route path="terms" element={<Terms />} />

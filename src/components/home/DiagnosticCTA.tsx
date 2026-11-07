@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
-
 import { Button } from "@/components/ui/button";
 import { Placeholder } from "@/components/ui/placeholder";
+import { openIntakeWidget } from "@/lib/open-intake-widget";
 
 export function DiagnosticCTA() {
   return (
@@ -23,10 +22,8 @@ export function DiagnosticCTA() {
           leaking.
         </Placeholder>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Button asChild size="lg">
-            <Link to="/contact">
-              <Placeholder label="home-diagnostic-cta-primary">Book a Diagnostic</Placeholder>
-            </Link>
+          <Button type="button" size="lg" onClick={openIntakeWidget}>
+            <Placeholder label="home-diagnostic-cta-primary">Book a Diagnostic</Placeholder>
           </Button>
         </div>
       </div>

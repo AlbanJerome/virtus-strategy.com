@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { Placeholder } from "@/components/ui/placeholder";
+import { openIntakeWidget } from "@/lib/open-intake-widget";
 
 export function Hero() {
   return (
@@ -33,10 +34,8 @@ export function Hero() {
             stop chasing documents and start practising.
           </Placeholder>
           <div className="mt-8 flex flex-wrap gap-4">
-            <Button asChild size="lg">
-              <Link to="/contact">
-                <Placeholder label="home-hero-cta-primary">Book a Diagnostic</Placeholder>
-              </Link>
+            <Button type="button" size="lg" onClick={openIntakeWidget}>
+              <Placeholder label="home-hero-cta-primary">Book a Diagnostic</Placeholder>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link to="/services">

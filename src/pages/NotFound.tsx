@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { Placeholder } from "@/components/ui/placeholder";
+import { openIntakeWidget } from "@/lib/open-intake-widget";
 
 export function NotFound() {
   return (
@@ -12,11 +13,16 @@ export function NotFound() {
       <Placeholder label="not-found-body" as="p" className="mt-4 text-muted-foreground">
         The page you are looking for does not exist or has been moved.
       </Placeholder>
-      <Button asChild className="mt-8">
-        <Link to="/">
-          <Placeholder label="not-found-cta">Return to Home</Placeholder>
-        </Link>
-      </Button>
+      <div className="mt-8 flex flex-wrap justify-center gap-4">
+        <Button type="button" onClick={openIntakeWidget}>
+          <Placeholder label="not-found-cta-diagnostic">Book a Diagnostic</Placeholder>
+        </Button>
+        <Button asChild variant="outline">
+          <Link to="/">
+            <Placeholder label="not-found-cta">Return to Home</Placeholder>
+          </Link>
+        </Button>
+      </div>
     </div>
   );
 }
