@@ -1,28 +1,51 @@
 import { Placeholder } from "@/components/ui/placeholder";
 
-const signalLabels = [
-  "home-trust-signal-a",
-  "home-trust-signal-b",
-  "home-trust-signal-c",
+const signals = [
+  {
+    titleLabel: "home-trust-signal-a-title",
+    descLabel: "home-trust-signal-a-desc",
+    title: "Sandboxed AI",
+    description:
+      "The model is confined to data extraction. It parses intent and contact info without making qualification decisions.",
+  },
+  {
+    titleLabel: "home-trust-signal-b-title",
+    descLabel: "home-trust-signal-b-desc",
+    title: "Deterministic Routing",
+    description:
+      "Hard-coded logic processes the extracted data against your regulatory criteria. No guesses, no hallucinations.",
+  },
+  {
+    titleLabel: "home-trust-signal-c-title",
+    descLabel: "home-trust-signal-c-desc",
+    title: "Bounded Execution",
+    description:
+      "The system performs specific tasks within strict constraints, preventing scope creep or data leakage.",
+  },
 ] as const;
 
 export function TrustSignals() {
   return (
     <section className="border-t border-border py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-6">
-        <Placeholder
-          label="home-trust-section-title"
-          as="h2"
-          className="text-center text-2xl font-bold md:text-3xl"
-        />
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-8 md:gap-12">
-          {signalLabels.map((label) => (
-            <Placeholder
-              key={label}
-              label={label}
-              as="span"
-              className="text-sm uppercase tracking-wider text-muted-foreground"
-            />
+        <div className="grid gap-8 md:grid-cols-3 md:gap-10">
+          {signals.map((signal) => (
+            <div key={signal.titleLabel} className="text-center md:text-left">
+              <Placeholder
+                label={signal.titleLabel}
+                as="h3"
+                className="text-lg font-bold text-foreground"
+              >
+                {signal.title}
+              </Placeholder>
+              <Placeholder
+                label={signal.descLabel}
+                as="p"
+                className="mt-3 text-sm text-muted-foreground"
+              >
+                {signal.description}
+              </Placeholder>
+            </div>
           ))}
         </div>
       </div>

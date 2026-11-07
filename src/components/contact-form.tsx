@@ -74,8 +74,12 @@ export function ContactForm() {
   if (submitted) {
     return (
       <div className="rounded-lg border border-border bg-card p-6 metallic-border text-center">
-        <Placeholder label="contact-form-success-title" as="h3" className="text-xl font-bold" />
-        <Placeholder label="contact-form-success-body" as="p" className="mt-2 text-muted-foreground" />
+        <Placeholder label="contact-form-success-title" as="h3" className="text-xl font-bold">
+          Message sent
+        </Placeholder>
+        <Placeholder label="contact-form-success-body" as="p" className="mt-2 text-muted-foreground">
+          We will be in touch shortly.
+        </Placeholder>
       </div>
     );
   }
@@ -84,7 +88,7 @@ export function ContactForm() {
     <form onSubmit={onSubmit} className="space-y-5">
       <div className="space-y-2">
         <Label htmlFor="fullName">
-          <Placeholder label="contact-form-label-full-name" />
+          <Placeholder label="contact-form-label-full-name">Full Name</Placeholder>
         </Label>
         <Input
           id="fullName"
@@ -96,7 +100,7 @@ export function ContactForm() {
       </div>
       <div className="space-y-2">
         <Label htmlFor="workEmail">
-          <Placeholder label="contact-form-label-work-email" />
+          <Placeholder label="contact-form-label-work-email">Work Email</Placeholder>
         </Label>
         <Input
           id="workEmail"
@@ -109,7 +113,7 @@ export function ContactForm() {
       </div>
       <div className="space-y-2">
         <Label htmlFor="organization">
-          <Placeholder label="contact-form-label-organization" />
+          <Placeholder label="contact-form-label-organization">Organization</Placeholder>
         </Label>
         <Input
           id="organization"
@@ -122,30 +126,38 @@ export function ContactForm() {
 
       {error === "missing-fields" && (
         <p className="text-sm text-destructive">
-          <Placeholder label="contact-form-error-missing-fields" />
+          <Placeholder label="contact-form-error-missing-fields">
+            Please fill in all fields.
+          </Placeholder>
         </p>
       )}
       {error === "missing-form-id" && (
         <p className="text-sm text-destructive">
-          <Placeholder label="contact-form-error-missing-env" />
+          <Placeholder label="contact-form-error-missing-env">
+            The form is temporarily unavailable. Please email contact@virtus-strategy.com.
+          </Placeholder>
         </p>
       )}
       {error === "submit-failed" && (
         <p className="text-sm text-destructive">
-          <Placeholder label="contact-form-error-submit-failed" />
+          <Placeholder label="contact-form-error-submit-failed">
+            Something went wrong. Please try again.
+          </Placeholder>
         </p>
       )}
 
       <Button type="submit" className="w-full" disabled={submitting || !formId}>
         {submitting ? (
-          <Placeholder label="contact-form-submitting" />
+          <Placeholder label="contact-form-submitting">Sending...</Placeholder>
         ) : (
-          <Placeholder label="contact-form-submit" />
+          <Placeholder label="contact-form-submit">Send message</Placeholder>
         )}
       </Button>
 
       <p className="text-center text-xs text-muted-foreground">
-        <Placeholder label="contact-form-consent" />
+        <Placeholder label="contact-form-consent">
+          By submitting this form, you agree to be contacted regarding your inquiry.
+        </Placeholder>
       </p>
     </form>
   );

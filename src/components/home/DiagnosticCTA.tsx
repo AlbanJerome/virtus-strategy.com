@@ -11,16 +11,21 @@ export function DiagnosticCTA() {
           label="home-diagnostic-cta-title"
           as="h2"
           className="text-3xl font-bold md:text-4xl"
-        />
+        >
+          Stop losing billable hours to manual intake.
+        </Placeholder>
         <Placeholder
           label="home-diagnostic-cta-body"
           as="p"
           className="mt-4 text-lg text-muted-foreground"
-        />
+        >
+          Book a 30-minute diagnostic to map your front door and identify where your capacity is
+          leaking.
+        </Placeholder>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Button asChild size="lg">
             <Link to="/contact">
-              <Placeholder label="home-diagnostic-cta-primary" />
+              <Placeholder label="home-diagnostic-cta-primary">Book a Diagnostic</Placeholder>
             </Link>
           </Button>
         </div>

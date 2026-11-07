@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
 const LOGO_SRC = "/assets/Virtus_Logo_1767236260261-UkapBSLX.png";
 
 const navItems = [
-  { to: "/", label: "home" },
-  { to: "/services", label: "services" },
-  { to: "/contact", label: "contact" },
+  { to: "/", label: "home", text: "Home" },
+  { to: "/services", label: "services", text: "Services" },
+  { to: "/contact", label: "contact", text: "Contact" },
 ] as const;
 
 export function Header() {
@@ -37,14 +37,14 @@ export function Header() {
                 )
               }
             >
-              <Placeholder label={`nav-${item.label}`} />
+              <Placeholder label={`nav-${item.label}`}>{item.text}</Placeholder>
             </NavLink>
           ))}
         </nav>
 
         <Button asChild size="sm" className="hidden md:inline-flex">
           <Link to="/contact">
-            <Placeholder label="header-cta" />
+            <Placeholder label="header-cta">Book a Diagnostic</Placeholder>
           </Link>
         </Button>
       </div>
