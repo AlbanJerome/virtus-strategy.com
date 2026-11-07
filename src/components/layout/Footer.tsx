@@ -64,14 +64,19 @@ export function Footer() {
               </Placeholder>
               <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                 <li>
-                  <a href="#" className="transition-colors hover:text-primary">
+                  <Link to="/privacy" className="transition-colors hover:text-primary">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="transition-colors hover:text-primary">
+                  <Link to="/cookies" className="transition-colors hover:text-primary">
+                    Cookie Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/terms" className="transition-colors hover:text-primary">
                     Terms of Service
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -85,7 +90,7 @@ export function Footer() {
               contact@virtus-strategy.com
             </a>
             <span className="text-xs text-muted-foreground">
-              © {year} Virtus-Strategy. All rights reserved.
+              © {year} 1001486026 Ontario Inc. o/a Virtus-Strategy. All rights reserved.
             </span>
           </div>
         </div>
