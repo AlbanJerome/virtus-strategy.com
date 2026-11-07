@@ -14,8 +14,10 @@ export function Terms() {
           <section className="space-y-3">
             <h2 className="text-2xl font-bold">1. Acceptance of Terms</h2>
             <p className="text-muted-foreground">
-              These Terms of Service (&quot;Terms&quot;) govern your access to and use of the
-              Virtus-Strategy website (virtus-strategy.com) and any related digital properties. By
+              These Terms of Service (&quot;Terms&quot;) govern your access to and use of the 1001486026
+              Ontario Inc. operating as Virtus-Strategy (&quot;Virtus-Strategy&quot;, &quot;we&quot;,
+              &quot;us&quot;, or &quot;our&quot;) website (virtus-strategy.com) and any related digital
+              properties. By
               accessing or using our website, you agree to be bound by these Terms. If you do not agree,
               please do not use our site.
             </p>
@@ -24,7 +26,8 @@ export function Terms() {
           <section className="space-y-3">
             <h2 className="text-2xl font-bold">2. Services</h2>
             <p className="text-muted-foreground">
-              Virtus-Strategy provides secure client intake infrastructure and advisory services to
+              1001486026 Ontario Inc. operating as Virtus-Strategy provides secure client intake
+              infrastructure and advisory services to
               regulated professional services firms. The specific scope, fees, and deliverables for any
               consulting engagement (such as the Intake Infrastructure Sprint) will be defined in a
               separate written agreement, such as a Statement of Work (SOW) or Master Services Agreement
@@ -55,7 +58,8 @@ export function Terms() {
             <h2 className="text-2xl font-bold">5. Intellectual Property</h2>
             <p className="text-muted-foreground">
               <strong className="text-foreground">Our Website:</strong> The content, design, and code on
-              this website are owned by Virtus-Strategy and are protected by Canadian and international
+              this website are owned by 1001486026 Ontario Inc. and are protected by Canadian and
+              international
               copyright laws.
             </p>
             <p className="text-muted-foreground">
@@ -79,7 +83,8 @@ export function Terms() {
           <section className="space-y-3">
             <h2 className="text-2xl font-bold">7. Limitation of Liability</h2>
             <p className="text-muted-foreground">
-              To the maximum extent permitted by law, Virtus-Strategy shall not be liable for any indirect,
+              To the maximum extent permitted by law, 1001486026 Ontario Inc. shall not be liable for any
+              indirect,
               incidental, special, consequential, or punitive damages, or any loss of profits or revenues,
               whether incurred directly or indirectly, or any loss of data, use, goodwill, or other
               intangible losses resulting from (a) your use or inability to use the website; or (b) any
@@ -95,7 +100,8 @@ export function Terms() {
           <section className="space-y-3">
             <h2 className="text-2xl font-bold">8. Indemnification</h2>
             <p className="text-muted-foreground">
-              You agree to indemnify and hold harmless Virtus-Strategy, its principal, and its contractors
+              You agree to indemnify and hold harmless 1001486026 Ontario Inc. operating as Virtus-Strategy,
+              its principal, and its contractors
               from any claims, damages, or expenses (including legal fees) arising out of your use of the
               website or your violation of these Terms.
             </p>
@@ -133,7 +139,7 @@ export function Terms() {
               If you have any questions about these Terms, please contact:
             </p>
             <ul className="list-none space-y-1 text-muted-foreground">
-              <li>Virtus-Strategy</li>
+              <li>1001486026 Ontario Inc. operating as Virtus-Strategy</li>
               <li>2 Eva Road, Etobicoke, ON, Canada</li>
               <li>contact@virtus-strategy.com</li>
             </ul>

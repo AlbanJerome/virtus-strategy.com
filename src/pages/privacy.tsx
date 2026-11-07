@@ -14,7 +14,8 @@ export function Privacy() {
           <section className="space-y-3">
             <h2 className="text-2xl font-bold">1. Introduction and Scope</h2>
             <p className="text-muted-foreground">
-              Virtus-Strategy (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) provides secure client
+              1001486026 Ontario Inc. operating as Virtus-Strategy (&quot;we,&quot; &quot;us,&quot; or
+              &quot;our&quot;) provides secure client
               intake infrastructure and advisory services to regulated professional services firms. This
               Privacy Policy explains how we collect, use, disclose, and safeguard your personal
               information when you visit our website (virtus-strategy.com), use our digital receptionist
@@ -32,7 +33,8 @@ export function Privacy() {
             <h2 className="text-2xl font-bold">2. Who We Are and Our Privacy Officer</h2>
             <ul className="list-none space-y-1 text-muted-foreground">
               <li>
-                <strong className="text-foreground">Organization:</strong> Virtus-Strategy
+                <strong className="text-foreground">Organization:</strong> 1001486026 Ontario Inc.
+                operating as Virtus-Strategy
               </li>
               <li>
                 <strong className="text-foreground">Privacy Officer:</strong> Alban Jerome, Principal

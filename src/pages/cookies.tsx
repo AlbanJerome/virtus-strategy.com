@@ -14,8 +14,9 @@ export function Cookies() {
           <section className="space-y-3">
             <h2 className="text-2xl font-bold">1. Introduction</h2>
             <p className="text-muted-foreground">
-              This Cookie Policy explains how Virtus-Strategy (&quot;we,&quot; &quot;us,&quot; or
-              &quot;our&quot;) uses cookies and similar tracking technologies on our website
+              This Cookie Policy explains how 1001486026 Ontario Inc. operating as Virtus-Strategy
+              (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) uses cookies and similar tracking
+              technologies on our website
               (virtus-strategy.com). It should be read alongside our Privacy Policy, which explains how we
               handle your personal information.
             </p>
@@ -105,12 +106,9 @@ export function Cookies() {
               If you have any questions about our use of cookies, please contact our Privacy Officer:
             </p>
             <ul className="list-none space-y-1 text-muted-foreground">
-              <li>
-                <strong className="text-foreground">Email:</strong> contact@virtus-strategy.com
-              </li>
-              <li>
-                <strong className="text-foreground">Address:</strong> 2 Eva Road, Etobicoke, ON, Canada
-              </li>
+              <li>1001486026 Ontario Inc. operating as Virtus-Strategy</li>
+              <li>2 Eva Road, Etobicoke, ON, Canada</li>
+              <li>contact@virtus-strategy.com</li>
             </ul>
           </section>
         </article>
