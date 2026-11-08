@@ -1,6 +1,9 @@
 import type { LeadPayload } from "@/lib/lead-qualification";
 
-export async function submitLead(payload: LeadPayload): Promise<void> {
+export async function submitLead(
+  payload: LeadPayload,
+  turnstileToken: string,
+): Promise<void> {
   const url = import.meta.env.VITE_SUPABASE_URL;
   const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
@@ -8,14 +11,17 @@ export async function submitLead(payload: LeadPayload): Promise<void> {
     throw new Error("missing-supabase-config");
   }
 
-  const endpoint = `${url.replace(/\/$/, "")}/rest/v1/leads`;
+  if (!turnstileToken) {
+    throw new Error("missing-turnstile-token");
+  }
+
+  const endpoint = `${url.replace(/\/$/, "")}/functions/v1/submit-lead`;
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
       apikey: anonKey,
       Authorization: `Bearer ${anonKey}`,
       "Content-Type": "application/json",
-      Prefer: "return=minimal",
     },
     body: JSON.stringify({
       first_name: payload.first_name,
@@ -28,6 +34,7 @@ export async function submitLead(payload: LeadPayload): Promise<void> {
       size: payload.size,
       timeline: payload.timeline,
       status: payload.status,
+      "cf-turnstile-response": turnstileToken,
     }),
   });
 

@@ -75,9 +75,22 @@ export function calculateLeadStatus(
 
 export const TYPING_DELAY_MS = 900;
 
+export const RIPLEY_QUALIFIED_STORAGE_KEY = "ripley_qualified";
+
+export const RIPLEY_LEAD_CONTEXT_STORAGE_KEY = "ripley_lead_context";
+
+export type StoredLeadContext = Pick<
+  LeadPayload,
+  "vertical" | "bottleneck" | "size" | "timeline"
+>;
+
 export const SCRIPT = {
   greeting:
-    "Hi, I'm Ripley, the Virtus digital receptionist. I can help map where your intake process is leaking. Mind if I ask a few quick questions?",
+    "Welcome to Virtus-Strategy. I'm Ripley, your Virtus Concierge. We help firms build a more secure, efficient client intake and qualification process. Let's take a moment to assess your needs and identify where you're experiencing capacity challenges.",
+  returningGreeting:
+    "Welcome back. Do you need to book another diagnostic, ask a question, or update your details?",
+  bookMeeting:
+    "I can help with that. To ensure we connect you with the right diagnostic time, mind if I ask a few quick questions first?",
   faqAsk: "Of course. What would you like to know about?",
   faqFollowUp:
     "Does that answer your question? Or would you like to start the intake process?",

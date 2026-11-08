@@ -1,5 +1,10 @@
-import { MessageCircle, X } from "lucide-react";
+import { X } from "lucide-react";
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
+
+import {
+  TurnstileField,
+  type TurnstileFieldHandle,
+} from "@/components/turnstile-field";
 
 import { BookingEmbed } from "@/components/booking-embed";
 import { Button } from "@/components/ui/button";
@@ -10,7 +15,10 @@ import {
   calculateLeadStatus,
   formatFaqQuestionList,
   getFaqItemsForGroup,
+  RIPLEY_LEAD_CONTEXT_STORAGE_KEY,
+  RIPLEY_QUALIFIED_STORAGE_KEY,
   SCRIPT,
+  type StoredLeadContext,
   TYPING_DELAY_MS,
   type LeadBottleneck,
   type LeadPayload,
@@ -68,7 +76,9 @@ export function LeadQualificationWidget() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [activeFaqGroup, setActiveFaqGroup] = useState<string | null>(null);
+  const [isReturningVisitor, setIsReturningVisitor] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const turnstileRef = useRef<TurnstileFieldHandle>(null);
   const messageId = useRef(0);
 
   const nextId = () => {
@@ -86,6 +96,16 @@ export function LeadQualificationWidget() {
   useEffect(() => {
     scrollToEnd();
   }, [messages, typing, step, scrollToEnd]);
+
+  useEffect(() => {
+    try {
+      setIsReturningVisitor(
+        window.localStorage.getItem(RIPLEY_QUALIFIED_STORAGE_KEY) === "true"
+      );
+    } catch {
+      setIsReturningVisitor(false);
+    }
+  }, []);
 
   const pushBot = useCallback((text: string, onDone?: () => void) => {
     setTyping(true);
@@ -107,8 +127,8 @@ export function LeadQualificationWidget() {
     setDraft(initialDraft);
     setSubmitError(null);
     setActiveFaqGroup(null);
-    pushBot(SCRIPT.greeting);
-  }, [pushBot]);
+    pushBot(isReturningVisitor ? SCRIPT.returningGreeting : SCRIPT.greeting);
+  }, [pushBot, isReturningVisitor]);
 
   useEffect(() => {
     const onOpenIntakeWidget = () => {
@@ -139,6 +159,42 @@ export function LeadQualificationWidget() {
     setActiveFaqGroup(null);
     setStep("faq_categories");
     pushBot(SCRIPT.faqAsk);
+  };
+
+  const onGreetingBookMeeting = () => {
+    pushUser("Book a meeting");
+    pushBot(SCRIPT.bookMeeting, () => goToStep("vertical", SCRIPT.vertical));
+  };
+
+  const restoreStoredLeadContext = useCallback(() => {
+    try {
+      const raw = window.localStorage.getItem(RIPLEY_LEAD_CONTEXT_STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw) as StoredLeadContext;
+      setDraft((d) => ({
+        ...d,
+        vertical: parsed.vertical,
+        bottleneck: parsed.bottleneck,
+        size: parsed.size,
+        timeline: parsed.timeline,
+        firstName: "",
+        lastName: "",
+        company: "",
+        email: "",
+        phone: "",
+      }));
+    } catch {
+      /* ignore corrupt storage */
+    }
+  }, []);
+
+  const onGreetingUpdateDetails = () => {
+    pushUser("Update details");
+    restoreStoredLeadContext();
+    setStep("capture");
+    pushBot(SCRIPT.capture, () => {
+      pushBot(SCRIPT.captureCompany);
+    });
   };
 
   const onFaqCategory = (buttonLabel: string, groupCategory: string) => {
@@ -224,6 +280,12 @@ export function LeadQualificationWidget() {
       return;
     }
 
+    const turnstileToken = turnstileRef.current?.getToken();
+    if (!turnstileToken) {
+      setSubmitError("Please complete the verification check below.");
+      return;
+    }
+
     pushUser(`${firstName} ${lastName} · ${company} · ${email} · ${phone}`);
 
     const status = calculateLeadStatus(timeline, size, bottleneck);
@@ -242,7 +304,17 @@ export function LeadQualificationWidget() {
 
     setSubmitting(true);
     try {
-      await submitLead(payload);
+      await submitLead(payload, turnstileToken);
+      try {
+        window.localStorage.setItem(RIPLEY_QUALIFIED_STORAGE_KEY, "true");
+        window.localStorage.setItem(
+          RIPLEY_LEAD_CONTEXT_STORAGE_KEY,
+          JSON.stringify({ vertical, bottleneck, size, timeline })
+        );
+        setIsReturningVisitor(true);
+      } catch {
+        /* ignore private browsing / storage disabled */
+      }
       setStep("handover");
       pushBot(SCRIPT.handover);
     } catch (err) {
@@ -251,9 +323,12 @@ export function LeadQualificationWidget() {
         setSubmitError(
           "Lead capture is temporarily unavailable. Please email contact@virtus-strategy.com."
         );
+      } else if (code === "missing-turnstile-token") {
+        setSubmitError("Please complete the verification check below.");
       } else {
         setSubmitError("Something went wrong saving your details. Please try again.");
       }
+      turnstileRef.current?.reset();
     } finally {
       setSubmitting(false);
     }
@@ -266,10 +341,51 @@ export function LeadQualificationWidget() {
 
     switch (step) {
       case "greeting":
+        if (isReturningVisitor) {
+          return (
+            <div className="flex flex-col gap-2">
+              <Button
+                type="button"
+                size="sm"
+                className="w-full justify-start"
+                onClick={onGreetingBookMeeting}
+              >
+                Book a meeting
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className="w-full justify-start"
+                onClick={onGreetingAskQuestion}
+              >
+                Ask a question
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className="w-full justify-start"
+                onClick={onGreetingUpdateDetails}
+              >
+                Update details
+              </Button>
+            </div>
+          );
+        }
         return (
           <div className="flex flex-col gap-2">
             <Button type="button" size="sm" className="w-full justify-start" onClick={onGreetingYes}>
               Yes, let&apos;s go
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              className="w-full justify-start"
+              onClick={onGreetingBookMeeting}
+            >
+              Book a meeting
             </Button>
             <Button
               type="button"
@@ -443,6 +559,7 @@ export function LeadQualificationWidget() {
                 className="h-9 text-sm"
               />
             </div>
+            <TurnstileField ref={turnstileRef} className="min-h-[65px]" />
             {submitError && <p className="text-xs text-destructive">{submitError}</p>}
             <Button type="submit" size="sm" className="w-full" disabled={submitting}>
               {submitting ? "Saving…" : "Submit"}
@@ -477,8 +594,7 @@ export function LeadQualificationWidget() {
       {open && (
         <div
           className={cn(
-            "flex w-[calc(100vw-2rem)] max-w-[350px] flex-col overflow-hidden rounded-lg border border-border bg-card shadow-2xl metallic-border",
-            "max-h-[min(560px,calc(100vh-6rem))]"
+            "flex h-[75vh] w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-hidden rounded-lg border border-border bg-card shadow-2xl metallic-border md:h-[600px]"
           )}
           role="dialog"
           aria-label="Ripley intake assistant"
@@ -486,7 +602,7 @@ export function LeadQualificationWidget() {
           <header className="flex items-center justify-between border-b border-border bg-secondary/80 px-4 py-3">
             <div>
               <p className="text-sm font-semibold text-foreground">Ripley</p>
-              <p className="text-xs text-muted-foreground">Virtus Digital Receptionist</p>
+              <p className="text-xs text-muted-foreground">Virtus Concierge</p>
             </div>
             <Button
               type="button"
@@ -530,15 +646,18 @@ export function LeadQualificationWidget() {
       )}
 
       {!open && (
-        <Button
+        <button
           type="button"
-          size="lg"
-          className="h-12 gap-2 rounded-full px-5 shadow-lg"
+          className="h-16 w-16 overflow-hidden rounded-full border-2 border-primary shadow-lg transition-transform hover:scale-105"
+          aria-label="Talk to Ripley"
           onClick={startFlow}
         >
-          <MessageCircle className="h-5 w-5" />
-          Talk to Ripley
-        </Button>
+          <img
+            src="/ripley-avatar.png"
+            alt="Ripley"
+            className="h-full w-full object-cover"
+          />
+        </button>
       )}
     </div>
   );
