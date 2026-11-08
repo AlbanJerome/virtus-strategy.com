@@ -19,7 +19,7 @@ const rows = [
 
 export function ScopeTable() {
   return (
-    <section className="mt-16 border-t border-border pt-16">
+    <section className="mt-16 border-t border-border pb-16 pt-16 md:pb-24">
       <Placeholder
         label="services-scope-table-title"
         as="h2"
