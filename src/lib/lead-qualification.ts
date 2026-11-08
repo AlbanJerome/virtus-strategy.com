@@ -81,10 +81,20 @@ export const RIPLEY_NAME_STORAGE_KEY = "ripley_name";
 
 export const RIPLEY_LEAD_CONTEXT_STORAGE_KEY = "ripley_lead_context";
 
+export const RIPLEY_LEAD_DATA_STORAGE_KEY = "ripley_lead_data";
+
 export type StoredLeadContext = Pick<
   LeadPayload,
   "vertical" | "bottleneck" | "size" | "timeline"
 >;
+
+export type StoredLeadData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  company: string;
+};
 
 export const SCRIPT = {
   greeting:

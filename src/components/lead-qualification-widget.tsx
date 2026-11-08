@@ -17,10 +17,12 @@ import {
   getFaqItemsForGroup,
   formatReturningGreeting,
   RIPLEY_LEAD_CONTEXT_STORAGE_KEY,
+  RIPLEY_LEAD_DATA_STORAGE_KEY,
   RIPLEY_NAME_STORAGE_KEY,
   RIPLEY_QUALIFIED_STORAGE_KEY,
   SCRIPT,
   type StoredLeadContext,
+  type StoredLeadData,
   TYPING_DELAY_MS,
   type LeadBottleneck,
   type LeadPayload,
@@ -58,6 +60,16 @@ const initialDraft: DraftLead = {
   email: "",
   phone: "",
 };
+
+function readStoredLeadData(): StoredLeadData | null {
+  try {
+    const raw = window.localStorage.getItem(RIPLEY_LEAD_DATA_STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw) as StoredLeadData;
+  } catch {
+    return null;
+  }
+}
 
 function TypingIndicator() {
   return (
@@ -177,22 +189,25 @@ export function LeadQualificationWidget() {
     pushBot(SCRIPT.bookMeeting, () => goToStep("vertical", SCRIPT.vertical));
   };
 
-  const restoreStoredLeadContext = useCallback(() => {
+  const restoreStoredLeadFromLocalStorage = useCallback(() => {
     try {
-      const raw = window.localStorage.getItem(RIPLEY_LEAD_CONTEXT_STORAGE_KEY);
-      if (!raw) return;
-      const parsed = JSON.parse(raw) as StoredLeadContext;
+      const contextRaw = window.localStorage.getItem(RIPLEY_LEAD_CONTEXT_STORAGE_KEY);
+      const leadData = readStoredLeadData();
+      const parsedContext = contextRaw
+        ? (JSON.parse(contextRaw) as StoredLeadContext)
+        : null;
+
       setDraft((d) => ({
         ...d,
-        vertical: parsed.vertical,
-        bottleneck: parsed.bottleneck,
-        size: parsed.size,
-        timeline: parsed.timeline,
-        firstName: "",
-        lastName: "",
-        company: "",
-        email: "",
-        phone: "",
+        vertical: parsedContext?.vertical,
+        bottleneck: parsedContext?.bottleneck,
+        size: parsedContext?.size,
+        timeline: parsedContext?.timeline,
+        firstName: leadData?.firstName ?? "",
+        lastName: leadData?.lastName ?? "",
+        company: leadData?.company ?? "",
+        email: leadData?.email ?? "",
+        phone: leadData?.phone ?? "",
       }));
     } catch {
       /* ignore corrupt storage */
@@ -201,11 +216,9 @@ export function LeadQualificationWidget() {
 
   const onGreetingBookFollowUp = () => {
     pushUser("Book a follow-up");
-    restoreStoredLeadContext();
-    setStep("capture");
-    pushBot(SCRIPT.capture, () => {
-      pushBot(SCRIPT.captureCompany);
-    });
+    restoreStoredLeadFromLocalStorage();
+    setStep("handover");
+    pushBot(SCRIPT.handover);
   };
 
   const onGreetingUpdateDetails = () => {
@@ -328,6 +341,10 @@ export function LeadQualificationWidget() {
         window.localStorage.setItem(
           RIPLEY_LEAD_CONTEXT_STORAGE_KEY,
           JSON.stringify({ vertical, bottleneck, size, timeline })
+        );
+        window.localStorage.setItem(
+          RIPLEY_LEAD_DATA_STORAGE_KEY,
+          JSON.stringify({ firstName, lastName, email, phone, company })
         );
         setIsReturningVisitor(true);
         setSavedName(firstName);
@@ -513,85 +530,101 @@ export function LeadQualificationWidget() {
         );
       case "capture":
         return (
-          <form onSubmit={onCaptureSubmit} className="space-y-3">
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          <form
+            onSubmit={onCaptureSubmit}
+            className="flex max-h-[min(52vh,28rem)] min-h-0 flex-col overflow-y-auto"
+          >
+            <div className="space-y-3">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                <div className="space-y-1">
+                  <Label htmlFor="lq-first" className="text-xs">
+                    First name
+                  </Label>
+                  <Input
+                    id="lq-first"
+                    value={draft.firstName}
+                    onChange={(e) => setDraft((d) => ({ ...d, firstName: e.target.value }))}
+                    autoComplete="given-name"
+                    className="h-9 text-sm"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="lq-last" className="text-xs">
+                    Last name
+                  </Label>
+                  <Input
+                    id="lq-last"
+                    value={draft.lastName}
+                    onChange={(e) => setDraft((prev) => ({ ...prev, lastName: e.target.value }))}
+                    autoComplete="family-name"
+                    className="h-9 text-sm"
+                  />
+                </div>
+              </div>
               <div className="space-y-1">
-                <Label htmlFor="lq-first" className="text-xs">
-                  First name
+                <Label htmlFor="lq-company" className="text-xs">
+                  Company name
                 </Label>
                 <Input
-                  id="lq-first"
-                  value={draft.firstName}
-                  onChange={(e) => setDraft((d) => ({ ...d, firstName: e.target.value }))}
-                  autoComplete="given-name"
+                  id="lq-company"
+                  value={draft.company}
+                  onChange={(e) => setDraft((d) => ({ ...d, company: e.target.value }))}
+                  autoComplete="organization"
                   className="h-9 text-sm"
                 />
               </div>
               <div className="space-y-1">
-                <Label htmlFor="lq-last" className="text-xs">
-                  Last name
+                <Label htmlFor="lq-email" className="text-xs">
+                  Email
                 </Label>
                 <Input
-                  id="lq-last"
-                  value={draft.lastName}
-                  onChange={(e) => setDraft((prev) => ({ ...prev, lastName: e.target.value }))}
-                  autoComplete="family-name"
+                  id="lq-email"
+                  type="email"
+                  value={draft.email}
+                  onChange={(e) => setDraft((d) => ({ ...d, email: e.target.value }))}
+                  autoComplete="email"
+                  className="h-9 text-sm"
+                />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="lq-phone" className="text-xs">
+                  Phone
+                </Label>
+                <Input
+                  id="lq-phone"
+                  type="tel"
+                  value={draft.phone}
+                  onChange={(e) => setDraft((d) => ({ ...d, phone: e.target.value }))}
+                  autoComplete="tel"
                   className="h-9 text-sm"
                 />
               </div>
             </div>
-            <div className="space-y-1">
-              <Label htmlFor="lq-company" className="text-xs">
-                Company name
-              </Label>
-              <Input
-                id="lq-company"
-                value={draft.company}
-                onChange={(e) => setDraft((d) => ({ ...d, company: e.target.value }))}
-                autoComplete="organization"
-                className="h-9 text-sm"
-              />
+            <div className="mt-auto flex flex-col pt-2">
+              <TurnstileField ref={turnstileRef} className="min-h-[65px]" />
+              {submitError && <p className="text-xs text-destructive">{submitError}</p>}
+              <Button
+                type="submit"
+                size="sm"
+                className="mb-2 mt-4 w-full"
+                disabled={submitting}
+              >
+                {submitting ? "Saving…" : "Submit"}
+              </Button>
             </div>
-            <div className="space-y-1">
-              <Label htmlFor="lq-email" className="text-xs">
-                Email
-              </Label>
-              <Input
-                id="lq-email"
-                type="email"
-                value={draft.email}
-                onChange={(e) => setDraft((d) => ({ ...d, email: e.target.value }))}
-                autoComplete="email"
-                className="h-9 text-sm"
-              />
-            </div>
-            <div className="space-y-1">
-              <Label htmlFor="lq-phone" className="text-xs">
-                Phone
-              </Label>
-              <Input
-                id="lq-phone"
-                type="tel"
-                value={draft.phone}
-                onChange={(e) => setDraft((d) => ({ ...d, phone: e.target.value }))}
-                autoComplete="tel"
-                className="h-9 text-sm"
-              />
-            </div>
-            <TurnstileField ref={turnstileRef} className="min-h-[65px]" />
-            {submitError && <p className="text-xs text-destructive">{submitError}</p>}
-            <Button type="submit" size="sm" className="w-full" disabled={submitting}>
-              {submitting ? "Saving…" : "Submit"}
-            </Button>
           </form>
         );
       case "handover": {
-        const fullName = `${draft.firstName.trim()} ${draft.lastName.trim()}`.trim();
+        const storedLead = readStoredLeadData();
+        const firstName = (storedLead?.firstName ?? draft.firstName).trim();
+        const lastName = (storedLead?.lastName ?? draft.lastName).trim();
+        const email = (storedLead?.email ?? draft.email).trim();
+        const fullName = `${firstName} ${lastName}`.trim();
         return (
           <div className="[&>div]:rounded-md">
             <BookingEmbed
               name={fullName || undefined}
-              email={draft.email.trim() || undefined}
+              email={email || undefined}
               leadContext={{
                 vertical: draft.vertical,
                 bottleneck: draft.bottleneck,
@@ -619,7 +652,7 @@ export function LeadQualificationWidget() {
       {open && (
         <div
           className={cn(
-            "flex h-[75vh] w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-hidden rounded-lg border border-border bg-card shadow-2xl metallic-border md:h-[600px]"
+            "flex h-[85vh] w-[calc(100vw-2rem)] max-w-[420px] min-h-0 flex-col overflow-hidden rounded-lg border border-border bg-card shadow-2xl metallic-border md:h-[600px]"
           )}
           role="dialog"
           aria-label="Ripley intake assistant"
@@ -646,7 +679,7 @@ export function LeadQualificationWidget() {
             </div>
           </header>
 
-          <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-3">
+          <div ref={scrollRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto px-4 py-3">
             {messages.map((msg) => (
               <div
                 key={msg.id}
@@ -671,7 +704,9 @@ export function LeadQualificationWidget() {
             )}
           </div>
 
-          <footer className="border-t border-border bg-card px-4 py-3">{renderActions()}</footer>
+          <footer className="shrink-0 border-t border-border bg-card px-4 pt-3 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+            {renderActions()}
+          </footer>
         </div>
       )}
 
