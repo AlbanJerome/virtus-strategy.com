@@ -22,7 +22,6 @@ import {
   RIPLEY_QUALIFIED_STORAGE_KEY,
   SCRIPT,
   validateCaptureContact,
-  type CaptureContactFieldErrors,
   type StoredLeadContext,
   type StoredLeadData,
   TYPING_DELAY_MS,
@@ -95,7 +94,7 @@ export function LeadQualificationWidget() {
   const [isReturningVisitor, setIsReturningVisitor] = useState(false);
   const [savedName, setSavedName] = useState<string | null>(null);
   const [bookingKind, setBookingKind] = useState<BookingKind>("diagnostic");
-  const [captureFieldErrors, setCaptureFieldErrors] = useState<CaptureContactFieldErrors>({});
+  const [captureValidatedOnce, setCaptureValidatedOnce] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const turnstileRef = useRef<TurnstileFieldHandle>(null);
   const messageId = useRef(0);
@@ -149,7 +148,7 @@ export function LeadQualificationWidget() {
     setSubmitError(null);
     setActiveFaqGroup(null);
     setBookingKind("diagnostic");
-    setCaptureFieldErrors({});
+    setCaptureValidatedOnce(false);
     const returningText =
       isReturningVisitor && savedName
         ? formatReturningGreeting(savedName)
@@ -293,6 +292,7 @@ export function LeadQualificationWidget() {
   const onTimeline = (value: LeadTimeline) => {
     pushUser(value);
     setDraft((d) => ({ ...d, timeline: value }));
+    setCaptureValidatedOnce(false);
     setStep("capture");
     pushBot(SCRIPT.capture, () => {
       pushBot(SCRIPT.captureCompany);
@@ -302,6 +302,7 @@ export function LeadQualificationWidget() {
   const onCaptureSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setSubmitError(null);
+    setCaptureValidatedOnce(true);
 
     const { vertical, bottleneck, size, timeline } = draft;
     if (!vertical || !bottleneck || !size || !timeline) return;
@@ -319,10 +320,8 @@ export function LeadQualificationWidget() {
 
     const contactErrors = validateCaptureContact(email, phone);
     if (contactErrors.email || contactErrors.phone) {
-      setCaptureFieldErrors(contactErrors);
       return;
     }
-    setCaptureFieldErrors({});
 
     const turnstileToken = turnstileRef.current?.getToken();
     if (!turnstileToken) {
@@ -547,14 +546,10 @@ export function LeadQualificationWidget() {
         const emailValue = draft.email.trim();
         const phoneValue = draft.phone.trim();
         const liveContactErrors = validateCaptureContact(emailValue, phoneValue);
-        const requiredFilled =
-          draft.firstName.trim() &&
-          draft.lastName.trim() &&
-          draft.company.trim() &&
-          emailValue &&
-          phoneValue;
-        const captureSubmitReady =
-          Boolean(requiredFilled) && !liveContactErrors.email && !liveContactErrors.phone;
+        const displayEmailError =
+          captureValidatedOnce || emailValue.length > 0 ? liveContactErrors.email : undefined;
+        const displayPhoneError =
+          captureValidatedOnce || phoneValue.length > 0 ? liveContactErrors.phone : undefined;
 
         return (
           <form
@@ -608,15 +603,12 @@ export function LeadQualificationWidget() {
                   id="lq-email"
                   type="email"
                   value={draft.email}
-                  onChange={(e) => {
-                    setDraft((d) => ({ ...d, email: e.target.value }));
-                    setCaptureFieldErrors((prev) => ({ ...prev, email: undefined }));
-                  }}
+                  onChange={(e) => setDraft((d) => ({ ...d, email: e.target.value }))}
                   autoComplete="email"
                   className="h-9 text-sm"
                 />
-                {captureFieldErrors.email && (
-                  <p className="mt-1 text-xs text-red-500">{captureFieldErrors.email}</p>
+                {displayEmailError && (
+                  <p className="mt-1 text-xs text-red-500">{displayEmailError}</p>
                 )}
               </div>
               <div className="space-y-1">
@@ -627,15 +619,12 @@ export function LeadQualificationWidget() {
                   id="lq-phone"
                   type="tel"
                   value={draft.phone}
-                  onChange={(e) => {
-                    setDraft((d) => ({ ...d, phone: e.target.value }));
-                    setCaptureFieldErrors((prev) => ({ ...prev, phone: undefined }));
-                  }}
+                  onChange={(e) => setDraft((d) => ({ ...d, phone: e.target.value }))}
                   autoComplete="tel"
                   className="h-9 text-sm"
                 />
-                {captureFieldErrors.phone && (
-                  <p className="mt-1 text-xs text-red-500">{captureFieldErrors.phone}</p>
+                {displayPhoneError && (
+                  <p className="mt-1 text-xs text-red-500">{displayPhoneError}</p>
                 )}
               </div>
             </div>
@@ -646,7 +635,7 @@ export function LeadQualificationWidget() {
                 type="submit"
                 size="sm"
                 className="mb-2 mt-4 w-full"
-                disabled={submitting || !captureSubmitReady}
+                disabled={submitting}
               >
                 {submitting ? "Saving…" : "Submit"}
               </Button>
