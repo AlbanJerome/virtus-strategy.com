@@ -19,14 +19,13 @@ export function DiagnosticCTA() {
           as="p"
           className="mt-4 text-lg text-muted-foreground"
         >
-          Let's assess your needs and identify exactly where your firm is experiencing challenges
-          with client intake and qualification process, and find out where your firm's capacity is
-          leaking.
+          Book a 30-minute intake audit. We will map your current workflow and identify exactly where
+          your capacity is leaking.
         </Placeholder>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Button asChild size="lg">
             <Link to="/contact">
-              <Placeholder label="home-diagnostic-cta-primary">Book a Diagnostic</Placeholder>
+              <Placeholder label="home-diagnostic-cta-primary">Book a 30-minute Intake Audit</Placeholder>
             </Link>
           </Button>
         </div>
