@@ -64,11 +64,6 @@ const initialDraft: DraftLead = {
   phone: "",
 };
 
-/** Legacy Ripley bubbles that duplicated FAQ choices as a bulleted list in chat. */
-function isLegacyFaqListMessage(text: string): boolean {
-  return text.includes("• ") || text.includes("Here are the questions I can answer:\n");
-}
-
 function readStoredLeadData(): StoredLeadData | null {
   try {
     const raw = window.localStorage.getItem(RIPLEY_LEAD_DATA_STORAGE_KEY);
@@ -244,10 +239,6 @@ export function LeadQualificationWidget() {
     pushUser(buttonLabel);
     setActiveFaqGroup(groupCategory);
     setStep("faq_questions");
-    setMessages((prev) =>
-      prev.filter((msg) => msg.role !== "bot" || !isLegacyFaqListMessage(msg.text))
-    );
-    pushBot(SCRIPT.faqQuestions);
   };
 
   const onFaqQuestion = (question: string) => {
@@ -486,10 +477,13 @@ export function LeadQualificationWidget() {
       case "faq_questions": {
         const questions = activeFaqGroup ? getFaqItemsForGroup(activeFaqGroup) : [];
         return (
-          <ChoiceGroup
-            options={questions.map((item) => item.q)}
-            onSelect={onFaqQuestion}
-          />
+          <div className="flex flex-col gap-2">
+            <p className="text-xs text-muted-foreground">{SCRIPT.faqQuestions}</p>
+            <ChoiceGroup
+              options={questions.map((item) => item.q)}
+              onSelect={onFaqQuestion}
+            />
+          </div>
         );
       }
       case "faq_followup":
