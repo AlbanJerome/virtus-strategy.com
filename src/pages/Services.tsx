@@ -92,7 +92,6 @@ export function Services() {
 
         <SprintPhases />
         <ScopeTable />
-        <TrustBar />
       </div>
       <DiagnosticCTA
         body="Let's map your workflow. Book a 30-minute diagnostic to see if the Intake Infrastructure Sprint is a fit for your firm."
@@ -103,6 +102,9 @@ export function Services() {
           <h2 className="mb-8 font-serif text-2xl md:text-3xl">Sprint Questions</h2>
           <Faq groups={SERVICES_FAQ_GROUPS} />
         </section>
+        <div className="mt-16">
+          <TrustBar />
+        </div>
       </div>
     </div>
   );
