@@ -1,0 +1,4 @@
+Contact: mailto:security@virtus-strategy.com
+Expires: 2027-12-31T23:59:00.000Z
+Preferred-Languages: en
+Canonical: https://virtus-strategy.com/.well-known/security.txt
