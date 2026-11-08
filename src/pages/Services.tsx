@@ -83,7 +83,7 @@ export function Services() {
       <DiagnosticCTA />
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <section className="border-t border-border py-16 md:py-24">
-          <h2 className="mb-8 font-serif text-2xl md:text-3xl">Engagement Questions</h2>
+          <h2 className="mb-8 font-serif text-2xl md:text-3xl">Frequently Asked Questions</h2>
           <Faq groups={VIRTUS_FAQ_GROUPS} />
         </section>
       </div>

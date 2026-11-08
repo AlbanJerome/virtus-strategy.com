@@ -16,10 +16,11 @@ export function DiagnosticCTA() {
         <Placeholder
           label="home-diagnostic-cta-body"
           as="p"
-          className="mt-4 text-lg text-muted-foreground"
+          className="mt-4 text-lg text-[#E0E0E0]"
         >
-          Book a 30-minute diagnostic to map your client intake infrastructure and identify where
-          your capacity is leaking.
+          Let&apos;s assess your needs and identify exactly where your firm is experiencing
+          challenges with client intake and qualification process, and find out where your
+          firm&apos;s capacity is leaking.
         </Placeholder>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Button type="button" size="lg" onClick={openIntakeWidget}>
