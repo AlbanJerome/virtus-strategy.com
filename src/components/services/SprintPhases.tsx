@@ -23,7 +23,7 @@ const phases = [
   },
   {
     key: "3",
-    title: "Controlled Build",
+    title: "Controlled Implementation",
     duration: "Implementation (Optional)",
     bullets: [
       "Deploy the secure intake interface.",

@@ -3,7 +3,7 @@ import { Placeholder } from "@/components/ui/placeholder";
 import { openIntakeWidget } from "@/lib/open-intake-widget";
 
 const DEFAULT_BODY =
-  "Let's map your workflow. Schedule a 30-minute review to see if our Intake Infrastructure approach is a fit for your firm.";
+  "Let's map your workflow. Book an Intake & Risk Review to see if our approach is a fit for your firm.";
 
 type DiagnosticCTAProps = {
   body?: string;

@@ -92,7 +92,7 @@ export function Services() {
         <div className="mt-8 w-full leading-none">
           <img
             src="/services-diagram.png"
-            alt="Engagement phases: Workflow Review, Intake Architecture, Controlled Build, and System Handover"
+            alt="Engagement phases: Workflow Review, Intake Architecture, Controlled Implementation, and System Handover"
             className="block h-auto w-full max-w-full object-contain object-top"
           />
         </div>
