@@ -15,7 +15,9 @@ import {
   calculateLeadStatus,
   formatFaqQuestionList,
   getFaqItemsForGroup,
+  formatReturningGreeting,
   RIPLEY_LEAD_CONTEXT_STORAGE_KEY,
+  RIPLEY_NAME_STORAGE_KEY,
   RIPLEY_QUALIFIED_STORAGE_KEY,
   SCRIPT,
   type StoredLeadContext,
@@ -77,6 +79,7 @@ export function LeadQualificationWidget() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [activeFaqGroup, setActiveFaqGroup] = useState<string | null>(null);
   const [isReturningVisitor, setIsReturningVisitor] = useState(false);
+  const [savedName, setSavedName] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const turnstileRef = useRef<TurnstileFieldHandle>(null);
   const messageId = useRef(0);
@@ -102,8 +105,10 @@ export function LeadQualificationWidget() {
       setIsReturningVisitor(
         window.localStorage.getItem(RIPLEY_QUALIFIED_STORAGE_KEY) === "true"
       );
+      setSavedName(window.localStorage.getItem(RIPLEY_NAME_STORAGE_KEY));
     } catch {
       setIsReturningVisitor(false);
+      setSavedName(null);
     }
   }, []);
 
@@ -127,8 +132,14 @@ export function LeadQualificationWidget() {
     setDraft(initialDraft);
     setSubmitError(null);
     setActiveFaqGroup(null);
-    pushBot(isReturningVisitor ? SCRIPT.returningGreeting : SCRIPT.greeting);
-  }, [pushBot, isReturningVisitor]);
+    const returningText =
+      isReturningVisitor && savedName
+        ? formatReturningGreeting(savedName)
+        : isReturningVisitor
+          ? SCRIPT.returningGreeting
+          : SCRIPT.greeting;
+    pushBot(returningText);
+  }, [pushBot, isReturningVisitor, savedName]);
 
   useEffect(() => {
     const onOpenIntakeWidget = () => {
@@ -188,13 +199,19 @@ export function LeadQualificationWidget() {
     }
   }, []);
 
-  const onGreetingUpdateDetails = () => {
-    pushUser("Update details");
+  const onGreetingBookFollowUp = () => {
+    pushUser("Book a follow-up");
     restoreStoredLeadContext();
     setStep("capture");
     pushBot(SCRIPT.capture, () => {
       pushBot(SCRIPT.captureCompany);
     });
+  };
+
+  const onGreetingUpdateDetails = () => {
+    pushUser("Update details");
+    setDraft(initialDraft);
+    goToStep("vertical", SCRIPT.vertical);
   };
 
   const onFaqCategory = (buttonLabel: string, groupCategory: string) => {
@@ -307,11 +324,13 @@ export function LeadQualificationWidget() {
       await submitLead(payload, turnstileToken);
       try {
         window.localStorage.setItem(RIPLEY_QUALIFIED_STORAGE_KEY, "true");
+        window.localStorage.setItem(RIPLEY_NAME_STORAGE_KEY, firstName);
         window.localStorage.setItem(
           RIPLEY_LEAD_CONTEXT_STORAGE_KEY,
           JSON.stringify({ vertical, bottleneck, size, timeline })
         );
         setIsReturningVisitor(true);
+        setSavedName(firstName);
       } catch {
         /* ignore private browsing / storage disabled */
       }
@@ -348,9 +367,9 @@ export function LeadQualificationWidget() {
                 type="button"
                 size="sm"
                 className="w-full justify-start"
-                onClick={onGreetingBookMeeting}
+                onClick={onGreetingBookFollowUp}
               >
-                Book a meeting
+                Book a follow-up
               </Button>
               <Button
                 type="button"
@@ -573,6 +592,12 @@ export function LeadQualificationWidget() {
             <BookingEmbed
               name={fullName || undefined}
               email={draft.email.trim() || undefined}
+              leadContext={{
+                vertical: draft.vertical,
+                bottleneck: draft.bottleneck,
+                size: draft.size,
+                timeline: draft.timeline,
+              }}
               iframeClassName="!min-h-[16rem] !h-72 !w-full"
             />
           </div>

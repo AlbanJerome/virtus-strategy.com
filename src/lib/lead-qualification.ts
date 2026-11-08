@@ -77,6 +77,8 @@ export const TYPING_DELAY_MS = 900;
 
 export const RIPLEY_QUALIFIED_STORAGE_KEY = "ripley_qualified";
 
+export const RIPLEY_NAME_STORAGE_KEY = "ripley_name";
+
 export const RIPLEY_LEAD_CONTEXT_STORAGE_KEY = "ripley_lead_context";
 
 export type StoredLeadContext = Pick<
@@ -88,9 +90,9 @@ export const SCRIPT = {
   greeting:
     "Welcome to Virtus-Strategy. I'm Ripley, your Virtus Concierge. We help firms build a more secure, efficient client intake and qualification process. Let's take a moment to assess your needs and identify where you're experiencing capacity challenges.",
   returningGreeting:
-    "Welcome back. Do you need to book another diagnostic, ask a question, or update your details?",
+    "Welcome back. Do you need to book a follow-up, update your firm details, or ask a question?",
   bookMeeting:
-    "I can help with that. To ensure we connect you with the right diagnostic time, mind if I ask a few quick questions first?",
+    "I can help with that. To ensure we connect you with the right diagnostic session, mind if I ask a few quick questions first?",
   faqAsk: "Of course. What would you like to know about?",
   faqFollowUp:
     "Does that answer your question? Or would you like to start the intake process?",
@@ -107,3 +109,7 @@ export const SCRIPT = {
   browsing:
     "No problem. When you're ready to talk intake, we're here. Feel free to open this chat again anytime.",
 } as const;
+
+export function formatReturningGreeting(firstName: string): string {
+  return `Welcome back, ${firstName}. Do you need to book a follow-up, update your firm details, or ask a question?`;
+}

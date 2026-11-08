@@ -1,13 +1,25 @@
 import { Placeholder } from "@/components/ui/placeholder";
 import { cn } from "@/lib/utils";
 
+export type BookingLeadContext = {
+  vertical?: string;
+  bottleneck?: string;
+  size?: string;
+  timeline?: string;
+};
+
 export type BookingEmbedProps = {
   name?: string;
   email?: string;
+  leadContext?: BookingLeadContext;
   iframeClassName?: string;
 };
 
-export function buildBookingEmbedUrl(name?: string, email?: string): string | undefined {
+export function buildBookingEmbedUrl(
+  name?: string,
+  email?: string,
+  leadContext?: BookingLeadContext
+): string | undefined {
   const baseUrl = import.meta.env.VITE_BOOKING_URL;
   if (!baseUrl) {
     return undefined;
@@ -20,11 +32,23 @@ export function buildBookingEmbedUrl(name?: string, email?: string): string | un
   if (email) {
     url.searchParams.append("email", email);
   }
+  if (leadContext) {
+    const { vertical, bottleneck, size, timeline } = leadContext;
+    if (vertical && bottleneck && size && timeline) {
+      const notes = `Vertical: ${vertical} | Bottleneck: ${bottleneck} | Size: ${size} | Timeline: ${timeline}`;
+      url.searchParams.append("notes", notes);
+    }
+  }
   return url.toString();
 }
 
-export function BookingEmbed({ name, email, iframeClassName }: BookingEmbedProps = {}) {
-  const bookingUrl = buildBookingEmbedUrl(name, email);
+export function BookingEmbed({
+  name,
+  email,
+  leadContext,
+  iframeClassName,
+}: BookingEmbedProps = {}) {
+  const bookingUrl = buildBookingEmbedUrl(name, email, leadContext);
 
   if (!bookingUrl) {
     return (
