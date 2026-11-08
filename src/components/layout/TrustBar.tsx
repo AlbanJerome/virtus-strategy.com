@@ -6,7 +6,7 @@ const trustItems = [
   {
     icon: MapPin,
     title: "Canadian Data Residency",
-    text: "Hosted in the Montreal Region (ca-central-1).",
+    text: "Client and lead data stored in Canada (Montreal, ca-central-1).",
   },
   {
     icon: ShieldCheck,
