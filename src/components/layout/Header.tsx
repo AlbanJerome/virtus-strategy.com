@@ -34,7 +34,7 @@ export function Header() {
             alt="Virtus-Strategy"
             width={120}
             height={40}
-            className="h-10 w-auto max-w-[min(52vw,11rem)] object-contain md:h-14 md:max-w-none"
+            className="h-8 w-auto max-w-[min(48vw,9rem)] object-contain md:h-12 md:max-w-none"
           />
         </Link>
 
