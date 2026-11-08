@@ -2,7 +2,7 @@ import { Placeholder } from "@/components/ui/placeholder";
 
 export function LabsIntro() {
   return (
-    <header className="max-w-3xl">
+    <header className="w-full lg:pr-4">
       <Placeholder
         label="labs-page-eyebrow"
         as="p"
@@ -16,20 +16,11 @@ export function LabsIntro() {
       <Placeholder
         label="labs-page-intro"
         as="p"
-        className="mt-4 text-lg text-muted-foreground"
+        className="mt-4 text-lg leading-relaxed text-muted-foreground"
       >
         This is where we document internal research and technical prototypes: the experiments that
         inform how we design secure intake systems. We publish what we learn so partners can see how
         we think, not just what we ship.
-      </Placeholder>
-      <Placeholder
-        label="labs-page-stratum-note"
-        as="p"
-        className="mt-4 text-muted-foreground"
-      >
-        Stratum Monitor (2023-2024) was an R&D prototype into jurisdictional classification and
-        regulatory early warning. It was not a production platform; that work informed our current
-        focus on Sandboxed AI and bounded execution.
       </Placeholder>
     </header>
   );
