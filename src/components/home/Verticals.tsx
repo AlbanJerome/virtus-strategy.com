@@ -50,7 +50,7 @@ const verticals = [
 
 export function Verticals() {
   return (
-    <section className="border-t border-border py-16 md:py-24">
+    <section className="border-t border-border pb-16 pt-10 md:pb-24 md:pt-12">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <Placeholder
           label="home-verticals-section-title"
@@ -62,11 +62,11 @@ export function Verticals() {
         <Placeholder
           label="home-verticals-section-intro"
           as="p"
-          className="mx-auto mt-4 max-w-2xl text-center text-lg text-muted-foreground"
+          className="mx-auto mt-4 max-w-5xl text-balance text-center text-lg leading-snug text-muted-foreground"
         >
           We focus exclusively on industries where a single client is high value and the compliance
-          burden is heavy. When manual triage is the norm, we design a secure, auditable path from
-          first contact to qualified matter.
+          burden is heavy. When manual triage is the norm, we design a secure, auditable path from first
+          contact to qualified matter.
         </Placeholder>
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
           {verticals.map((vertical) => (
