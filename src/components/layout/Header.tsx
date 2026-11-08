@@ -12,7 +12,7 @@ const LOGO_SRC = "/assets/Virtus_Logo_1767236260261-UkapBSLX.png";
 const navItems = [
   { to: "/", label: "home", text: "Home" },
   { to: "/services", label: "services", text: "Services" },
-  { to: "/labs", label: "labs", text: "R&D" },
+  { to: "/labs", label: "labs", text: "Research" },
 ] as const;
 
 export function Header() {
@@ -58,7 +58,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Button type="button" size="sm" className="hidden md:inline-flex" onClick={onBookDiagnostic}>
-            <Placeholder label="header-cta">Book a Diagnostic</Placeholder>
+            <Placeholder label="header-cta">Request a Briefing</Placeholder>
           </Button>
 
           <Button
@@ -102,7 +102,7 @@ export function Header() {
             ))}
           </ul>
           <Button type="button" className="mt-4 w-full" size="lg" onClick={onBookDiagnostic}>
-            <Placeholder label="header-cta">Book a Diagnostic</Placeholder>
+            <Placeholder label="header-cta">Request a Briefing</Placeholder>
           </Button>
         </nav>
       )}

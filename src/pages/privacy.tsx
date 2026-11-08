@@ -81,7 +81,8 @@ export function Privacy() {
             <h2 className="text-2xl font-bold">4. How We Use Your Information</h2>
             <p className="text-muted-foreground">
               We use the information we collect to respond to inquiries, schedule diagnostic calls, qualify
-              your firm&apos;s fit for our Intake Infrastructure Sprint, send transactional communications,
+              your firm&apos;s fit for our Intake & Risk Diagnostic and optional implementation services,
+              send transactional communications,
               and comply with legal obligations. We do not sell your personal information.
             </p>
           </section>

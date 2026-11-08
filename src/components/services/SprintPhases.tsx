@@ -3,43 +3,43 @@ import { Placeholder } from "@/components/ui/placeholder";
 const phases = [
   {
     key: "1",
-    title: "Governance & Workflow Diagnostic",
-    duration: "Week 1",
+    title: "Workflow Diagnostic",
+    duration: "Advisory",
     bullets: [
       "Map current intake flow and compliance requirements.",
       "Identify operational bottlenecks and capacity leaks.",
     ],
-    deliverable: "A documented system architecture and routing logic map.",
+    deliverable: "Board-ready risk register and capacity recovery model.",
   },
   {
     key: "2",
-    title: "Build",
-    duration: "Week 2",
+    title: "Intake Architecture",
+    duration: "Strategy",
     bullets: [
-      "Deploy the web presence and intake interface.",
-      "Implement Sandboxed AI and Deterministic Routing.",
+      "Define rules-based controls and qualification logic.",
+      "Specify secure data routing and compliance boundaries.",
     ],
-    deliverable: "A fully functional, secure client intake system.",
+    deliverable: "Specification of rules-based controls and data routing.",
   },
   {
     key: "3",
-    title: "Stress Test",
-    duration: "Week 2-3",
+    title: "Controlled Build",
+    duration: "Implementation (Optional)",
     bullets: [
-      "Run simulated malicious, incomplete, and edge-case inputs.",
-      "Verify deterministic routing against compliance rules.",
+      "Deploy the web presence and intake interface.",
+      "Install controlled extraction and rules-based routing.",
     ],
-    deliverable: "Test results and an audit-trail verification report.",
+    deliverable: "Deployment of the secure intake layer.",
   },
   {
     key: "4",
-    title: "Handover",
-    duration: "Week 3",
+    title: "System Handover",
+    duration: "Handover",
     bullets: [
       "Transfer administrative access and documentation.",
       "Train the team on workflow management.",
     ],
-    deliverable: "A live asset and a standard operating procedure manual.",
+    deliverable: "Full IP transfer, documentation, and standard operating procedures.",
   },
 ] as const;
 
@@ -51,14 +51,14 @@ export function SprintPhases() {
         as="h2"
         className="text-xl font-bold md:text-2xl lg:text-3xl"
       >
-        The four-phase sprint.
+        The engagement phases.
       </Placeholder>
       <Placeholder
         label="services-sprint-phases-intro"
         as="p"
         className="mt-3 max-w-2xl text-muted-foreground"
       >
-        No open-ended retainers. A strict timeline from diagnostic to handover.
+        Advisory and strategy are fixed-scope. Implementation proceeds only when you choose Phase 3.
       </Placeholder>
       <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
         {phases.map((phase) => (

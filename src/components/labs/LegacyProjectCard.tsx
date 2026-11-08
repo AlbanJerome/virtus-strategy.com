@@ -11,15 +11,15 @@ const PROJECTS = {
       },
       {
         label: "labs-legacy-stratum-p2",
-        text: "Stratum Monitor investigated automated jurisdictional classification, cross-border compliance mapping, and regulatory early warning.",
+        text: "Stratum Monitor investigated automated jurisdictional classification.",
       },
       {
         label: "labs-legacy-stratum-p3",
-        text: "The research revealed a fundamental problem: generic LLMs could interpret regulatory information, but could not guarantee the deterministic accuracy required for enterprise compliance.",
+        text: "The research revealed a fundamental problem: generic LLMs could interpret information, but could not guarantee the traceable decisions required for enterprise compliance.",
       },
       {
         label: "labs-legacy-stratum-p4",
-        text: "We didn't ship a compromise. We used that finding to shape our next research direction: Sandboxed AI and bounded execution.",
+        text: "We used that finding to shape our next research direction: governed AI extraction and rules-based controls.",
       },
     ],
   },

@@ -51,22 +51,22 @@ const FAQ_BY_QUESTION: Record<string, FaqEntry> = {
   },
   "How much does an engagement cost?": {
     q: "How much does an engagement cost?",
-    a: "Because every firm's compliance requirements and intake volume are different, we do not use a one size fits all price. We map your specific operational bottleneck during the initial diagnostic and provide a fixed scope proposal based on the exact infrastructure required.",
+    a: "Engagements begin with a fixed-scope Diagnostic. Pricing for the subsequent Implementation phase (if required) is determined based on the complexity of the workflow mapped during the diagnostic.",
   },
   "Do we need to rebuild our website first?": {
     q: "Do we need to rebuild our website first?",
     a: "No. We can layer the intake infrastructure onto your existing site. However, if your current site lacks the institutional authority required to convert high value clients, we can rebuild the frontend as part of the sprint.",
   },
-  "How long does a Virtus-Strategy intake sprint take?": {
-    q: "How long does a Virtus-Strategy intake sprint take?",
-    a: "The sprint is a three week engagement. Weeks one and two are dedicated to diagnostic and content preparation, followed by a one week technical build and compliance stress test.",
+  "How is the engagement structured?": {
+    q: "How is the engagement structured?",
+    a: "We begin with a fixed-scope Diagnostic: workflow mapping, compliance risk assessment, and a board-ready capacity recovery model. Strategy and optional Implementation follow only when you choose to proceed, culminating in full handover and documentation if you build.",
   },
-  "What happens during the 3-week sprint?": {
-    q: "What happens during the 3-week sprint?",
-    a: "Week 1 is the Governance and Workflow Diagnostic. Week 2 is dedicated to content preparation and system architecture. Week 3 is the technical build, rigorous compliance stress test, and final handover.",
+  "What happens during the engagement?": {
+    q: "What happens during the engagement?",
+    a: "Phase 1 is the Workflow Diagnostic. Phase 2 defines Intake Architecture and rules-based controls. Phase 3 is an optional Controlled Build of the secure intake layer. Phase 4 is System Handover with full IP transfer and operating procedures.",
   },
-  "What happens after the sprint?": {
-    q: "What happens after the sprint?",
+  "What happens after implementation?": {
+    q: "What happens after implementation?",
     a: "You own the system. We hand over the keys, the documentation, and the standard operating procedures. You can run it yourself or engage us for future advisory work.",
   },
   "How does this help accounting firms and SR&ED practices?": {
@@ -126,9 +126,9 @@ export const SERVICES_FAQ_GROUPS: FaqGroup[] = [
     questions: pickFaq([
       "How much does an engagement cost?",
       "Do we need to rebuild our website first?",
-      "How long does a Virtus-Strategy intake sprint take?",
-      "What happens during the 3-week sprint?",
-      "What happens after the sprint?",
+      "How is the engagement structured?",
+      "What happens during the engagement?",
+      "What happens after implementation?",
     ]),
   },
   {
@@ -178,11 +178,11 @@ export const RIPLEY_FAQ_GROUPS: FaqGroup[] = [
     questions: [
       {
         q: "How much does an engagement cost?",
-        a: "Because every firm's compliance needs are different, we map your specific bottleneck during the diagnostic and provide a fixed-scope proposal based on the infrastructure required.",
+        a: "Engagements begin with a fixed-scope Diagnostic. Pricing for the subsequent Implementation phase (if required) is determined based on the complexity of the workflow mapped during the diagnostic.",
       },
       {
-        q: "How long does the sprint take?",
-        a: "The sprint is a three-week engagement. Weeks one and two are dedicated to diagnostic and content preparation, followed by a one-week technical build and compliance stress test.",
+        q: "How is the engagement structured?",
+        a: "We begin with advisory diagnostic work, then strategy and optional implementation. Timing depends on workflow complexity mapped during the diagnostic.",
       },
     ],
   },

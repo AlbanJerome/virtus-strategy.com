@@ -6,7 +6,7 @@ export function Labs() {
   return (
     <>
       <Seo
-        title="R&D | Virtus-Strategy"
+        title="Applied Research | Virtus-Strategy"
         description="Internal research and technical prototypes from Virtus-Strategy: notes from our work on compliance, bounded execution, and client intake infrastructure."
         url="/labs"
       />

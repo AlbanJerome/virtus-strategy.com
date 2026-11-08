@@ -34,8 +34,8 @@ export function Services() {
   return (
     <div className="py-16 md:py-24">
       <Seo
-        title="The Intake Infrastructure Sprint | Virtus-Strategy"
-        description="A fixed-scope, three-week engagement. We diagnose the leak, build the secure system, stress test the logic, and hand over the keys for your firm."
+        title="The Intake & Risk Diagnostic | Virtus-Strategy"
+        description="A fixed-scope advisory engagement. We diagnose your intake workflow, map compliance risks, and deliver a board-ready capacity recovery model. Implementation is optional."
         url="/services"
       />
       <div className="mx-auto max-w-7xl px-4 md:px-6">
@@ -44,15 +44,15 @@ export function Services() {
           as="h1"
           className="text-3xl font-bold md:text-4xl lg:text-5xl"
         >
-          The Intake Infrastructure Sprint.
+          The Intake & Risk Diagnostic.
         </Placeholder>
         <Placeholder
           label="services-page-intro"
           as="p"
           className="mt-4 max-w-2xl text-lg text-muted-foreground"
         >
-          A fixed-scope, three-week engagement. We diagnose the leak, build the secure system, stress
-          test the logic, and hand over the keys.
+          A fixed-scope advisory engagement. We diagnose your intake workflow, map the compliance risks,
+          and deliver a board-ready capacity recovery model. Implementation is optional.
         </Placeholder>
         <p className="mt-4 max-w-2xl text-sm font-bold text-foreground">
           Fixed-scope pricing is provided after the diagnostic to ensure alignment with your specific
@@ -85,7 +85,7 @@ export function Services() {
         <div className="mt-8 w-full leading-none">
           <img
             src="/services-diagram.png"
-            alt="Four-phase sprint timeline: Diagnostic, Build, Stress Test, and Handover"
+            alt="Engagement phases: Workflow Diagnostic, Intake Architecture, Controlled Build, and System Handover"
             className="block h-auto w-full max-w-full object-contain object-top"
           />
         </div>
@@ -94,12 +94,12 @@ export function Services() {
         <ScopeTable />
       </div>
       <DiagnosticCTA
-        body="Let's map your workflow. Book a 30-minute diagnostic to see if the Intake Infrastructure Sprint is a fit for your firm."
+        body="Request a diagnostic briefing to review your operational risks and capacity leaks."
         bodyLabel="services-diagnostic-cta-body"
       />
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <section className="border-t border-border py-16 md:py-24">
-          <h2 className="mb-8 font-serif text-2xl md:text-3xl">Sprint Questions</h2>
+          <h2 className="mb-8 font-serif text-2xl md:text-3xl">Engagement Questions</h2>
           <Faq groups={SERVICES_FAQ_GROUPS} />
         </section>
         <div className="mt-16">

@@ -149,7 +149,7 @@ export type StoredLeadData = {
 
 export const SCRIPT = {
   greeting:
-    "Welcome to Virtus-Strategy. I'm Ripley, your Virtus Concierge. We help firms build a more secure, efficient client intake and qualification process. Let's take a moment to assess your needs and identify where you're experiencing capacity challenges.",
+    "Welcome to Virtus-Strategy. I'm Ripley. We help firms diagnose and secure their client intake workflows. Shall we start a brief assessment of your operational needs?",
   returningGreeting:
     "Welcome back. Do you need to book a follow-up, update your firm details, or ask a question?",
   bookMeeting:

@@ -35,7 +35,8 @@ export function Terms() {
               1001486026 Ontario Inc. operating as Virtus-Strategy provides secure client intake
               infrastructure and advisory services to
               regulated professional services firms. The specific scope, fees, and deliverables for any
-              consulting engagement (such as the Intake Infrastructure Sprint) will be defined in a
+              consulting engagement (such as the Intake & Risk Diagnostic or optional Implementation phase)
+              will be defined in a
               separate written agreement, such as a Statement of Work (SOW) or Master Services Agreement
               (MSA). These Terms govern the use of this website only.
             </p>
@@ -54,9 +55,9 @@ export function Terms() {
           <section className="space-y-3">
             <h2 className="text-2xl font-bold">4. Fees and Payment</h2>
             <p className="text-muted-foreground">
-              Fees for consulting engagements are defined in a written Statement of Work (SOW) or Master
-              Services Agreement after a diagnostic conversation. Scope, payment schedules, and any applicable
-              taxes will be set out in that agreement. Terms are fixed once the governing SOW is signed.
+              Fees for the Intake & Risk Diagnostic and any optional implementation services will be detailed
+              in the governing Statement of Work (SOW). Scope, payment schedules, and any applicable taxes
+              will be set out in that agreement. Terms are fixed once the governing SOW is signed.
             </p>
           </section>
 
@@ -69,7 +70,8 @@ export function Terms() {
               copyright laws.
             </p>
             <p className="text-muted-foreground">
-              <strong className="text-foreground">The Sprint Deliverables:</strong> Upon full payment, you
+              <strong className="text-foreground">The Diagnostic and Implementation Deliverables:</strong> Upon
+              full payment, you
               will own the custom web assets and the specific intake routing logic built for your firm.
               However, Virtus-Strategy retains all rights to our underlying methodology, frameworks, and the
               proprietary &quot;Sandboxed AI and Deterministic Routing&quot; architecture. You may not resell

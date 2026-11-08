@@ -4,23 +4,23 @@ const signals = [
   {
     titleLabel: "home-trust-signal-a-title",
     descLabel: "home-trust-signal-a-desc",
-    title: "Sandboxed AI",
+    title: "Controlled AI Extraction",
     description:
-      "The model is confined to data extraction. It parses intent and contact info without making qualification decisions.",
+      "The model is confined to structured data extraction. It parses intent without making qualification decisions.",
   },
   {
     titleLabel: "home-trust-signal-b-title",
     descLabel: "home-trust-signal-b-desc",
-    title: "Deterministic Routing",
+    title: "Rules-Based Controls",
     description:
-      "Hard-coded logic processes the extracted data against your regulatory criteria. No guesses, no hallucinations.",
+      "Hard-coded logic processes extracted data against your firm's regulatory criteria. No guesses, no hallucinations.",
   },
   {
     titleLabel: "home-trust-signal-c-title",
     descLabel: "home-trust-signal-c-desc",
-    title: "Bounded Execution",
+    title: "Traceable Execution",
     description:
-      "The system performs specific tasks within strict constraints, preventing scope creep or data leakage.",
+      "The system performs specific tasks within strict operational constraints, providing a complete audit trail.",
   },
 ] as const;
 

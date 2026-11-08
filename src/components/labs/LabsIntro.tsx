@@ -4,7 +4,7 @@ export function LabsIntro() {
   return (
     <header className="max-w-4xl">
       <Placeholder label="labs-page-title" as="h1" className="text-3xl font-bold md:text-4xl lg:text-5xl">
-        Virtus Labs.
+        Applied Research.
       </Placeholder>
       <Placeholder
         label="labs-page-lead"
