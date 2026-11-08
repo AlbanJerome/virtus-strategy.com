@@ -29,7 +29,10 @@ import {
 } from "@/lib/lead-qualification";
 import { useRipleyChat } from "@/hooks/useRipleyChat";
 import { useRipleyPersistence } from "@/hooks/useRipleyPersistence";
-import { INTAKE_WIDGET_OPEN_EVENT } from "@/lib/open-intake-widget";
+import {
+  INTAKE_WIDGET_OPEN_EVENT,
+  consumePendingIntakeOpen,
+} from "@/lib/open-intake-widget";
 import { submitLead } from "@/lib/submit-lead";
 import { cn } from "@/lib/utils";
 
@@ -91,6 +94,7 @@ export function LeadQualificationWidget() {
   const [captureValidatedOnce, setCaptureValidatedOnce] = useState(false);
   const turnstileRef = useRef<TurnstileFieldHandle>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     scrollToEnd();
@@ -103,13 +107,48 @@ export function LeadQualificationWidget() {
 
   useEffect(() => {
     if (!open) return;
+
+    const focusableSelector =
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])';
+
+    const getFocusable = (root: HTMLElement) =>
+      Array.from(root.querySelectorAll<HTMLElement>(focusableSelector)).filter(
+        (el) =>
+          !el.hasAttribute("disabled") &&
+          el.tabIndex !== -1 &&
+          (el.offsetParent !== null || el === document.activeElement),
+      );
+
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+
+      const focusables = getFocusable(dialog);
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+
+      if (event.shiftKey) {
+        if (active === first || (active && !dialog.contains(active))) {
+          event.preventDefault();
+          last.focus();
+        }
+      } else if (active === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
   const startFlow = useCallback(() => {
@@ -134,6 +173,9 @@ export function LeadQualificationWidget() {
     const onOpenIntakeWidget = () => {
       startFlow();
     };
+    if (consumePendingIntakeOpen()) {
+      startFlow();
+    }
     window.addEventListener(INTAKE_WIDGET_OPEN_EVENT, onOpenIntakeWidget);
     return () => window.removeEventListener(INTAKE_WIDGET_OPEN_EVENT, onOpenIntakeWidget);
   }, [startFlow]);
@@ -645,10 +687,12 @@ export function LeadQualificationWidget() {
     <div className="fixed bottom-[5.5rem] left-4 z-[100] flex flex-col items-start gap-3 md:bottom-6">
       {open && (
         <div
+          ref={dialogRef}
           className={cn(
             "flex h-[85vh] w-[calc(100vw-2rem)] max-w-[420px] min-h-0 flex-col overflow-hidden rounded-lg border border-border bg-card shadow-2xl metallic-border md:h-[600px]"
           )}
           role="dialog"
+          aria-modal="true"
           aria-label="Ripley intake assistant"
         >
           <header className="relative border-b border-border bg-secondary/80 px-4 pb-3 pt-4">

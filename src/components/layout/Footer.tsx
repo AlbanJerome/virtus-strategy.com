@@ -11,6 +11,11 @@ function openCookieSettings() {
   window.location.reload();
 }
 
+const primaryLinks = [
+  { to: "/", label: "Home" },
+  { to: "/services", label: "Services" },
+] as const;
+
 const legalLinks = [
   { to: "/privacy", label: "Privacy Policy" },
   { to: "/cookies", label: "Cookie Policy" },
@@ -29,6 +34,11 @@ export function Footer() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 md:justify-end">
+            {primaryLinks.map((item) => (
+              <Link key={item.to} to={item.to} className={legalClassName}>
+                {item.label}
+              </Link>
+            ))}
             {legalLinks.map((item) => (
               <Link key={item.to} to={item.to} className={legalClassName}>
                 {item.label}
