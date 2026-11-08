@@ -18,7 +18,7 @@ export function LabsIntro() {
         as="p"
         className="mt-6 text-lg leading-relaxed text-muted-foreground"
       >
-        Virtus Labs is our internal R&D space. We build technical prototypes and investigate the
+        Applied Research is our internal R&D space. We build technical prototypes and investigate the
         engineering limits of secure intake systems.
       </Placeholder>
       <Placeholder
