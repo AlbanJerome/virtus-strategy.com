@@ -69,11 +69,11 @@ export function Services() {
           ))}
         </div>
 
-        <div className="my-8 w-full">
+        <div className="mt-8 w-full leading-none">
           <img
             src="/services-diagram.png"
-            alt="Flowchart showing deterministic routing for client intake"
-            className="h-auto w-full max-w-full object-contain"
+            alt="Four-phase sprint timeline: Diagnostic, Build, Stress Test, and Handover"
+            className="block h-auto w-full max-w-full object-contain object-top"
           />
         </div>
 

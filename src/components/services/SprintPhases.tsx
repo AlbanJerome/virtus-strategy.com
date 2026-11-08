@@ -45,7 +45,7 @@ const phases = [
 
 export function SprintPhases() {
   return (
-    <section className="mt-16 border-t border-border pt-16">
+    <section className="mt-6 border-t border-border pt-10 md:mt-8 md:pt-12">
       <Placeholder
         label="services-sprint-phases-title"
         as="h2"
