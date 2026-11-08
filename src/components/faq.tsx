@@ -5,13 +5,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
+  HOME_FAQ_GROUPS,
+  SERVICES_FAQ_GROUPS,
   VIRTUS_FAQ_GROUPS,
   type FaqEntry,
   type FaqGroup,
 } from "@/lib/virtus-faq-data";
 
 export type { FaqEntry, FaqGroup };
-export { VIRTUS_FAQ_GROUPS };
+export { HOME_FAQ_GROUPS, SERVICES_FAQ_GROUPS, VIRTUS_FAQ_GROUPS };
 
 type FaqProps = {
   groups: FaqGroup[];

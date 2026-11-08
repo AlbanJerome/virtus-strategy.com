@@ -11,24 +11,23 @@ export function LabsIntro() {
         as="p"
         className="mt-4 text-lg text-foreground md:text-xl"
       >
-        Where ideas are tested, assumptions challenged, and better systems engineered.
+        Where technical assumptions are challenged before they reach the client.
       </Placeholder>
       <Placeholder
         label="labs-page-intro"
         as="p"
         className="mt-6 text-lg leading-relaxed text-muted-foreground"
       >
-        Virtus Labs is our research and development space. Here, we explore new approaches, build
-        technical prototypes, and investigate the problems shaping secure intake systems.
+        Virtus Labs is our internal R&D space. We build technical prototypes and investigate the
+        engineering limits of secure intake systems.
       </Placeholder>
       <Placeholder
         label="labs-page-intro-secondary"
         as="p"
         className="mt-4 text-lg leading-relaxed text-muted-foreground"
       >
-        We share our findings because innovation shouldn&apos;t be a black box. Our clients and partners
-        deserve to understand not only what we build, but the thinking, research, and engineering behind
-        it.
+        We share our findings because compliance should never be a black box. Our clients deserve to
+        understand not only what we build, but the strict engineering standards behind it.
       </Placeholder>
     </header>
   );

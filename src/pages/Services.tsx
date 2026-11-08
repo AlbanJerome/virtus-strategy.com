@@ -1,5 +1,5 @@
 import { DiagnosticCTA } from "@/components/home/DiagnosticCTA";
-import { Faq, VIRTUS_FAQ_GROUPS } from "@/components/faq";
+import { Faq, SERVICES_FAQ_GROUPS } from "@/components/faq";
 import { Seo } from "@/components/seo";
 import { SprintPhases } from "@/components/services/SprintPhases";
 import { ScopeTable } from "@/components/services/ScopeTable";
@@ -80,11 +80,14 @@ export function Services() {
         <SprintPhases />
         <ScopeTable />
       </div>
-      <DiagnosticCTA />
+      <DiagnosticCTA
+        body="Let's map your workflow. Book a 30-minute diagnostic to see if the Intake Infrastructure Sprint is a fit for your firm."
+        bodyLabel="services-diagnostic-cta-body"
+      />
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <section className="border-t border-border py-16 md:py-24">
-          <h2 className="mb-8 font-serif text-2xl md:text-3xl">Frequently Asked Questions</h2>
-          <Faq groups={VIRTUS_FAQ_GROUPS} />
+          <h2 className="mb-8 font-serif text-2xl md:text-3xl">Sprint Questions</h2>
+          <Faq groups={SERVICES_FAQ_GROUPS} />
         </section>
       </div>
     </div>
