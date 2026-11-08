@@ -28,10 +28,11 @@ export function Privacy() {
               (the &quot;Widget&quot;), or interact with us.
             </p>
             <p className="text-muted-foreground">
-              We are committed to complying with the Personal Information Protection and Electronic
-              Documents Act (PIPEDA) and applicable provincial privacy laws, including Quebec&apos;s Act
-              to modernize legislative provisions as regards the protection of personal information (Law
-              25).
+              We adhere to the Personal Information Protection and Electronic Documents Act (PIPEDA) and
+              Quebec&apos;s Law 25 (Act to modernize legislative provisions as regards the protection of
+              personal information). Where we process health-related information on behalf of clients, we
+              also apply Ontario&apos;s Personal Health Information Protection Act (PHIPA). Our practices are
+              designed to meet these obligations; details appear throughout this policy.
             </p>
           </section>
 
@@ -142,12 +143,8 @@ export function Privacy() {
             <h2 className="text-2xl font-bold">7. Data Storage, Location, and Cross-Border Transfers</h2>
             <p className="text-muted-foreground">
               <strong className="text-foreground">Storage:</strong> Your data is stored in our Supabase
-              database, which implements industry-standard security measures, including encryption at rest
-              and in transit.
-            </p>
-            <p className="text-muted-foreground">
-              <strong className="text-foreground">Location:</strong> Supabase data is hosted in the Canada
-              Central (Montreal) region.
+              database, hosted on AWS infrastructure in the Montreal Region (ca-central-1). Supabase
+              implements industry-standard security measures, including encryption at rest and in transit.
             </p>
             <p className="text-muted-foreground">
               <strong className="text-foreground">Third-Party Transfers:</strong> Some third-party service
@@ -158,7 +155,16 @@ export function Privacy() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-2xl font-bold">8. Data Retention</h2>
+            <h2 className="text-2xl font-bold">8. Data and System Ownership</h2>
+            <p className="text-muted-foreground">
+              Upon final payment and handover, your firm retains full ownership of the deployed system, the
+              custom routing logic, and all client data captured within it. Virtus-Strategy retains no rights
+              to access, read, or process your client data post-handover.
+            </p>
+          </section>
+
+          <section className="space-y-3">
+            <h2 className="text-2xl font-bold">9. Data Retention</h2>
             <p className="text-muted-foreground">
               We retain personal information only as long as necessary to fulfill the purposes for which it
               was collected. If you are a prospective client, we retain your lead data for up to 12 months
@@ -169,7 +175,7 @@ export function Privacy() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-2xl font-bold">9. Your Rights (PIPEDA and Law 25)</h2>
+            <h2 className="text-2xl font-bold">10. Your Rights (PIPEDA and Law 25)</h2>
             <p className="text-muted-foreground">
               Subject to applicable law, you have the right to request access to your information, request
               corrections, request deletion, withdraw consent, request data portability (Quebec Law 25), and
@@ -179,7 +185,7 @@ export function Privacy() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-2xl font-bold">10. Cookies and Tracking</h2>
+            <h2 className="text-2xl font-bold">11. Cookies and Tracking</h2>
             <p className="text-muted-foreground">
               Our website uses essential cookies to ensure basic functionality. You can instruct your browser
               to refuse all cookies or to indicate when a cookie is being sent.
@@ -187,7 +193,7 @@ export function Privacy() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-2xl font-bold">11. Security</h2>
+            <h2 className="text-2xl font-bold">12. Security</h2>
             <p className="text-muted-foreground">
               We have implemented appropriate technical and organisational security measures to protect your
               personal information, including the use of encrypted connections (HTTPS) and restricted access
@@ -196,7 +202,7 @@ export function Privacy() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-2xl font-bold">12. Changes to This Policy</h2>
+            <h2 className="text-2xl font-bold">13. Changes to This Policy</h2>
             <p className="text-muted-foreground">
               We may update this Privacy Policy from time to time. We will notify you of any changes by
               posting the new policy on this page and updating the &quot;Last Updated&quot; date.

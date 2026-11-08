@@ -1,4 +1,5 @@
 import { Lock, MapPin, ShieldCheck } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const trustItems = [
   {
@@ -30,11 +31,18 @@ export function TrustBar() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
           {trustItems.map((item) => (
-            <div key={item.title} className="flex flex-col text-center md:text-left">
+            <Link
+              key={item.title}
+              to="/privacy"
+              className="group flex flex-col rounded-lg border border-transparent p-6 text-center transition-colors hover:border-border/50 hover:bg-card/50 md:text-left"
+            >
               <item.icon className="mx-auto mb-2 h-6 w-6 text-primary md:mx-0" aria-hidden />
               <h3 className="text-base font-semibold text-foreground">{item.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{item.text}</p>
-            </div>
+              <span className="mt-2 text-xs text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                Read Policy →
+              </span>
+            </Link>
           ))}
         </div>
       </div>
