@@ -18,7 +18,7 @@ export function Methodology() {
               as="p"
               className="mt-4 text-lg text-muted-foreground"
             >
-              Every sprint begins with a Governance and Workflow Diagnostic. We audit your operational
+              Every engagement begins with a Governance and Workflow Review. We review your operational
               and regulatory realities first. We do not write a line of code until the strategy is
               sound.
             </Placeholder>
@@ -27,7 +27,7 @@ export function Methodology() {
               as="h3"
               className="mt-8 text-xl font-bold md:text-2xl"
             >
-              Governance & Workflow Diagnostic
+              Governance & Workflow Review
             </Placeholder>
             <Placeholder
               label="home-methodology-phase-1-body"

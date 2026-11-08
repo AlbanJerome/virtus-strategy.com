@@ -33,8 +33,8 @@ export function Services() {
   return (
     <div className="py-16 md:py-24">
       <Seo
-        title="The Intake & Risk Diagnostic | Virtus-Strategy"
-        description="A fixed-scope advisory engagement. We diagnose your intake workflow, map compliance risks, and deliver a board-ready capacity recovery model. Implementation is optional."
+        title="The Intake & Risk Review | Virtus-Strategy"
+        description="A fixed-scope advisory engagement. We review your intake workflow, map compliance risks, and deliver a capacity recovery model. Implementation is optional."
         url="/services"
       />
       <div className="mx-auto max-w-7xl px-4 md:px-6">
@@ -43,18 +43,18 @@ export function Services() {
           as="h1"
           className="text-3xl font-bold md:text-4xl lg:text-5xl"
         >
-          The Intake & Risk Diagnostic.
+          The Intake & Risk Review.
         </Placeholder>
         <Placeholder
           label="services-page-intro"
           as="p"
           className="mt-4 max-w-2xl text-lg text-muted-foreground"
         >
-          A fixed-scope advisory engagement. We diagnose your intake workflow, map the compliance risks,
-          and deliver a board-ready capacity recovery model. Implementation is optional.
+          A fixed-scope advisory engagement. We review your intake workflow, map the compliance risks, and
+          deliver a capacity recovery model. Implementation is optional.
         </Placeholder>
         <p className="mt-4 max-w-2xl text-sm font-bold text-foreground">
-          Fixed-scope pricing is provided after the diagnostic to ensure alignment with your specific
+          Fixed-scope pricing is provided after the initial review to ensure alignment with your specific
           infrastructure needs.
         </p>
 
@@ -84,7 +84,7 @@ export function Services() {
         <div className="mt-8 w-full leading-none">
           <img
             src="/services-diagram.png"
-            alt="Engagement phases: Workflow Diagnostic, Intake Architecture, Controlled Build, and System Handover"
+            alt="Engagement phases: Workflow Review, Intake Architecture, Controlled Build, and System Handover"
             className="block h-auto w-full max-w-full object-contain object-top"
           />
         </div>
@@ -92,10 +92,7 @@ export function Services() {
         <SprintPhases />
         <ScopeTable />
       </div>
-      <DiagnosticCTA
-        body="Request a diagnostic briefing to review your operational risks and capacity leaks."
-        bodyLabel="services-diagnostic-cta-body"
-      />
+      <DiagnosticCTA bodyLabel="services-review-cta-body" />
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <section className="border-t border-border py-16 md:py-24">
           <h2 className="mb-8 font-serif text-2xl md:text-3xl">Engagement Questions</h2>

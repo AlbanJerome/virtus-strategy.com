@@ -58,7 +58,7 @@ export function Cookies() {
             </p>
             <p className="text-muted-foreground">
               <strong className="text-foreground">Third-Party Cookies:</strong> When you interact with embedded
-              tools on our site (such as booking a diagnostic call via Cal.com), those third-party providers
+              tools on our site (such as booking a review call via Cal.com), those third-party providers
               may set their own cookies to manage your session and secure your booking.
             </p>
           </section>

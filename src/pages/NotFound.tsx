@@ -21,7 +21,7 @@ export function NotFound() {
       </Placeholder>
       <div className="mt-8 flex flex-wrap justify-center gap-4">
         <Button type="button" onClick={openIntakeWidget}>
-          <Placeholder label="not-found-cta-diagnostic">Request a Briefing</Placeholder>
+          <Placeholder label="not-found-cta-review">Schedule a Review</Placeholder>
         </Button>
         <Button asChild variant="outline">
           <Link to="/">

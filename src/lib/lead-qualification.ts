@@ -149,11 +149,11 @@ export type StoredLeadData = {
 
 export const SCRIPT = {
   greeting:
-    "Welcome to Virtus-Strategy. I'm Ripley. We help firms diagnose and secure their client intake workflows. Shall we start a brief assessment of your operational needs?",
+    "Welcome to Virtus-Strategy. I'm Ripley. We help firms review and secure their client intake workflows. Shall we start a brief assessment of your operational needs?",
   returningGreeting:
     "Welcome back. Do you need to book a follow-up, update your firm details, or ask a question?",
   bookMeeting:
-    "I can help with that. To ensure we connect you with the right diagnostic session, mind if I ask a few quick questions first?",
+    "I can help with that. To ensure we connect you with the right review session, mind if I ask a few quick questions first?",
   faqAsk: "Of course. What would you like to know about?",
   faqQuestions: "Here are the questions I can answer:",
   faqFollowUp:

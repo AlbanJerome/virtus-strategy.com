@@ -3,7 +3,7 @@ import { Placeholder } from "@/components/ui/placeholder";
 const steps = [
   {
     label: "home-solution-step-1",
-    text: "Diagnostic. We map your operational and regulatory realities before we build.",
+    text: "Review. We map your operational and regulatory realities before we build.",
   },
   {
     label: "home-solution-step-2",

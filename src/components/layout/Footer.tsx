@@ -40,7 +40,7 @@ export function Footer() {
               onClick={openIntakeWidget}
               className="text-xs font-medium text-primary transition-colors hover:text-primary/80"
             >
-              Request a Briefing
+              Schedule a Review
             </button>
           </div>
 

@@ -33,16 +33,16 @@ export function Hero() {
               className="text-balance break-words text-lg leading-relaxed text-muted-foreground md:text-xl md:leading-relaxed"
             >
               Manual intake exposes regulated firms to compliance risk and drains billable capacity.
-              Virtus-Strategy diagnoses your intake workflow and installs secure, rules-based controls so
+              Virtus-Strategy reviews your intake workflow and installs secure, rules-based controls so
               your team can stop chasing documents and start practising.
             </Placeholder>
             <div className="flex flex-wrap gap-4">
               <Button type="button" size="lg" onClick={openIntakeWidget}>
-                <Placeholder label="home-hero-cta-primary">Request a Diagnostic Briefing</Placeholder>
+                <Placeholder label="home-hero-cta-primary">Schedule Your Review</Placeholder>
               </Button>
               <Button asChild variant="outline" size="lg">
                 <Link to="/services">
-                  <Placeholder label="home-hero-cta-secondary">View the Diagnostic</Placeholder>
+                  <Placeholder label="home-hero-cta-secondary">How It Works</Placeholder>
                 </Link>
               </Button>
             </div>

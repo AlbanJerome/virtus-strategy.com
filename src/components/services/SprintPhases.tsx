@@ -3,7 +3,7 @@ import { Placeholder } from "@/components/ui/placeholder";
 const phases = [
   {
     key: "1",
-    title: "Workflow Diagnostic",
+    title: "Workflow Review",
     duration: "Advisory",
     bullets: [
       "Map current intake flow and compliance requirements.",

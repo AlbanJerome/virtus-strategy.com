@@ -4,7 +4,7 @@ const testimonials = [
   {
     id: "law",
     quote:
-      "We were losing hours per client on manual intake. The sprint cut that down while giving us a bulletproof audit trail. Our partners are finally practising law, not chasing PDFs.",
+      "We were losing hours per client on manual intake. The engagement cut that down while giving us a bulletproof audit trail. Our partners are finally practising law, not chasing PDFs.",
     attribution: "Managing Partner, Boutique Law Firm (Toronto)",
   },
   {

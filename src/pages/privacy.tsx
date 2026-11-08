@@ -80,8 +80,8 @@ export function Privacy() {
           <section className="space-y-3">
             <h2 className="text-2xl font-bold">4. How We Use Your Information</h2>
             <p className="text-muted-foreground">
-              We use the information we collect to respond to inquiries, schedule diagnostic calls, qualify
-              your firm&apos;s fit for our Intake & Risk Diagnostic and optional implementation services,
+              We use the information we collect to respond to inquiries, schedule review calls, qualify
+              your firm&apos;s fit for our Intake & Risk Review and optional implementation services,
               send transactional communications,
               and comply with legal obligations. We do not sell your personal information.
             </p>

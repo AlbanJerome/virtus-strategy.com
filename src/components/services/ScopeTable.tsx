@@ -6,7 +6,7 @@ const rows = [
     detailLabel: "services-scope-included-detail",
     item: "What's included",
     detail:
-      "Governance Diagnostic, Web/UI Build, Intake Logic Design, Deterministic Routing Setup, Stress Testing, Handover Documentation. Full system ownership and IP transfer upon handover.",
+      "Governance Review, Web/UI Build, Intake Logic Design, Deterministic Routing Setup, Stress Testing, Handover Documentation. Full system ownership and IP transfer upon handover.",
   },
   {
     itemLabel: "services-scope-excluded-item",
@@ -25,7 +25,7 @@ export function ScopeTable() {
         as="h2"
         className="text-xl font-bold md:text-2xl lg:text-3xl"
       >
-        Sprint scope.
+        Engagement scope.
       </Placeholder>
       <Placeholder
         label="services-scope-table-intro"

@@ -51,19 +51,19 @@ const FAQ_BY_QUESTION: Record<string, FaqEntry> = {
   },
   "How much does an engagement cost?": {
     q: "How much does an engagement cost?",
-    a: "Engagements begin with a fixed-scope Diagnostic. Pricing for the subsequent Implementation phase (if required) is determined based on the complexity of the workflow mapped during the diagnostic.",
+    a: "Engagements begin with a fixed-scope Review. Pricing for the subsequent Implementation phase (if required) is determined based on the complexity of the workflow mapped during the review.",
   },
   "Do we need to rebuild our website first?": {
     q: "Do we need to rebuild our website first?",
-    a: "No. We can layer the intake infrastructure onto your existing site. However, if your current site lacks the institutional authority required to convert high value clients, we can rebuild the frontend as part of the sprint.",
+    a: "No. We can layer the intake infrastructure onto your existing site. However, if your current site lacks the institutional authority required to convert high value clients, we can rebuild the frontend as part of the engagement.",
   },
   "How is the engagement structured?": {
     q: "How is the engagement structured?",
-    a: "We begin with a fixed-scope Diagnostic: workflow mapping, compliance risk assessment, and a board-ready capacity recovery model. Strategy and optional Implementation follow only when you choose to proceed, culminating in full handover and documentation if you build.",
+    a: "We begin with a fixed-scope Review: workflow mapping, compliance risk assessment, and a capacity recovery model. Strategy and optional Implementation follow only when you choose to proceed, culminating in full handover and documentation if you build.",
   },
   "What happens during the engagement?": {
     q: "What happens during the engagement?",
-    a: "Phase 1 is the Workflow Diagnostic. Phase 2 defines Intake Architecture and rules-based controls. Phase 3 is an optional Controlled Build of the secure intake layer. Phase 4 is System Handover with full IP transfer and operating procedures.",
+    a: "Phase 1 is the Workflow Review. Phase 2 defines Intake Architecture and rules-based controls. Phase 3 is an optional Controlled Build of the secure intake layer. Phase 4 is System Handover with full IP transfer and operating procedures.",
   },
   "What happens after implementation?": {
     q: "What happens after implementation?",
@@ -79,7 +79,7 @@ const FAQ_BY_QUESTION: Record<string, FaqEntry> = {
   },
   "Does the system integrate with our current CRM?": {
     q: "Does the system integrate with our current CRM?",
-    a: "The system is built to capture leads into a secure database and push them to your calendar. We can push leads to standard CRMs via webhooks. Deep custom API development is outside the scope of the fixed sprint, but we build the system so your team can easily export the data.",
+    a: "The system is built to capture leads into a secure database and push them to your calendar. We can push leads to standard CRMs via webhooks. Deep custom API development is outside the scope of the fixed engagement, but we build the system so your team can easily export the data.",
   },
 };
 
@@ -178,11 +178,11 @@ export const RIPLEY_FAQ_GROUPS: FaqGroup[] = [
     questions: [
       {
         q: "How much does an engagement cost?",
-        a: "Engagements begin with a fixed-scope Diagnostic. Pricing for the subsequent Implementation phase (if required) is determined based on the complexity of the workflow mapped during the diagnostic.",
+        a: "Engagements begin with a fixed-scope Review. Pricing for the subsequent Implementation phase (if required) is determined based on the complexity of the workflow mapped during the review.",
       },
       {
         q: "How is the engagement structured?",
-        a: "We begin with advisory diagnostic work, then strategy and optional implementation. Timing depends on workflow complexity mapped during the diagnostic.",
+        a: "We begin with advisory review work, then strategy and optional implementation. Timing depends on workflow complexity mapped during the review.",
       },
     ],
   },
