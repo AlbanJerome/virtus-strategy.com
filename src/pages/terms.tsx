@@ -7,7 +7,7 @@ export function Terms() {
     <Section>
       <Seo
         title="Terms | Virtus-Strategy"
-        description="Legal policies for Virtus-Strategy (1001486026 Ontario Inc.)."
+        description="Terms of Service for Virtus-Strategy (1001486026 Ontario Inc.): conditions for using our website and services."
         url="/terms"
       />
       <Container>

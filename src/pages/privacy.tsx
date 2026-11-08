@@ -7,7 +7,7 @@ export function Privacy() {
     <Section>
       <Seo
         title="Privacy | Virtus-Strategy"
-        description="Legal policies for Virtus-Strategy (1001486026 Ontario Inc.)."
+        description="Privacy Policy for Virtus-Strategy (1001486026 Ontario Inc.): how we collect, use, and protect your personal information."
         url="/privacy"
       />
       <Container>

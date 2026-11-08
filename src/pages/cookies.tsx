@@ -7,7 +7,7 @@ export function Cookies() {
     <Section>
       <Seo
         title="Cookies | Virtus-Strategy"
-        description="Legal policies for Virtus-Strategy (1001486026 Ontario Inc.)."
+        description="Cookie Policy for Virtus-Strategy: how we use cookies, analytics, and how you can manage consent."
         url="/cookies"
       />
       <Container>

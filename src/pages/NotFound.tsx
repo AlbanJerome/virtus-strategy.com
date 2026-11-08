@@ -2,11 +2,17 @@ import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { Placeholder } from "@/components/ui/placeholder";
+import { Seo } from "@/components/seo";
 import { openIntakeWidget } from "@/lib/open-intake-widget";
 
 export function NotFound() {
   return (
     <div className="flex min-h-[50vh] flex-col items-center justify-center px-6 py-24 text-center">
+      <Seo
+        title="Page not found | Virtus-Strategy"
+        description="The page you are looking for does not exist or has been moved."
+        url="/404"
+      />
       <Placeholder label="not-found-title" as="h1" className="text-3xl font-bold">
         Page not found.
       </Placeholder>

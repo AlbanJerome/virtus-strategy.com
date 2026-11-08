@@ -33,7 +33,7 @@ export function TrustSignals() {
             <div key={signal.titleLabel} className="text-center md:text-left">
               <Placeholder
                 label={signal.titleLabel}
-                as="h3"
+                as="h2"
                 className="text-lg font-bold text-foreground"
               >
                 {signal.title}

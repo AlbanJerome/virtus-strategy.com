@@ -15,18 +15,11 @@ import {
   calculateLeadStatus,
   getFaqItemsForGroup,
   formatReturningGreeting,
-  RIPLEY_LEAD_CONTEXT_STORAGE_KEY,
-  RIPLEY_LEAD_DATA_STORAGE_KEY,
-  RIPLEY_NAME_STORAGE_KEY,
-  RIPLEY_QUALIFIED_STORAGE_KEY,
   SCRIPT,
   getCaptureEmailFieldError,
   getCapturePhoneFieldError,
   sanitizePhoneInput,
   validateCaptureContact,
-  type StoredLeadContext,
-  type StoredLeadData,
-  TYPING_DELAY_MS,
   type LeadBottleneck,
   type LeadPayload,
   type LeadSize,
@@ -34,15 +27,11 @@ import {
   type LeadVertical,
   type QualificationStep,
 } from "@/lib/lead-qualification";
+import { useRipleyChat } from "@/hooks/useRipleyChat";
+import { useRipleyPersistence } from "@/hooks/useRipleyPersistence";
 import { INTAKE_WIDGET_OPEN_EVENT } from "@/lib/open-intake-widget";
 import { submitLead } from "@/lib/submit-lead";
 import { cn } from "@/lib/utils";
-
-type ChatMessage = {
-  id: string;
-  role: "bot" | "user";
-  text: string;
-};
 
 type DraftLead = {
   vertical?: LeadVertical;
@@ -64,16 +53,6 @@ const initialDraft: DraftLead = {
   phone: "",
 };
 
-function readStoredLeadData(): StoredLeadData | null {
-  try {
-    const raw = window.localStorage.getItem(RIPLEY_LEAD_DATA_STORAGE_KEY);
-    if (!raw) return null;
-    return JSON.parse(raw) as StoredLeadData;
-  } catch {
-    return null;
-  }
-}
-
 function TypingIndicator() {
   return (
     <div className="flex items-center gap-1 rounded-lg bg-secondary px-3 py-2">
@@ -85,67 +64,58 @@ function TypingIndicator() {
 }
 
 export function LeadQualificationWidget() {
+  const {
+    messages,
+    typing,
+    pushBot,
+    pushUser,
+    scrollToEnd,
+    scrollRef,
+    clearMessages,
+  } = useRipleyChat();
+  const {
+    isReturningVisitor,
+    savedName,
+    loadStoredDraftFields,
+    persistQualifiedLead,
+    readStoredLeadData,
+  } = useRipleyPersistence();
+
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<QualificationStep | null>(null);
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [typing, setTyping] = useState(false);
   const [draft, setDraft] = useState<DraftLead>(initialDraft);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [activeFaqGroup, setActiveFaqGroup] = useState<string | null>(null);
-  const [isReturningVisitor, setIsReturningVisitor] = useState(false);
-  const [savedName, setSavedName] = useState<string | null>(null);
   const [bookingKind, setBookingKind] = useState<BookingKind>("diagnostic");
   const [captureValidatedOnce, setCaptureValidatedOnce] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
   const turnstileRef = useRef<TurnstileFieldHandle>(null);
-  const messageId = useRef(0);
-
-  const nextId = () => {
-    messageId.current += 1;
-    return `msg-${messageId.current}`;
-  };
-
-  const scrollToEnd = useCallback(() => {
-    const el = scrollRef.current;
-    if (el) {
-      el.scrollTop = el.scrollHeight;
-    }
-  }, []);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     scrollToEnd();
   }, [messages, typing, step, scrollToEnd]);
 
   useEffect(() => {
-    try {
-      setIsReturningVisitor(
-        window.localStorage.getItem(RIPLEY_QUALIFIED_STORAGE_KEY) === "true"
-      );
-      setSavedName(window.localStorage.getItem(RIPLEY_NAME_STORAGE_KEY));
-    } catch {
-      setIsReturningVisitor(false);
-      setSavedName(null);
-    }
-  }, []);
+    if (!open) return;
+    closeButtonRef.current?.focus();
+  }, [open]);
 
-  const pushBot = useCallback((text: string, onDone?: () => void) => {
-    setTyping(true);
-    window.setTimeout(() => {
-      setTyping(false);
-      setMessages((prev) => [...prev, { id: nextId(), role: "bot", text }]);
-      onDone?.();
-    }, TYPING_DELAY_MS);
-  }, []);
-
-  const pushUser = (text: string) => {
-    setMessages((prev) => [...prev, { id: nextId(), role: "user", text }]);
-  };
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   const startFlow = useCallback(() => {
     setOpen(true);
     setStep("greeting");
-    setMessages([]);
+    clearMessages();
     setDraft(initialDraft);
     setSubmitError(null);
     setActiveFaqGroup(null);
@@ -158,7 +128,7 @@ export function LeadQualificationWidget() {
           ? SCRIPT.returningGreeting
           : SCRIPT.greeting;
     pushBot(returningText);
-  }, [pushBot, isReturningVisitor, savedName]);
+  }, [pushBot, isReturningVisitor, savedName, clearMessages]);
 
   useEffect(() => {
     const onOpenIntakeWidget = () => {
@@ -197,29 +167,10 @@ export function LeadQualificationWidget() {
   };
 
   const restoreStoredLeadFromLocalStorage = useCallback(() => {
-    try {
-      const contextRaw = window.localStorage.getItem(RIPLEY_LEAD_CONTEXT_STORAGE_KEY);
-      const leadData = readStoredLeadData();
-      const parsedContext = contextRaw
-        ? (JSON.parse(contextRaw) as StoredLeadContext)
-        : null;
-
-      setDraft((d) => ({
-        ...d,
-        vertical: parsedContext?.vertical,
-        bottleneck: parsedContext?.bottleneck,
-        size: parsedContext?.size,
-        timeline: parsedContext?.timeline,
-        firstName: leadData?.firstName ?? "",
-        lastName: leadData?.lastName ?? "",
-        company: leadData?.company ?? "",
-        email: leadData?.email ?? "",
-        phone: leadData?.phone ?? "",
-      }));
-    } catch {
-      /* ignore corrupt storage */
-    }
-  }, []);
+    const fields = loadStoredDraftFields();
+    if (!fields) return;
+    setDraft((d) => ({ ...d, ...fields }));
+  }, [loadStoredDraftFields]);
 
   const onGreetingBookFollowUp = () => {
     pushUser("Book a follow-up");
@@ -348,22 +299,11 @@ export function LeadQualificationWidget() {
     setSubmitting(true);
     try {
       await submitLead(payload, turnstileToken);
-      try {
-        window.localStorage.setItem(RIPLEY_QUALIFIED_STORAGE_KEY, "true");
-        window.localStorage.setItem(RIPLEY_NAME_STORAGE_KEY, firstName);
-        window.localStorage.setItem(
-          RIPLEY_LEAD_CONTEXT_STORAGE_KEY,
-          JSON.stringify({ vertical, bottleneck, size, timeline })
-        );
-        window.localStorage.setItem(
-          RIPLEY_LEAD_DATA_STORAGE_KEY,
-          JSON.stringify({ firstName, lastName, email, phone, company })
-        );
-        setIsReturningVisitor(true);
-        setSavedName(firstName);
-      } catch {
-        /* ignore private browsing / storage disabled */
-      }
+      persistQualifiedLead(
+        firstName,
+        { vertical, bottleneck, size, timeline },
+        { firstName, lastName, email, phone, company },
+      );
       setBookingKind("diagnostic");
       setStep("handover");
       pushBot(SCRIPT.handover);
@@ -570,6 +510,7 @@ export function LeadQualificationWidget() {
                     value={draft.firstName}
                     onChange={(e) => setDraft((d) => ({ ...d, firstName: e.target.value }))}
                     autoComplete="given-name"
+                    aria-required="true"
                     className="h-9 text-sm"
                   />
                 </div>
@@ -608,6 +549,7 @@ export function LeadQualificationWidget() {
                   value={draft.email}
                   onChange={(e) => setDraft((d) => ({ ...d, email: e.target.value }))}
                   autoComplete="email"
+                  aria-required="true"
                   aria-invalid={displayEmailError ? true : undefined}
                   className={cn("h-9 text-sm", displayEmailError && "border-destructive")}
                 />
@@ -635,6 +577,7 @@ export function LeadQualificationWidget() {
                   onChange={(e) =>
                     setDraft((d) => ({ ...d, phone: sanitizePhoneInput(e.target.value) }))
                   }
+                  aria-required="true"
                   aria-invalid={displayPhoneError ? true : undefined}
                   className={cn("h-9 text-sm", displayPhoneError && "border-destructive")}
                 />
@@ -652,7 +595,11 @@ export function LeadQualificationWidget() {
             </div>
             <div className="flex flex-col gap-2">
               <TurnstileField ref={turnstileRef} className="min-h-[65px]" />
-              {submitError && <p className="text-xs text-destructive">{submitError}</p>}
+              {submitError && (
+                <p className="text-xs text-destructive" role="alert" aria-live="assertive">
+                  {submitError}
+                </p>
+              )}
               <Button type="submit" size="sm" className="mb-2 w-full" disabled={submitting}>
                 {submitting ? "Saving…" : "Submit"}
               </Button>
@@ -706,6 +653,7 @@ export function LeadQualificationWidget() {
         >
           <header className="relative border-b border-border bg-secondary/80 px-4 pb-3 pt-4">
             <Button
+              ref={closeButtonRef}
               type="button"
               variant="ghost"
               size="icon"
@@ -726,7 +674,12 @@ export function LeadQualificationWidget() {
             </div>
           </header>
 
-          <div ref={scrollRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto px-4 py-3">
+          <div
+            ref={scrollRef}
+            className="min-h-0 flex-1 space-y-3 overflow-y-auto px-4 py-3"
+            aria-live="polite"
+            aria-relevant="additions"
+          >
             {messages.map((msg) => (
               <div
                 key={msg.id}
@@ -760,13 +713,13 @@ export function LeadQualificationWidget() {
       {!open && (
         <button
           type="button"
-          className="h-16 w-16 overflow-hidden rounded-full border-2 border-primary shadow-lg transition-transform hover:scale-105"
+          className="h-16 w-16 overflow-hidden rounded-full border-2 border-primary shadow-lg transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           aria-label="Talk to Ripley"
           onClick={startFlow}
         >
           <img
-            src="/ripley-avatar.png"
-            alt="Ripley"
+            src="/ripley-avatar.gif"
+            alt=""
             className="h-full w-full object-cover"
           />
         </button>

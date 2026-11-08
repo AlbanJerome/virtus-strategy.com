@@ -54,20 +54,28 @@ export function Services() {
           test the logic, and hand over the keys.
         </Placeholder>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
-          {offerings.map((offering) => (
-            <Card key={offering.title} className="metallic-border">
-              <CardHeader>
-                <CardTitle className="font-sans">{offering.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Placeholder label={offering.bodyLabel} as="p" className="text-muted-foreground">
-                  {offering.body}
-                </Placeholder>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <section className="mt-16" aria-labelledby="services-offerings-heading">
+          <h2
+            id="services-offerings-heading"
+            className="text-xl font-bold md:text-2xl lg:text-3xl"
+          >
+            What we deliver
+          </h2>
+          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+            {offerings.map((offering) => (
+              <Card key={offering.title} className="metallic-border">
+                <CardHeader>
+                  <CardTitle className="font-sans">{offering.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Placeholder label={offering.bodyLabel} as="p" className="text-muted-foreground">
+                    {offering.body}
+                  </Placeholder>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
 
         <div className="mt-8 w-full leading-none">
           <img
