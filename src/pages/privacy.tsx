@@ -189,7 +189,7 @@ export function Privacy() {
           <section className="space-y-3">
             <h2 className="text-2xl font-bold">11. Security</h2>
             <p className="text-muted-foreground">
-              We have implemented appropriate technical and organizational security measures to protect your
+              We have implemented appropriate technical and organisational security measures to protect your
               personal information, including the use of encrypted connections (HTTPS) and restricted access
               to our Supabase database. However, no method of transmission over the Internet is 100% secure.
             </p>

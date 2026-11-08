@@ -5,7 +5,7 @@ const PROJECTS = {
   "labs-legacy-stratum": {
     title: "Stratum Monitor (2023-2024)",
     summary:
-      "An explored thesis into automated jurisdictional classification and regulatory early warning. We built the prototype to prove the concept of automated cross-border compliance mapping. Ultimately, we set it aside because generic LLMs could not guarantee the deterministic accuracy required for enterprise compliance. That failure directly inspired our current focus on Sandboxed AI and Bounded Execution.",
+      "Stratum Monitor was an R&D prototype into automated jurisdictional classification and regulatory early warning. We built it to test automated cross-border compliance mapping, then set it aside because generic LLMs could not guarantee the deterministic accuracy required for enterprise compliance. That outcome directly inspired our current focus on Sandboxed AI and bounded execution.",
   },
 } as const;
 

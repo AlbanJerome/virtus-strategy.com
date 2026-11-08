@@ -41,7 +41,7 @@ export function Methodology() {
           <div className="w-full">
             <img
               src="/home-diagram.png"
-              alt="Intake Infrastructure Sprint process flow"
+              alt="Flowchart showing deterministic routing for client intake"
               className="h-auto w-full max-w-full object-contain"
             />
           </div>

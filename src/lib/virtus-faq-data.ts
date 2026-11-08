@@ -15,7 +15,7 @@ export const VIRTUS_FAQ_GROUPS: FaqGroup[] = [
       {
         question: "What exactly is Client Intake Infrastructure?",
         answer:
-          "It is the front door to your firm. It is the combination of your web presence, the data capture mechanism, and the routing logic that turns a website visitor into a qualified, booked client. We build a secure, automated boundary between the public and your practice.",
+          "It is the client intake layer for your firm: your web presence, the data capture mechanism, and the routing logic that turns a website visitor into a qualified, booked client. We build a secure, automated boundary between the public and your practice.",
       },
       {
         question: "Is this just a fancy contact form?",
@@ -27,6 +27,16 @@ export const VIRTUS_FAQ_GROUPS: FaqGroup[] = [
   {
     category: "Technology & AI",
     items: [
+      {
+        question: "What is Sandboxed AI in client intake?",
+        answer:
+          "Sandboxed AI confines the language model strictly to data extraction. It parses intent and contact information without making qualification decisions, preventing hallucinations and compliance risks.",
+      },
+      {
+        question: "How does deterministic routing work?",
+        answer:
+          "Deterministic routing uses hard-coded logic to process extracted data against your firm's regulatory criteria. It ensures every lead is routed securely and consistently, eliminating guesswork.",
+      },
       {
         question: "How is this different from the AI chatbots I see on other websites?",
         answer:
@@ -71,6 +81,11 @@ export const VIRTUS_FAQ_GROUPS: FaqGroup[] = [
         question: "Do we need to rebuild our website first?",
         answer:
           "No. We can layer the intake infrastructure onto your existing site. However, if your current site lacks the institutional authority required to convert high-value clients, we can rebuild the frontend as part of the sprint.",
+      },
+      {
+        question: "How long does a Virtus-Strategy intake sprint take?",
+        answer:
+          "The sprint is a three-week engagement. Weeks one and two are dedicated to diagnostic and content preparation, followed by a one-week technical build and compliance stress test.",
       },
       {
         question: "What happens during the 3-week sprint?",

@@ -5,7 +5,7 @@ const verticals = [
   {
     id: "wealth",
     title: "Wealth Management & Insurance",
-    imageAlt: "Wealth management client intake bottleneck",
+    imageAlt: "Wealth management client intake automation",
     image:
       "https://images.pexels.com/photos/6770610/pexels-photo-6770610.jpeg?auto=compress&cs=tinysrgb&w=800",
     risk:
@@ -16,7 +16,7 @@ const verticals = [
   {
     id: "legal",
     title: "Legal Services",
-    imageAlt: "Legal services compliance risk",
+    imageAlt: "Legal KYC compliance routing",
     image:
       "https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=800",
     risk:
@@ -27,7 +27,7 @@ const verticals = [
   {
     id: "accounting",
     title: "Accounting, Tax & SR&ED",
-    imageAlt: "Accounting and tax firm client intake bottleneck",
+    imageAlt: "Accounting and tax client intake automation",
     image:
       "https://images.pexels.com/photos/7681091/pexels-photo-7681091.jpeg?auto=compress&cs=tinysrgb&w=800",
     risk:
@@ -38,7 +38,7 @@ const verticals = [
   {
     id: "healthcare",
     title: "Healthcare & Digital Clinics",
-    imageAlt: "Healthcare digital clinic patient intake compliance",
+    imageAlt: "Healthcare patient intake compliance routing",
     image:
       "https://images.pexels.com/photos/4021775/pexels-photo-4021775.jpeg?auto=compress&cs=tinysrgb&w=800",
     risk:

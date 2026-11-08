@@ -17,7 +17,7 @@ const problems = [
     titleLabel: "home-problem-point-c-title",
     bodyLabel: "home-problem-point-c-body",
     title: "The Generic AI Trap",
-    body: "Standard LLM tools hallucinate, inventing answers that violate compliance. You cannot deploy software that guesses when the stakes are this high.",
+    body: "Generic AI tools guess. Sandboxed AI extracts.",
   },
 ] as const;
 

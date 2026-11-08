@@ -95,7 +95,7 @@ export const SCRIPT = {
   faqFollowUp:
     "Does that answer your question? Or would you like to start the intake process?",
   vertical: "First, which best describes your firm?",
-  bottleneck: "What is your biggest front-door bottleneck right now?",
+  bottleneck: "What is the biggest bottleneck in your client intake layer right now?",
   size: "How many partners or advisors are in your firm?",
   timeline:
     "Are you looking to move forward in the next 30 days, this quarter, or just exploring?",

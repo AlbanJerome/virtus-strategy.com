@@ -18,8 +18,8 @@ export function DiagnosticCTA() {
           as="p"
           className="mt-4 text-lg text-muted-foreground"
         >
-          Book a 30-minute diagnostic to map your front door and identify where your capacity is
-          leaking.
+          Book a 30-minute diagnostic to map your client intake infrastructure and identify where
+          your capacity is leaking.
         </Placeholder>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Button type="button" size="lg" onClick={openIntakeWidget}>

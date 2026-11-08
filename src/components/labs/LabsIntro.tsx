@@ -18,9 +18,18 @@ export function LabsIntro() {
         as="p"
         className="mt-4 text-lg text-muted-foreground"
       >
-        This is where we document internal research and technical prototypes—the experiments that
+        This is where we document internal research and technical prototypes: the experiments that
         inform how we design secure intake systems. We publish what we learn so partners can see how
         we think, not just what we ship.
+      </Placeholder>
+      <Placeholder
+        label="labs-page-stratum-note"
+        as="p"
+        className="mt-4 text-muted-foreground"
+      >
+        Stratum Monitor (2023-2024) was an R&D prototype into jurisdictional classification and
+        regulatory early warning. It was not a production platform; that work informed our current
+        focus on Sandboxed AI and bounded execution.
       </Placeholder>
     </header>
   );
