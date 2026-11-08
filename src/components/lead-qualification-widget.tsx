@@ -599,21 +599,26 @@ export function LeadQualificationWidget() {
           role="dialog"
           aria-label="Ripley intake assistant"
         >
-          <header className="flex items-center justify-between border-b border-border bg-secondary/80 px-4 py-3">
-            <div>
-              <p className="text-sm font-semibold text-foreground">Ripley</p>
-              <p className="text-xs text-muted-foreground">Virtus Concierge</p>
-            </div>
+          <header className="relative border-b border-border bg-secondary/80 px-4 pb-3 pt-4">
             <Button
               type="button"
               variant="ghost"
               size="icon"
-              className="h-8 w-8 shrink-0"
+              className="absolute right-1 top-1 h-8 w-8 shrink-0"
               aria-label="Close chat"
               onClick={() => setOpen(false)}
             >
               <X className="h-4 w-4" />
             </Button>
+            <div className="flex flex-col items-center text-center">
+              <img
+                src="/ripley-avatar.png"
+                alt=""
+                className="mb-2 h-14 w-14 rounded-full border-2 border-primary object-cover shadow-md"
+              />
+              <p className="text-sm font-semibold text-foreground">Ripley</p>
+              <p className="text-xs text-muted-foreground">Virtus Concierge</p>
+            </div>
           </header>
 
           <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-3">
