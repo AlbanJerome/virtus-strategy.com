@@ -28,9 +28,9 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative z-40">
+    <footer className="relative z-40 border-t border-border/40">
       <Container>
-        <div className="flex flex-col items-center justify-center gap-4 border-t border-border/40 py-6 text-center md:flex-row md:justify-between md:py-8 md:text-left">
+        <div className="flex flex-col items-center justify-center gap-3 py-4 text-center md:flex-row md:justify-between md:py-5 md:text-left">
           <div className="flex flex-col items-center gap-2 md:flex-row md:items-center md:gap-4">
             <p className="text-xs text-muted-foreground/70">
               © {year} 1001486026 Ontario Inc. o/a Virtus-Strategy. All rights reserved.

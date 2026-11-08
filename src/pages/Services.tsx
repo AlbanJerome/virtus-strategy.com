@@ -1,7 +1,6 @@
 import { DiagnosticCTA } from "@/components/home/DiagnosticCTA";
 import { Faq, SERVICES_FAQ_GROUPS } from "@/components/faq";
 import { Seo } from "@/components/seo";
-import { TrustBar } from "@/components/layout/TrustBar";
 import { SprintPhases } from "@/components/services/SprintPhases";
 import { ScopeTable } from "@/components/services/ScopeTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -102,9 +101,6 @@ export function Services() {
           <h2 className="mb-8 font-serif text-2xl md:text-3xl">Engagement Questions</h2>
           <Faq groups={SERVICES_FAQ_GROUPS} />
         </section>
-        <div className="mt-16">
-          <TrustBar />
-        </div>
       </div>
     </div>
   );

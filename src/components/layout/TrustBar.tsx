@@ -1,5 +1,6 @@
 import { Lock, MapPin, ShieldCheck } from "lucide-react";
-import { Link } from "react-router-dom";
+
+import { Container } from "@/components/layout/Container";
 
 const trustItems = [
   {
@@ -21,32 +22,26 @@ const trustItems = [
 
 export function TrustBar() {
   return (
-    <section aria-labelledby="trust-bar-heading">
-      <h2 id="trust-bar-heading" className="sr-only">
-        Trust &amp; Compliance
-      </h2>
-      <div className="grid grid-cols-1 gap-8 border-t border-border/40 py-12 md:grid-cols-3">
-        {trustItems.map((item) => (
-          <div key={item.title} className="flex flex-col text-center md:text-left">
-            <item.icon className="mx-auto mb-2 h-6 w-6 text-primary md:mx-0" aria-hidden />
-            <h3 className="text-base font-semibold">
-              <Link
-                to="/privacy"
-                className="text-foreground underline decoration-primary/30 underline-offset-4 transition-colors hover:text-primary"
-              >
-                {item.title}
-              </Link>
-            </h3>
-            <p className="mt-2 text-sm text-muted-foreground">{item.text}</p>
-          </div>
-        ))}
-      </div>
-      <Link
-        to="/privacy"
-        className="mt-6 inline-block text-sm text-primary hover:underline"
-      >
-        Read our full Privacy Policy →
-      </Link>
+    <section aria-labelledby="trust-bar-heading" className="border-t border-border/40">
+      <Container>
+        <div className="flex flex-col gap-2.5 py-3 md:flex-row md:items-start md:justify-between md:gap-4 lg:gap-8">
+          <h2 id="trust-bar-heading" className="sr-only">
+            Trust &amp; Compliance
+          </h2>
+          {trustItems.map((item) => (
+            <div
+              key={item.title}
+              className="flex min-w-0 flex-1 items-start gap-2 text-left md:max-w-none"
+            >
+              <item.icon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" aria-hidden />
+              <p className="min-w-0 text-[11px] leading-snug text-muted-foreground/80">
+                <span className="font-medium text-muted-foreground">{item.title}. </span>
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </Container>
     </section>
   );
 }
