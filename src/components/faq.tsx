@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import {
   HOME_FAQ_GROUPS,
+  RIPLEY_FAQ_GROUPS,
   SERVICES_FAQ_GROUPS,
   VIRTUS_FAQ_GROUPS,
   type FaqEntry,
@@ -13,7 +14,7 @@ import {
 } from "@/lib/virtus-faq-data";
 
 export type { FaqEntry, FaqGroup };
-export { HOME_FAQ_GROUPS, SERVICES_FAQ_GROUPS, VIRTUS_FAQ_GROUPS };
+export { HOME_FAQ_GROUPS, RIPLEY_FAQ_GROUPS, SERVICES_FAQ_GROUPS, VIRTUS_FAQ_GROUPS };
 
 type FaqProps = {
   groups: FaqGroup[];

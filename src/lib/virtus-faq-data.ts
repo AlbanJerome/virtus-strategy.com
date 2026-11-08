@@ -155,5 +155,44 @@ function mergeFaqGroups(a: FaqGroup[], b: FaqGroup[]): FaqGroup[] {
   }));
 }
 
-/** Full catalogue for Ripley and JSON-LD consumers. */
+/** Full site FAQ catalogue (e.g. JSON-LD). */
 export const VIRTUS_FAQ_GROUPS = mergeFaqGroups(HOME_FAQ_GROUPS, SERVICES_FAQ_GROUPS);
+
+/** Curated FAQ for the Ripley intake widget (short list, common objections). */
+export const RIPLEY_FAQ_GROUPS: FaqGroup[] = [
+  {
+    category: "Security & Trust",
+    questions: [
+      {
+        q: "Is this safe for regulated industries?",
+        a: "Yes. We do not send confidential data to public LLMs. We use Sandboxed AI to extract data and Deterministic Routing for compliance, adhering to PIPEDA and PHIPA.",
+      },
+      {
+        q: "Where is our data stored?",
+        a: "All lead data is stored in an encrypted database hosted in Canada (Supabase).",
+      },
+    ],
+  },
+  {
+    category: "Process & Pricing",
+    questions: [
+      {
+        q: "How much does an engagement cost?",
+        a: "Because every firm's compliance needs are different, we map your specific bottleneck during the diagnostic and provide a fixed-scope proposal based on the infrastructure required.",
+      },
+      {
+        q: "How long does the sprint take?",
+        a: "The sprint is a three-week engagement. Weeks one and two are dedicated to diagnostic and content preparation, followed by a one-week technical build and compliance stress test.",
+      },
+    ],
+  },
+  {
+    category: "Technology",
+    questions: [
+      {
+        q: "How is this different from a generic chatbot?",
+        a: "Generic tools use LLMs that guess. Our system uses Sandboxed AI to extract data, and hard-coded Deterministic Routing to qualify and route the lead securely.",
+      },
+    ],
+  },
+];

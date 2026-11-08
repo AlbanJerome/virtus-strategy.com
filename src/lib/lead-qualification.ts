@@ -1,4 +1,4 @@
-import { VIRTUS_FAQ_GROUPS, type FaqEntry } from "@/lib/virtus-faq-data";
+import { RIPLEY_FAQ_GROUPS, type FaqEntry } from "@/lib/virtus-faq-data";
 
 export type LeadVertical =
   | "Wealth/Insurance"
@@ -44,14 +44,13 @@ export type QualificationStep =
   | "handover"
   | "browsing";
 
-export const WIDGET_FAQ_CATEGORY_BUTTONS = [
-  { buttonLabel: "Security & Compliance", groupCategory: "Security & Compliance" },
-  { buttonLabel: "Process & Engagement", groupCategory: "Process & Engagement" },
-  { buttonLabel: "Technology", groupCategory: "Technology & AI" },
-] as const;
+export const WIDGET_FAQ_CATEGORY_BUTTONS = RIPLEY_FAQ_GROUPS.map((group) => ({
+  buttonLabel: group.category,
+  groupCategory: group.category,
+}));
 
 export function getFaqItemsForGroup(groupCategory: string): FaqEntry[] {
-  return VIRTUS_FAQ_GROUPS.find((group) => group.category === groupCategory)?.questions ?? [];
+  return RIPLEY_FAQ_GROUPS.find((group) => group.category === groupCategory)?.questions ?? [];
 }
 
 export function formatFaqQuestionList(items: FaqEntry[]): string {
