@@ -14,7 +14,7 @@ export function Home() {
     <>
       <Seo
         title="Virtus-Strategy | Secure Client Intake Infrastructure for Regulated Firms"
-        description="Stop risking compliance and losing billable hours. We build sandboxed AI and deterministic routing systems for Legal, Wealth, Accounting, and Healthcare firms."
+        description="Stop risking compliance and losing billable hours. We design intake infrastructure with controlled AI extraction and rules-based controls for Legal, Wealth, Accounting, and Healthcare firms."
         url="/"
       />
       <Hero />

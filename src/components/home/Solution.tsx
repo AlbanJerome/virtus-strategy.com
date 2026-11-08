@@ -3,15 +3,15 @@ import { Placeholder } from "@/components/ui/placeholder";
 const steps = [
   {
     label: "home-solution-step-1",
-    text: "Review. We map your operational and regulatory realities before we build.",
+    text: "Workflow Review. Diagnose operational bottlenecks.",
   },
   {
     label: "home-solution-step-2",
-    text: "Build. We deploy the site and intake system with bounded execution.",
+    text: "Architecture. Design rules-based controls.",
   },
   {
     label: "home-solution-step-3",
-    text: "Handover. You receive a fully tested workflow and a complete audit trail.",
+    text: "Implementation. Deploy secure intake infrastructure.",
   },
 ] as const;
 
@@ -34,8 +34,8 @@ export function Solution() {
               className="mt-4 text-lg text-muted-foreground"
             >
               We build a structured boundary between the public and your practice. Our systems use
-              Sandboxed AI to capture data, and Deterministic Routing to qualify and direct it. No
-              guesses, no hallucinations. Just a controlled, auditable workflow.
+              Controlled AI Extraction to capture data, and Rules-Based Controls to qualify and direct it.
+              No guesses, no hallucinations. Just traceable, governed execution.
             </Placeholder>
           </div>
           <ol className="space-y-6 rounded-lg border border-border bg-background/80 p-8 metallic-border">

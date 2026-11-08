@@ -11,11 +11,11 @@ export type FaqGroup = {
 const FAQ_BY_QUESTION: Record<string, FaqEntry> = {
   "What exactly is Client Intake Infrastructure?": {
     q: "What exactly is Client Intake Infrastructure?",
-    a: "It is the client intake layer for your firm: your web presence, the data capture mechanism, and the routing logic that turns a website visitor into a qualified, booked client. We build a secure, automated boundary between the public and your practice.",
+    a: "It is the client intake layer for your firm: your digital intake interface, the data capture mechanism, and the routing logic that turns an inbound inquiry into a qualified, booked client. We build a secure, automated boundary between the public and your practice.",
   },
-  "Is this just a fancy contact form?": {
-    q: "Is this just a fancy contact form?",
-    a: "No. A contact form passively collects an email address and leaves you to sort out the rest. Intake infrastructure actively qualifies the prospect, captures necessary compliance data (like KYC), and routes them directly to the right partner's calendar.",
+  "How does this differ from standard CRM intake?": {
+    q: "How does this differ from standard CRM intake?",
+    a: "Standard CRMs collect data but do not govern it. Our infrastructure applies rules-based controls and traceable execution at the point of entry, ensuring compliance before a human touches the record.",
   },
   "What is Sandboxed AI in client intake?": {
     q: "What is Sandboxed AI in client intake?",
@@ -53,9 +53,9 @@ const FAQ_BY_QUESTION: Record<string, FaqEntry> = {
     q: "How much does an engagement cost?",
     a: "Engagements begin with a fixed-scope Review. Pricing for the subsequent Implementation phase (if required) is determined based on the complexity of the workflow mapped during the review.",
   },
-  "Do we need to rebuild our website first?": {
-    q: "Do we need to rebuild our website first?",
-    a: "No. We can layer the intake infrastructure onto your existing site. However, if your current site lacks the institutional authority required to convert high value clients, we can rebuild the frontend as part of the engagement.",
+  "Do we need to replace our existing client interface first?": {
+    q: "Do we need to replace our existing client interface first?",
+    a: "No. We can layer the intake infrastructure onto your existing digital presence. However, if your current secure client interface lacks the institutional authority required to convert high-value clients, we can redesign it as part of the engagement.",
   },
   "How is the engagement structured?": {
     q: "How is the engagement structured?",
@@ -92,7 +92,7 @@ export const HOME_FAQ_GROUPS: FaqGroup[] = [
     category: "General",
     questions: pickFaq([
       "What exactly is Client Intake Infrastructure?",
-      "Is this just a fancy contact form?",
+      "How does this differ from standard CRM intake?",
     ]),
   },
   {
@@ -125,7 +125,7 @@ export const SERVICES_FAQ_GROUPS: FaqGroup[] = [
     category: "Process & Engagement",
     questions: pickFaq([
       "How much does an engagement cost?",
-      "Do we need to rebuild our website first?",
+      "Do we need to replace our existing client interface first?",
       "How is the engagement structured?",
       "What happens during the engagement?",
       "What happens after implementation?",

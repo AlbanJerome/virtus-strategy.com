@@ -17,7 +17,7 @@ const problems = [
     titleLabel: "home-problem-point-c-title",
     bodyLabel: "home-problem-point-c-body",
     title: "The Generic AI Trap",
-    body: "Generic AI tools guess. Sandboxed AI extracts.",
+    body: "Generic AI tools guess. Controlled AI Extraction governs what is captured.",
   },
 ] as const;
 

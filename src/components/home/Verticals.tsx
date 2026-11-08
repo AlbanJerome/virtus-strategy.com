@@ -33,7 +33,7 @@ const verticals = [
     risk:
       "Upstream bottlenecks in client intake and the endless document chase. Firms lose capacity manually chasing down information before work can begin.",
     solution:
-      "An authoritative web presence paired with an intake system that screens for eligibility and automates the initial document request phase.",
+      "An authoritative secure client interface paired with intake infrastructure that screens for eligibility and automates the initial document request phase.",
   },
   {
     id: "healthcare",

@@ -29,7 +29,7 @@ export function DiagnosticCTA({
         </Placeholder>
         <div className="mt-5 flex flex-wrap justify-center gap-4">
           <Button type="button" size="lg" onClick={openIntakeWidget}>
-            <Placeholder label="home-diagnostic-cta-primary">Schedule a Review</Placeholder>
+            <Placeholder label="home-diagnostic-cta-primary">Book an Intake & Risk Review</Placeholder>
           </Button>
         </div>
       </div>

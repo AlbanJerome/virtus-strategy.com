@@ -26,7 +26,7 @@ const phases = [
     title: "Controlled Build",
     duration: "Implementation (Optional)",
     bullets: [
-      "Deploy the web presence and intake interface.",
+      "Deploy the secure intake interface.",
       "Install controlled extraction and rules-based routing.",
     ],
     deliverable: "Deployment of the secure intake layer.",

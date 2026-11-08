@@ -58,7 +58,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Button type="button" size="sm" className="hidden md:inline-flex" onClick={onBookDiagnostic}>
-            <Placeholder label="header-cta">Schedule a Review</Placeholder>
+            <Placeholder label="header-cta">Book an Intake & Risk Review</Placeholder>
           </Button>
 
           <Button
@@ -102,7 +102,7 @@ export function Header() {
             ))}
           </ul>
           <Button type="button" className="mt-4 w-full" size="lg" onClick={onBookDiagnostic}>
-            <Placeholder label="header-cta">Schedule a Review</Placeholder>
+            <Placeholder label="header-cta">Book an Intake & Risk Review</Placeholder>
           </Button>
         </nav>
       )}

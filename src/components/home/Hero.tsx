@@ -38,7 +38,7 @@ export function Hero() {
             </Placeholder>
             <div className="flex flex-wrap gap-4">
               <Button type="button" size="lg" onClick={openIntakeWidget}>
-                <Placeholder label="home-hero-cta-primary">Schedule Your Review</Placeholder>
+                <Placeholder label="home-hero-cta-primary">Book an Intake & Risk Review</Placeholder>
               </Button>
               <Button asChild variant="outline" size="lg">
                 <Link to="/services">

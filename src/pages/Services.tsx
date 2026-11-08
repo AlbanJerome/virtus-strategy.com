@@ -8,19 +8,19 @@ import { Placeholder } from "@/components/ui/placeholder";
 
 const offerings = [
   {
-    title: "Sandboxed AI",
-    bodyLabel: "services-offering-sandboxed-ai-body",
-    body: "The model is confined to data extraction. It parses intent and contact info without making qualification decisions.",
+    title: "Controlled AI Extraction",
+    bodyLabel: "services-offering-controlled-extraction-body",
+    body: "The model is confined to structured data extraction. It parses intent without making qualification decisions.",
   },
   {
-    title: "Deterministic Routing",
-    bodyLabel: "services-offering-deterministic-routing-body",
-    body: "Hard-coded logic processes the extracted data against your regulatory criteria. No guesses, no hallucinations.",
+    title: "Rules-Based Controls",
+    bodyLabel: "services-offering-rules-based-controls-body",
+    body: "Hard-coded logic processes extracted data against your firm's regulatory criteria. No guesses, no hallucinations.",
   },
   {
-    title: "Bounded Execution",
-    bodyLabel: "services-offering-bounded-execution-body",
-    body: "The system performs specific tasks within strict constraints, preventing scope creep or data leakage.",
+    title: "Traceable Execution",
+    bodyLabel: "services-offering-traceable-execution-body",
+    body: "The system performs specific tasks within strict operational constraints, providing a complete audit trail.",
   },
   {
     title: "Client Intake Infrastructure",
@@ -34,7 +34,7 @@ export function Services() {
     <div className="py-16 md:py-24">
       <Seo
         title="The Intake & Risk Review | Virtus-Strategy"
-        description="A fixed-scope advisory engagement. We review your intake workflow, map compliance risks, and deliver a capacity recovery model. Implementation is optional."
+        description="A fixed-scope advisory engagement. We review client intake and critical operational workflows, map compliance risks, and deliver a capacity recovery model. Implementation is optional."
         url="/services"
       />
       <div className="mx-auto max-w-7xl px-4 md:px-6">
@@ -50,8 +50,9 @@ export function Services() {
           as="p"
           className="mt-4 max-w-2xl text-lg text-muted-foreground"
         >
-          A fixed-scope advisory engagement. We review your intake workflow, map the compliance risks, and
-          deliver a capacity recovery model. Implementation is optional.
+          A fixed-scope advisory engagement. We review your client intake and critical operational
+          workflows, map the compliance risks, and deliver a capacity recovery model. Implementation is
+          optional.
         </Placeholder>
         <p className="mt-4 max-w-2xl text-sm font-bold text-foreground">
           Fixed-scope pricing is provided after the initial review to ensure alignment with your specific
