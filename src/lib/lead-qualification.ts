@@ -74,6 +74,37 @@ export function calculateLeadStatus(
 
 export const TYPING_DELAY_MS = 900;
 
+const CAPTURE_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const CAPTURE_PHONE_REGEX = /^\+?[0-9\s\-()]{7,15}$/;
+
+export type CaptureContactFieldErrors = {
+  email?: string;
+  phone?: string;
+};
+
+function countPhoneDigits(phone: string): number {
+  return (phone.match(/\d/g) ?? []).length;
+}
+
+export function validateCaptureContact(
+  email: string,
+  phone: string
+): CaptureContactFieldErrors {
+  const errors: CaptureContactFieldErrors = {};
+  const trimmedEmail = email.trim();
+  const trimmedPhone = phone.trim();
+
+  if (!CAPTURE_EMAIL_REGEX.test(trimmedEmail)) {
+    errors.email = "Please enter a valid email address.";
+  }
+
+  if (!CAPTURE_PHONE_REGEX.test(trimmedPhone) || countPhoneDigits(trimmedPhone) < 10) {
+    errors.phone = "Please enter a valid phone number.";
+  }
+
+  return errors;
+}
+
 export const RIPLEY_QUALIFIED_STORAGE_KEY = "ripley_qualified";
 
 export const RIPLEY_NAME_STORAGE_KEY = "ripley_name";

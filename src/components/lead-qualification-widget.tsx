@@ -6,7 +6,7 @@ import {
   type TurnstileFieldHandle,
 } from "@/components/turnstile-field";
 
-import { BookingEmbed } from "@/components/booking-embed";
+import { BookingEmbed, type BookingKind } from "@/components/booking-embed";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -21,6 +21,8 @@ import {
   RIPLEY_NAME_STORAGE_KEY,
   RIPLEY_QUALIFIED_STORAGE_KEY,
   SCRIPT,
+  validateCaptureContact,
+  type CaptureContactFieldErrors,
   type StoredLeadContext,
   type StoredLeadData,
   TYPING_DELAY_MS,
@@ -92,6 +94,8 @@ export function LeadQualificationWidget() {
   const [activeFaqGroup, setActiveFaqGroup] = useState<string | null>(null);
   const [isReturningVisitor, setIsReturningVisitor] = useState(false);
   const [savedName, setSavedName] = useState<string | null>(null);
+  const [bookingKind, setBookingKind] = useState<BookingKind>("diagnostic");
+  const [captureFieldErrors, setCaptureFieldErrors] = useState<CaptureContactFieldErrors>({});
   const scrollRef = useRef<HTMLDivElement>(null);
   const turnstileRef = useRef<TurnstileFieldHandle>(null);
   const messageId = useRef(0);
@@ -144,6 +148,8 @@ export function LeadQualificationWidget() {
     setDraft(initialDraft);
     setSubmitError(null);
     setActiveFaqGroup(null);
+    setBookingKind("diagnostic");
+    setCaptureFieldErrors({});
     const returningText =
       isReturningVisitor && savedName
         ? formatReturningGreeting(savedName)
@@ -217,6 +223,7 @@ export function LeadQualificationWidget() {
   const onGreetingBookFollowUp = () => {
     pushUser("Book a follow-up");
     restoreStoredLeadFromLocalStorage();
+    setBookingKind("followup");
     setStep("handover");
     pushBot(SCRIPT.handover);
   };
@@ -310,6 +317,13 @@ export function LeadQualificationWidget() {
       return;
     }
 
+    const contactErrors = validateCaptureContact(email, phone);
+    if (contactErrors.email || contactErrors.phone) {
+      setCaptureFieldErrors(contactErrors);
+      return;
+    }
+    setCaptureFieldErrors({});
+
     const turnstileToken = turnstileRef.current?.getToken();
     if (!turnstileToken) {
       setSubmitError("Please complete the verification check below.");
@@ -351,6 +365,7 @@ export function LeadQualificationWidget() {
       } catch {
         /* ignore private browsing / storage disabled */
       }
+      setBookingKind("diagnostic");
       setStep("handover");
       pushBot(SCRIPT.handover);
     } catch (err) {
@@ -528,7 +543,19 @@ export function LeadQualificationWidget() {
             onSelect={onTimeline}
           />
         );
-      case "capture":
+      case "capture": {
+        const emailValue = draft.email.trim();
+        const phoneValue = draft.phone.trim();
+        const liveContactErrors = validateCaptureContact(emailValue, phoneValue);
+        const requiredFilled =
+          draft.firstName.trim() &&
+          draft.lastName.trim() &&
+          draft.company.trim() &&
+          emailValue &&
+          phoneValue;
+        const captureSubmitReady =
+          Boolean(requiredFilled) && !liveContactErrors.email && !liveContactErrors.phone;
+
         return (
           <form
             onSubmit={onCaptureSubmit}
@@ -581,10 +608,16 @@ export function LeadQualificationWidget() {
                   id="lq-email"
                   type="email"
                   value={draft.email}
-                  onChange={(e) => setDraft((d) => ({ ...d, email: e.target.value }))}
+                  onChange={(e) => {
+                    setDraft((d) => ({ ...d, email: e.target.value }));
+                    setCaptureFieldErrors((prev) => ({ ...prev, email: undefined }));
+                  }}
                   autoComplete="email"
                   className="h-9 text-sm"
                 />
+                {captureFieldErrors.email && (
+                  <p className="mt-1 text-xs text-red-500">{captureFieldErrors.email}</p>
+                )}
               </div>
               <div className="space-y-1">
                 <Label htmlFor="lq-phone" className="text-xs">
@@ -594,10 +627,16 @@ export function LeadQualificationWidget() {
                   id="lq-phone"
                   type="tel"
                   value={draft.phone}
-                  onChange={(e) => setDraft((d) => ({ ...d, phone: e.target.value }))}
+                  onChange={(e) => {
+                    setDraft((d) => ({ ...d, phone: e.target.value }));
+                    setCaptureFieldErrors((prev) => ({ ...prev, phone: undefined }));
+                  }}
                   autoComplete="tel"
                   className="h-9 text-sm"
                 />
+                {captureFieldErrors.phone && (
+                  <p className="mt-1 text-xs text-red-500">{captureFieldErrors.phone}</p>
+                )}
               </div>
             </div>
             <div className="mt-auto flex flex-col pt-2">
@@ -607,13 +646,14 @@ export function LeadQualificationWidget() {
                 type="submit"
                 size="sm"
                 className="mb-2 mt-4 w-full"
-                disabled={submitting}
+                disabled={submitting || !captureSubmitReady}
               >
                 {submitting ? "Saving…" : "Submit"}
               </Button>
             </div>
           </form>
         );
+      }
       case "handover": {
         const storedLead = readStoredLeadData();
         const firstName = (storedLead?.firstName ?? draft.firstName).trim();
@@ -631,6 +671,7 @@ export function LeadQualificationWidget() {
                 size: draft.size,
                 timeline: draft.timeline,
               }}
+              bookingKind={bookingKind}
               iframeClassName="!min-h-[16rem] !h-72 !w-full"
             />
           </div>

@@ -8,19 +8,32 @@ export type BookingLeadContext = {
   timeline?: string;
 };
 
+export type BookingKind = "diagnostic" | "followup";
+
 export type BookingEmbedProps = {
   name?: string;
   email?: string;
   leadContext?: BookingLeadContext;
   iframeClassName?: string;
+  /** diagnostic = new qualification booking; followup = returning visitor follow-up */
+  bookingKind?: BookingKind;
 };
+
+function resolveBookingBaseUrl(kind: BookingKind): string | undefined {
+  if (kind === "followup") {
+    const followUp = import.meta.env.VITE_FOLLOWUP_BOOKING_URL;
+    return followUp || undefined;
+  }
+  return import.meta.env.VITE_BOOKING_URL || undefined;
+}
 
 export function buildBookingEmbedUrl(
   name?: string,
   email?: string,
-  leadContext?: BookingLeadContext
+  leadContext?: BookingLeadContext,
+  bookingKind: BookingKind = "diagnostic"
 ): string | undefined {
-  const baseUrl = import.meta.env.VITE_BOOKING_URL;
+  const baseUrl = resolveBookingBaseUrl(bookingKind);
   if (!baseUrl) {
     return undefined;
   }
@@ -47,8 +60,9 @@ export function BookingEmbed({
   email,
   leadContext,
   iframeClassName,
+  bookingKind = "diagnostic",
 }: BookingEmbedProps = {}) {
-  const bookingUrl = buildBookingEmbedUrl(name, email, leadContext);
+  const bookingUrl = buildBookingEmbedUrl(name, email, leadContext, bookingKind);
 
   if (!bookingUrl) {
     return (
