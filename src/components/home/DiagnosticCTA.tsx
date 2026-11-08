@@ -3,7 +3,7 @@ import { Placeholder } from "@/components/ui/placeholder";
 import { openIntakeWidget } from "@/lib/open-intake-widget";
 
 const DEFAULT_BODY =
-  "Let's assess your needs and identify exactly where your firm is experiencing challenges with client intake and qualification process, and find out where your firm's capacity is leaking.";
+  "Book a 30-minute intake audit. We will map your current workflow and identify exactly where your capacity is leaking.";
 
 type DiagnosticCTAProps = {
   body?: string;
@@ -29,7 +29,7 @@ export function DiagnosticCTA({
         </Placeholder>
         <div className="mt-5 flex flex-wrap justify-center gap-4">
           <Button type="button" size="lg" onClick={openIntakeWidget}>
-            <Placeholder label="home-diagnostic-cta-primary">Book a Diagnostic</Placeholder>
+            <Placeholder label="home-diagnostic-cta-primary">Book a 30-minute Intake Audit</Placeholder>
           </Button>
         </div>
       </div>

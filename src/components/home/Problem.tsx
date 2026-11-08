@@ -11,7 +11,7 @@ const problems = [
     titleLabel: "home-problem-point-b-title",
     bodyLabel: "home-problem-point-b-body",
     title: "Lost Billable Hours",
-    body: "Partners and advisors spend up to 70% of their day chasing basic documents and qualifying unvetted prospects instead of doing the work they were hired to do.",
+    body: "Partners and advisors lose a significant portion of their day chasing basic documents and qualifying unvetted prospects instead of doing the work they were hired to do.",
   },
   {
     titleLabel: "home-problem-point-c-title",

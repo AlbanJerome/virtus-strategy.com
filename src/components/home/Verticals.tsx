@@ -9,7 +9,7 @@ const verticals = [
     image:
       "https://images.pexels.com/photos/6770610/pexels-photo-6770610.jpeg?auto=compress&cs=tinysrgb&w=800",
     risk:
-      "Advisors spend up to 70% of their day on manual administrative work, client onboarding, and compliance documentation.",
+      "Advisors lose critical hours every week to manual administrative work, client onboarding, and compliance documentation.",
     solution:
       "A secure intake layer that pre-qualifies prospects, captures basic compliance data, and routes high-value clients directly to the advisor's calendar.",
   },
@@ -20,7 +20,7 @@ const verticals = [
     image:
       "https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&w=800",
     risk:
-      "Intake takes 1.5 to 3 hours per client, and 67% of malpractice claims stem from intake-stage failures.",
+      "Manual intake consumes hours per client, and critical malpractice risks often stem from missing or delayed intake-stage documentation.",
     solution:
       "A rule-based intake workflow that asks the exact compliance and KYC questions upfront. It routes qualified matters to partners while generating an automated audit trail.",
   },
@@ -44,7 +44,7 @@ const verticals = [
     risk:
       "Strict patient privacy laws make it risky to adopt generic AI tools for patient triage and intake.",
     solution:
-      "A deterministic, rule-based patient intake system that captures demographics and routes to the right practitioner without exposing sensitive health data to an LLM.",
+      "A deterministic, rule-based patient intake system that strips sensitive health data before routing to the right practitioner. The AI never sees clinical details.",
   },
 ] as const;
 
