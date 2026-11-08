@@ -155,7 +155,7 @@ export const SCRIPT = {
   bookMeeting:
     "I can help with that. To ensure we connect you with the right diagnostic session, mind if I ask a few quick questions first?",
   faqAsk: "Of course. What would you like to know about?",
-  faqQuestions: "Select a question below:",
+  faqQuestions: "Here are the questions I can answer:",
   faqFollowUp:
     "Does that answer your question? Or would you like to start the intake process?",
   vertical: "First, which best describes your firm?",
