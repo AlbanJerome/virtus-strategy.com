@@ -53,6 +53,10 @@ export function Services() {
           A fixed-scope, three-week engagement. We diagnose the leak, build the secure system, stress
           test the logic, and hand over the keys.
         </Placeholder>
+        <p className="mt-4 max-w-2xl text-sm font-bold text-foreground">
+          Fixed-scope pricing is provided after the diagnostic to ensure alignment with your specific
+          infrastructure needs.
+        </p>
 
         <section className="mt-16" aria-labelledby="services-offerings-heading">
           <h2

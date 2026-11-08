@@ -6,7 +6,7 @@ const rows = [
     detailLabel: "services-scope-included-detail",
     item: "What's included",
     detail:
-      "Governance Diagnostic, Web/UI Build, Intake Logic Design, Deterministic Routing Setup, Stress Testing, Handover Documentation.",
+      "Governance Diagnostic, Web/UI Build, Intake Logic Design, Deterministic Routing Setup, Stress Testing, Handover Documentation. Full system ownership and IP transfer upon handover.",
   },
   {
     itemLabel: "services-scope-excluded-item",

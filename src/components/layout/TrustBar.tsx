@@ -4,12 +4,12 @@ const trustItems = [
   {
     icon: MapPin,
     title: "Canadian Data Residency",
-    text: "Hosted in Montreal (Canada Central).",
+    text: "Hosted in the Montreal Region (ca-central-1).",
   },
   {
     icon: ShieldCheck,
     title: "PIPEDA & Law 25 Compliant",
-    text: "Strict adherence to federal and provincial privacy laws.",
+    text: "Strict adherence to PIPEDA, Quebec's Law 25, and Ontario's PHIPA for health data.",
   },
   {
     icon: Lock,

@@ -3,6 +3,7 @@ import { Seo } from "@/components/seo";
 import { DiagnosticCTA } from "@/components/home/DiagnosticCTA";
 import { Hero } from "@/components/home/Hero";
 import { Methodology } from "@/components/home/Methodology";
+import { Testimonials } from "@/components/home/Testimonials";
 import { Problem } from "@/components/home/Problem";
 import { Solution } from "@/components/home/Solution";
 import { TrustSignals } from "@/components/home/TrustSignals";
@@ -22,6 +23,7 @@ export function Home() {
       <TrustSignals />
       <Verticals />
       <Methodology />
+      <Testimonials />
       <DiagnosticCTA />
       <section className="border-t border-border py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-6">
