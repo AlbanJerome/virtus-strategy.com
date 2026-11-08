@@ -53,11 +53,6 @@ export function getFaqItemsForGroup(groupCategory: string): FaqEntry[] {
   return RIPLEY_FAQ_GROUPS.find((group) => group.category === groupCategory)?.questions ?? [];
 }
 
-export function formatFaqQuestionList(items: FaqEntry[]): string {
-  const lines = items.map((item) => `• ${item.q}`);
-  return `Here are the questions I can answer:\n\n${lines.join("\n")}`;
-}
-
 export function calculateLeadStatus(
   timeline: LeadTimeline,
   size: LeadSize,
@@ -160,6 +155,7 @@ export const SCRIPT = {
   bookMeeting:
     "I can help with that. To ensure we connect you with the right diagnostic session, mind if I ask a few quick questions first?",
   faqAsk: "Of course. What would you like to know about?",
+  faqQuestions: "Select a question below:",
   faqFollowUp:
     "Does that answer your question? Or would you like to start the intake process?",
   vertical: "First, which best describes your firm?",

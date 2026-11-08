@@ -13,7 +13,6 @@ import { Label } from "@/components/ui/label";
 import {
   WIDGET_FAQ_CATEGORY_BUTTONS,
   calculateLeadStatus,
-  formatFaqQuestionList,
   getFaqItemsForGroup,
   formatReturningGreeting,
   RIPLEY_LEAD_CONTEXT_STORAGE_KEY,
@@ -240,8 +239,7 @@ export function LeadQualificationWidget() {
     pushUser(buttonLabel);
     setActiveFaqGroup(groupCategory);
     setStep("faq_questions");
-    const items = getFaqItemsForGroup(groupCategory);
-    pushBot(formatFaqQuestionList(items));
+    pushBot(SCRIPT.faqQuestions);
   };
 
   const onFaqQuestion = (question: string) => {
