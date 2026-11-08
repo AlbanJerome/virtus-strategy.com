@@ -3,15 +3,15 @@ import { Placeholder } from "@/components/ui/placeholder";
 const steps = [
   {
     label: "home-solution-step-1",
-    text: "Workflow Review. Diagnose operational bottlenecks.",
+    text: "Workflow Review. We diagnose operational bottlenecks and map your compliance risks.",
   },
   {
     label: "home-solution-step-2",
-    text: "Architecture. Design rules-based controls.",
+    text: "Intake Architecture. We design the rules-based controls and data routing.",
   },
   {
     label: "home-solution-step-3",
-    text: "Implementation. Deploy secure intake infrastructure.",
+    text: "Controlled Implementation. We deploy the secure intake infrastructure. This phase is optional.",
   },
 ] as const;
 

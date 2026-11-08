@@ -46,6 +46,13 @@ export function Services() {
           The Intake & Risk Review.
         </Placeholder>
         <Placeholder
+          label="services-page-scarcity"
+          as="p"
+          className="mt-3 text-sm font-medium text-primary"
+        >
+          We accept a limited number of diagnostic engagements per quarter.
+        </Placeholder>
+        <Placeholder
           label="services-page-intro"
           as="p"
           className="mt-4 max-w-2xl text-lg text-muted-foreground"
