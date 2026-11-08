@@ -1,6 +1,7 @@
 import { DiagnosticCTA } from "@/components/home/DiagnosticCTA";
 import { Faq, SERVICES_FAQ_GROUPS } from "@/components/faq";
 import { Seo } from "@/components/seo";
+import { TrustBar } from "@/components/layout/TrustBar";
 import { SprintPhases } from "@/components/services/SprintPhases";
 import { ScopeTable } from "@/components/services/ScopeTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -91,6 +92,7 @@ export function Services() {
 
         <SprintPhases />
         <ScopeTable />
+        <TrustBar />
       </div>
       <DiagnosticCTA
         body="Let's map your workflow. Book a 30-minute diagnostic to see if the Intake Infrastructure Sprint is a fit for your firm."

@@ -4,7 +4,6 @@ import { Outlet } from "react-router-dom";
 import { CookieBanner } from "@/components/cookie-banner";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { TrustBar } from "@/components/layout/TrustBar";
 import { INTAKE_WIDGET_OPEN_EVENT } from "@/lib/open-intake-widget";
 import { cn } from "@/lib/utils";
 
@@ -60,7 +59,6 @@ export function MainLayout() {
       <main id="main-content" className="flex-1">
         <Outlet />
       </main>
-      <TrustBar />
       <Footer />
       <CookieBanner />
       {loadWidget && (
