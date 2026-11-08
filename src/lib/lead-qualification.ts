@@ -86,22 +86,48 @@ function countPhoneDigits(phone: string): number {
   return (phone.match(/\d/g) ?? []).length;
 }
 
+/** Strip characters that are not valid in a phone field (digits, +, spaces, (), -). */
+export function sanitizePhoneInput(value: string): string {
+  return value.replace(/[^\d+()\-\s]/g, "").slice(0, 20);
+}
+
+export function getCaptureEmailFieldError(
+  email: string,
+  options?: { showWhenEmpty?: boolean }
+): string | undefined {
+  const trimmed = email.trim();
+  if (!trimmed) {
+    return options?.showWhenEmpty ? "Please enter a valid email address." : undefined;
+  }
+  if (!CAPTURE_EMAIL_REGEX.test(trimmed)) {
+    return "Please enter a valid email address.";
+  }
+  return undefined;
+}
+
+export function getCapturePhoneFieldError(
+  phone: string,
+  options?: { showWhenEmpty?: boolean }
+): string | undefined {
+  const trimmed = phone.trim();
+  if (!trimmed) {
+    return options?.showWhenEmpty ? "Please enter a valid phone number." : undefined;
+  }
+  if (!CAPTURE_PHONE_REGEX.test(trimmed) || countPhoneDigits(trimmed) < 10) {
+    return "Please enter a valid phone number.";
+  }
+  return undefined;
+}
+
 export function validateCaptureContact(
   email: string,
   phone: string
 ): CaptureContactFieldErrors {
   const errors: CaptureContactFieldErrors = {};
-  const trimmedEmail = email.trim();
-  const trimmedPhone = phone.trim();
-
-  if (!CAPTURE_EMAIL_REGEX.test(trimmedEmail)) {
-    errors.email = "Please enter a valid email address.";
-  }
-
-  if (!CAPTURE_PHONE_REGEX.test(trimmedPhone) || countPhoneDigits(trimmedPhone) < 10) {
-    errors.phone = "Please enter a valid phone number.";
-  }
-
+  const emailError = getCaptureEmailFieldError(email, { showWhenEmpty: true });
+  const phoneError = getCapturePhoneFieldError(phone, { showWhenEmpty: true });
+  if (emailError) errors.email = emailError;
+  if (phoneError) errors.phone = phoneError;
   return errors;
 }
 

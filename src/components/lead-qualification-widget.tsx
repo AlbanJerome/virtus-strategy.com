@@ -21,6 +21,9 @@ import {
   RIPLEY_NAME_STORAGE_KEY,
   RIPLEY_QUALIFIED_STORAGE_KEY,
   SCRIPT,
+  getCaptureEmailFieldError,
+  getCapturePhoneFieldError,
+  sanitizePhoneInput,
   validateCaptureContact,
   type StoredLeadContext,
   type StoredLeadData,
@@ -543,18 +546,18 @@ export function LeadQualificationWidget() {
           />
         );
       case "capture": {
-        const emailValue = draft.email.trim();
-        const phoneValue = draft.phone.trim();
-        const liveContactErrors = validateCaptureContact(emailValue, phoneValue);
-        const displayEmailError =
-          captureValidatedOnce || emailValue.length > 0 ? liveContactErrors.email : undefined;
-        const displayPhoneError =
-          captureValidatedOnce || phoneValue.length > 0 ? liveContactErrors.phone : undefined;
+        const showEmptyHints = captureValidatedOnce;
+        const displayEmailError = getCaptureEmailFieldError(draft.email, {
+          showWhenEmpty: showEmptyHints,
+        });
+        const displayPhoneError = getCapturePhoneFieldError(draft.phone, {
+          showWhenEmpty: showEmptyHints,
+        });
 
         return (
           <form
             onSubmit={onCaptureSubmit}
-            className="flex max-h-[min(52vh,28rem)] min-h-0 flex-col overflow-y-auto"
+            className="flex max-h-[min(52vh,28rem)] min-h-0 flex-col gap-3 overflow-y-auto"
           >
             <div className="space-y-3">
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -605,11 +608,19 @@ export function LeadQualificationWidget() {
                   value={draft.email}
                   onChange={(e) => setDraft((d) => ({ ...d, email: e.target.value }))}
                   autoComplete="email"
-                  className="h-9 text-sm"
+                  aria-invalid={displayEmailError ? true : undefined}
+                  className={cn("h-9 text-sm", displayEmailError && "border-destructive")}
                 />
-                {displayEmailError && (
-                  <p className="mt-1 text-xs text-red-500">{displayEmailError}</p>
-                )}
+                <p
+                  className={cn(
+                    "min-h-4 text-xs text-destructive",
+                    !displayEmailError && "invisible"
+                  )}
+                  role="alert"
+                  aria-live="polite"
+                >
+                  {displayEmailError ?? " "}
+                </p>
               </div>
               <div className="space-y-1">
                 <Label htmlFor="lq-phone" className="text-xs">
@@ -618,25 +629,31 @@ export function LeadQualificationWidget() {
                 <Input
                   id="lq-phone"
                   type="tel"
-                  value={draft.phone}
-                  onChange={(e) => setDraft((d) => ({ ...d, phone: e.target.value }))}
+                  inputMode="tel"
                   autoComplete="tel"
-                  className="h-9 text-sm"
+                  value={draft.phone}
+                  onChange={(e) =>
+                    setDraft((d) => ({ ...d, phone: sanitizePhoneInput(e.target.value) }))
+                  }
+                  aria-invalid={displayPhoneError ? true : undefined}
+                  className={cn("h-9 text-sm", displayPhoneError && "border-destructive")}
                 />
-                {displayPhoneError && (
-                  <p className="mt-1 text-xs text-red-500">{displayPhoneError}</p>
-                )}
+                <p
+                  className={cn(
+                    "min-h-4 text-xs text-destructive",
+                    !displayPhoneError && "invisible"
+                  )}
+                  role="alert"
+                  aria-live="polite"
+                >
+                  {displayPhoneError ?? " "}
+                </p>
               </div>
             </div>
-            <div className="mt-auto flex flex-col pt-2">
+            <div className="flex flex-col gap-2">
               <TurnstileField ref={turnstileRef} className="min-h-[65px]" />
               {submitError && <p className="text-xs text-destructive">{submitError}</p>}
-              <Button
-                type="submit"
-                size="sm"
-                className="mb-2 mt-4 w-full"
-                disabled={submitting}
-              >
+              <Button type="submit" size="sm" className="mb-2 w-full" disabled={submitting}>
                 {submitting ? "Saving…" : "Submit"}
               </Button>
             </div>
