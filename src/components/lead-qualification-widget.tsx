@@ -207,11 +207,11 @@ export function LeadQualificationWidget() {
 
   const onFaqQuestion = (question: string) => {
     if (!activeFaqGroup) return;
-    const entry = getFaqItemsForGroup(activeFaqGroup).find((item) => item.question === question);
+    const entry = getFaqItemsForGroup(activeFaqGroup).find((item) => item.q === question);
     if (!entry) return;
 
     pushUser(question);
-    pushBot(entry.answer, () => {
+    pushBot(entry.a, () => {
       setStep("faq_followup");
       pushBot(SCRIPT.faqFollowUp);
     });
@@ -428,7 +428,7 @@ export function LeadQualificationWidget() {
         const questions = activeFaqGroup ? getFaqItemsForGroup(activeFaqGroup) : [];
         return (
           <ChoiceGroup
-            options={questions.map((item) => item.question)}
+            options={questions.map((item) => item.q)}
             onSelect={onFaqQuestion}
           />
         );

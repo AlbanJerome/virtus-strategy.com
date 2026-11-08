@@ -51,11 +51,11 @@ export const WIDGET_FAQ_CATEGORY_BUTTONS = [
 ] as const;
 
 export function getFaqItemsForGroup(groupCategory: string): FaqEntry[] {
-  return VIRTUS_FAQ_GROUPS.find((group) => group.category === groupCategory)?.items ?? [];
+  return VIRTUS_FAQ_GROUPS.find((group) => group.category === groupCategory)?.questions ?? [];
 }
 
 export function formatFaqQuestionList(items: FaqEntry[]): string {
-  const lines = items.map((item) => `• ${item.question}`);
+  const lines = items.map((item) => `• ${item.q}`);
   return `Here are the questions I can answer:\n\n${lines.join("\n")}`;
 }
 

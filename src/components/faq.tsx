@@ -18,7 +18,7 @@ type FaqProps = {
 };
 
 export function Faq({ groups }: FaqProps) {
-  const items = groups.flatMap((group) => group.items);
+  const items = groups.flatMap((group) => group.questions);
 
   return (
     <div className="max-w-3xl">
@@ -28,9 +28,9 @@ export function Faq({ groups }: FaqProps) {
           return (
             <AccordionItem key={value} value={value}>
               <AccordionTrigger className="text-base font-medium text-foreground">
-                {item.question}
+                {item.q}
               </AccordionTrigger>
-              <AccordionContent>{item.answer}</AccordionContent>
+              <AccordionContent>{item.a}</AccordionContent>
             </AccordionItem>
           );
         })}
