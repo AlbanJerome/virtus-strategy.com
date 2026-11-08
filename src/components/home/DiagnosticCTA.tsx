@@ -19,7 +19,8 @@ export function DiagnosticCTA() {
           as="p"
           className="mt-4 text-lg text-muted-foreground"
         >
-          Book a 30-minute diagnostic to map your front door and identify where your capacity is
+          Let's assess your needs and identify exactly where your firm is experiencing challenges
+          with client intake and qualification process, and find out where your firm's capacity is
           leaking.
         </Placeholder>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
