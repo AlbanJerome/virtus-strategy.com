@@ -13,8 +13,8 @@ export function Home() {
   return (
     <>
       <Seo
-        title="Virtus-Strategy | Secure Client Intake Infrastructure for Regulated Firms"
-        description="Stop risking compliance and losing billable hours. We design intake infrastructure with controlled AI extraction and rules-based controls for Legal, Wealth, Accounting, and Healthcare firms."
+        title="Strategic Intake & Risk Advisory | Virtus-Strategy"
+        description="Your intake layer is your largest unmanaged liability. We help regulated firms implement secure, rules-based controls to stop chasing documents and start practising."
         url="/"
       />
       <Hero />

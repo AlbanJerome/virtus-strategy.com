@@ -7,7 +7,7 @@ export function Labs() {
     <>
       <Seo
         title="Applied Research | Virtus-Strategy"
-        description="Internal research and technical prototypes from Virtus-Strategy: notes from our work on compliance, bounded execution, and client intake infrastructure."
+        description="Exploring the engineering limits of secure intake systems. Read our research on governed AI extraction, rules-based controls, and traceable execution."
         url="/labs"
       />
       <div className="py-16 md:py-24">

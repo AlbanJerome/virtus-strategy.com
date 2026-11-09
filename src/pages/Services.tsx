@@ -34,7 +34,7 @@ export function Services() {
     <div className="py-16 md:py-24">
       <Seo
         title="The Intake & Risk Review | Virtus-Strategy"
-        description="A fixed-scope advisory engagement. We review client intake and critical operational workflows, map compliance risks, and deliver a capacity recovery model. Implementation is optional."
+        description="A fixed-scope advisory engagement. We map your compliance risks, deliver a capacity recovery model, and design secure client intake infrastructure. Implementation is optional."
         url="/services"
       />
       <div className="mx-auto max-w-7xl px-4 md:px-6">
@@ -50,7 +50,7 @@ export function Services() {
           as="p"
           className="mt-3 text-sm font-medium text-primary"
         >
-          We accept a limited number of diagnostic engagements per quarter.
+          We accept a limited number of advisory engagements per quarter.
         </Placeholder>
         <Placeholder
           label="services-page-intro"
