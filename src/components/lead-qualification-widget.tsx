@@ -33,6 +33,11 @@ import {
   INTAKE_WIDGET_OPEN_EVENT,
   consumePendingIntakeOpen,
 } from "@/lib/open-intake-widget";
+
+/** One GIF loop duration before showing static avatar on the launcher. */
+const RIPLEY_GIF_LOOP_MS = 3_500;
+/** Idle time before the launcher GIF plays again. */
+const RIPLEY_STATIC_PAUSE_MS = 300_000;
 import { submitLead } from "@/lib/submit-lead";
 import { cn } from "@/lib/utils";
 
@@ -92,6 +97,8 @@ export function LeadQualificationWidget() {
   const [activeFaqGroup, setActiveFaqGroup] = useState<string | null>(null);
   const [bookingKind, setBookingKind] = useState<BookingKind>("diagnostic");
   const [captureValidatedOnce, setCaptureValidatedOnce] = useState(false);
+  const [animateRipley, setAnimateRipley] = useState(true);
+  const [gifKey, setGifKey] = useState(() => Date.now());
   const turnstileRef = useRef<TurnstileFieldHandle>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -99,6 +106,22 @@ export function LeadQualificationWidget() {
   useEffect(() => {
     scrollToEnd();
   }, [messages, typing, step, scrollToEnd]);
+
+  useEffect(() => {
+    if (!animateRipley) {
+      const restartTimer = window.setTimeout(() => {
+        setGifKey(Date.now());
+        setAnimateRipley(true);
+      }, RIPLEY_STATIC_PAUSE_MS);
+      return () => window.clearTimeout(restartTimer);
+    }
+
+    const endGifTimer = window.setTimeout(() => {
+      setAnimateRipley(false);
+    }, RIPLEY_GIF_LOOP_MS);
+
+    return () => window.clearTimeout(endGifTimer);
+  }, [animateRipley, gifKey]);
 
   useEffect(() => {
     if (!open) return;
@@ -720,7 +743,7 @@ export function LeadQualificationWidget() {
 
           <div
             ref={scrollRef}
-            className="min-h-0 flex-1 space-y-3 overflow-y-auto px-4 py-3"
+            className="no-scrollbar min-h-0 flex-1 space-y-3 overflow-y-auto px-4 py-3"
             aria-live="polite"
             aria-relevant="additions"
           >
@@ -762,7 +785,9 @@ export function LeadQualificationWidget() {
           onClick={startFlow}
         >
           <img
-            src="/ripley-avatar.gif"
+            src={
+              animateRipley ? `/ripley-avatar.gif?t=${gifKey}` : "/ripley-static.png"
+            }
             alt=""
             className="h-full w-full object-cover"
           />
