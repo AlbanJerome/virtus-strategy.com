@@ -33,12 +33,16 @@ import {
   INTAKE_WIDGET_OPEN_EVENT,
   consumePendingIntakeOpen,
 } from "@/lib/open-intake-widget";
+import {
+  RIPLEY_ANIMATED_AVATAR_SRC,
+  RIPLEY_STATIC_AVATAR_SRC,
+} from "@/lib/ripley-assets";
+import { submitLead } from "@/lib/submit-lead";
 
 /** One GIF loop duration before showing static avatar on the launcher. */
 const RIPLEY_GIF_LOOP_MS = 3_500;
 /** Idle time before the launcher GIF plays again. */
 const RIPLEY_STATIC_PAUSE_MS = 300_000;
-import { submitLead } from "@/lib/submit-lead";
 import { cn } from "@/lib/utils";
 
 type DraftLead = {
@@ -97,7 +101,7 @@ export function LeadQualificationWidget() {
   const [activeFaqGroup, setActiveFaqGroup] = useState<string | null>(null);
   const [bookingKind, setBookingKind] = useState<BookingKind>("diagnostic");
   const [captureValidatedOnce, setCaptureValidatedOnce] = useState(false);
-  const [animateRipley, setAnimateRipley] = useState(true);
+  const [animateRipley, setAnimateRipley] = useState(false);
   const [gifKey, setGifKey] = useState(() => Date.now());
   const turnstileRef = useRef<TurnstileFieldHandle>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -106,6 +110,11 @@ export function LeadQualificationWidget() {
   useEffect(() => {
     scrollToEnd();
   }, [messages, typing, step, scrollToEnd]);
+
+  useEffect(() => {
+    setGifKey(Date.now());
+    setAnimateRipley(true);
+  }, []);
 
   useEffect(() => {
     if (!animateRipley) {
@@ -732,7 +741,7 @@ export function LeadQualificationWidget() {
             </Button>
             <div className="flex flex-col items-center text-center">
               <img
-                src="/ripley-avatar.png"
+                src={RIPLEY_STATIC_AVATAR_SRC}
                 alt=""
                 className="mb-2 h-14 w-14 rounded-full border-2 border-primary object-cover shadow-md"
               />
@@ -785,8 +794,11 @@ export function LeadQualificationWidget() {
           onClick={startFlow}
         >
           <img
+            key={animateRipley ? `gif-${gifKey}` : "static"}
             src={
-              animateRipley ? `/ripley-avatar.gif?t=${gifKey}` : "/ripley-static.png"
+              animateRipley
+                ? `${RIPLEY_ANIMATED_AVATAR_SRC}?t=${gifKey}`
+                : RIPLEY_STATIC_AVATAR_SRC
             }
             alt=""
             className="h-full w-full object-cover"
